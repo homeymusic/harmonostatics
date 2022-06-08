@@ -173,6 +173,25 @@ prove that solutions to these equations obey superposition
   B=\frac{\beta}{C}, \ \beta=\{-1,0,1\}  \label{brillianceEq}
 \end{equation}
 
+\begin{equation}
+  C_{chord}=\frac{1}{N}\sum\limits_{i=0}^{N}\sum\limits_{j=i+1}^{N} C_{\left|i-j\right|}  \label{consonanceChordEq}
+\end{equation}
+
+\begin{equation}
+  B_{chord}=\frac{1}{N}\sum\limits_{i=0}^{N}\sum\limits_{j=i+1}^{N}\frac{ B_{i}+B_{j}}{2}   \label{brillianceChordEq}
+\end{equation}
+
+
+\begin{equation}
+  N=\frac{n!}{(n-r)!}  \label{combinationsEq}
+\end{equation}
+78 for chromatic
+28 for 8 note scale,
+21 for 7 note scale,
+6 for 4-note chord
+3 for 3-note chord
+
+
 Equations in \LaTeX\ can either be inline or on-a-line by itself (``display equations''). For
 inline equations use the \verb+$...$+ commands. E.g.: The equation
 $H\psi = E \psi$ is written via the command \verb+$H \psi = E \psi$+.
@@ -180,7 +199,7 @@ $H\psi = E \psi$ is written via the command \verb+$H \psi = E \psi$+.
 For display equations (with auto generated equation numbers)
 one can use the equation or align environments:
 \begin{equation}
-\|\tilde{X}(k)\|^2 \leq\frac{\sum\limits_{i=1}^{p}\left\|\tilde{Y}_i(k)\right\|^2+\sum\limits_{j=1}^{q}\left\|\tilde{Z}_j(k)\right\|^2 }{p+q}.\label{eq1}
+\|\tilde{X}(k)\|^2 \leq\frac{\sum\limits_{i=1}^{p}\Left\|\tilde{Y}_i(k)\right\|^2+\sum\limits_{j=1}^{q}\left\|\tilde{Z}_j(k)\right\|^2 }{p+q}.\label{eq1}
 \end{equation}
 where,
 \begin{align}
