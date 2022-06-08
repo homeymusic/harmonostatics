@@ -1,4 +1,4 @@
-g%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                 %%
 %% Please do not use \input{...} to include other tex files.       %%
 %% Submit your LaTeX manuscript as one .tex document.              %%
@@ -68,6 +68,7 @@ g%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \raggedbottom
 %%\unnumbered% uncomment this for unnumbered level heads
+\normalbaroutside
 
 \begin{document}
 
@@ -174,13 +175,13 @@ prove that solutions to these equations obey superposition
 \end{equation}
 
 \begin{equation}
-  C_{chord}=\frac{1}{N}\sum\limits_{i=0}^{N}\sum\limits_{j=i+1}^{N} C_{\left|i-j\right|}  \label{consonanceChordEq}
+  C_{I}=\frac{1}{N}\sum\limits_{i \in I}\sum\limits_{j \in I} C_{\mid i-j \mid}  \label{consonanceChordEq}
 \end{equation}
 
 \begin{equation}
-  B_{chord}=\frac{1}{N}\sum\limits_{i=0}^{N}\sum\limits_{j=i+1}^{N}\frac{ B_{i}+B_{j}}{2}   \label{brillianceChordEq}
+  B_{I}=\frac{1}{N}\sum\limits_{i \in I}\sum\limits_{j \in I}\frac{ B_{i}+B_{j}}{2}   \label{brillianceChordEq}
 \end{equation}
-
+where $I$ is the set of intervals of a chord or scale.
 
 \begin{equation}
   N=\frac{n!}{(n-r)!}  \label{combinationsEq}
@@ -191,17 +192,20 @@ prove that solutions to these equations obey superposition
 6 for 4-note chord
 3 for 3-note chord
 
+\begin{equation}
+  W=-\int_{a}^{b}\boldsymbol{H \cdot } d\boldsymbol{s} = \phi(b) - \phi(a)    \label{cadentialGravityProofEq}
+\end{equation}
+
+\begin{equation}
+  W =   \left( \left| \boldsymbol{H_{i}} \right| - \left|  \boldsymbol{H_{\tau}} \right| \right)s  \label{cadentialGravityEq}
+\end{equation}
+
+
 
 Equations in \LaTeX\ can either be inline or on-a-line by itself (``display equations''). For
 inline equations use the \verb+$...$+ commands. E.g.: The equation
 $H\psi = E \psi$ is written via the command \verb+$H \psi = E \psi$+.
 
-For display equations (with auto generated equation numbers)
-one can use the equation or align environments:
-\begin{equation}
-\|\tilde{X}(k)\|^2 \leq\frac{\sum\limits_{i=1}^{p}\Left\|\tilde{Y}_i(k)\right\|^2+\sum\limits_{j=1}^{q}\left\|\tilde{Z}_j(k)\right\|^2 }{p+q}.\label{eq1}
-\end{equation}
-where,
 \begin{align}
 D_\mu &=  \partial_\mu - ig \frac{\lambda^a}{2} A^a_\mu \nonumber \\
 F^a_{\mu\nu} &= \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g f^{abc} A^b_\mu A^a_\nu \label{eq2}
