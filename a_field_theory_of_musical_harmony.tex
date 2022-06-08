@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+g%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                 %%
 %% Please do not use \input{...} to include other tex files.       %%
 %% Submit your LaTeX manuscript as one .tex document.              %%
@@ -122,9 +122,9 @@ Springer Nature does not impose a strict layout as standard however authors are 
 
 
 \section{Words}\label{sec2}
-\begin{enumeration}
-\item Consonance and brilliance are not different phenomena but two  aspects of the same thing.
-\end{enumeration}
+\begin{enumerate}
+\item Consonance and brilliance are not different phenomena but two aspects of the same thing.
+\end{enumerate}
 \section{Results}\label{sec2}
 
 Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
@@ -139,26 +139,23 @@ Sample body text. Sample body text. Sample body text. Sample body text. Sample b
 
 \section{Equations}\label{sec4}
 
-\subsection{Musical Harmony}
+\subsection{Harmonostatics}
 
 \begin{equation}
-  \boldsymbol{H}=\eta\boldsymbol{\nabla}\phi \label{harmonyEq}  
+  \boldsymbol{\nabla \cdot H}=0\label{harmonyFieldStaticsEq}
 \end{equation}
 
 \begin{equation}
-  \boldsymbol{H}=(C\boldsymbol{\hat{c}}+B\boldsymbol{\hat{b}}) \label{consonanceEq}
+  \boldsymbol{\nabla \times H}=0\label{harmonyCurlStaticsEq}
 \end{equation}
 
-\begin{equation}
-  \boldsymbol{\nabla \cdot H}=\eta\boldsymbol{\nabla^2}\phi = \rho  \label{poissonEq}
-\end{equation}
-
-\begin{equation}
-  B=\frac{\beta}{C}, \ \beta=\{-1,0,1\}  \label{brillianceEq}
-\end{equation}
+prove that solutions to these equations obey superposition
 
 \subsection{Special Solution for 12 Just Intonation Tuning}
 
+\begin{equation}
+\phi=p_\tau p_o
+\end{equation}
 
 \begin{equation}
   \boldsymbol{H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla}\phi \label{harmonyEq}  
@@ -169,7 +166,7 @@ Sample body text. Sample body text. Sample body text. Sample body text. Sample b
 \end{equation}
 
 \begin{equation}
-  \boldsymbol{\nabla \cdot H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla^2}\phi = \rho  \label{poissonEq}
+  \boldsymbol{\nabla \cdot H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla^2}\phi = 0  \label{poissonEq}
 \end{equation}
 
 \begin{equation}
@@ -514,6 +511,24 @@ If your manuscript includes potentially identifying patient/participant informat
 \item symmetry around the 2nds, 3rds, 6ths and 7ths (is there a curve on the plot?)
 \end{enumerate}
 \section{Locrian the Sublime}\label{locrianSec}
+A composer of the Western, tonic (and therefore major) biased tradition, when confronted with Locrian mode, will ask, ``Where's the Perfect Fifth? Where's the Major 7th? Without the perfect 5th how will my chords will be consonant and my cadences strong?'' If the composer were to frame those questions in a slightly different way the sense of doom would disappear. How?
+
+\begin{figure}[h]%
+\centering
+\includegraphics[width=0.9\textwidth]{fig.eps}
+\caption{Locrian mode with no perfecet fifth and no major seventh.}\label{locrianScaleMusic}
+\end{figure}
+
+We know from equation the consonance is the same when regardless of the ordering of the numerator and denominator of the frequency ratio. We also know from equation that the potential energy of cadences is a function of the abolsute value of the distance between the notes.
+
+If the composer were to reframe the questions as, ``Where's the 3:2 or 2:3 interval? Where's the +-8 interval?'' then he would see that the Locrian mode is a fully capable and arguably the most sublime of all the modes for composition.
+
+Include sheet music for Bach in Locrian.
+
+Introduce the image of the piano with the mirror. With a mirror placed to the left of the home note then - with one exception, whatever the pianist plays, the mirror image pianist is playing the same piece perfectly well in the reflected mode: Ionian-Phrygian, Mixolydian-Aeolian and Lydian-Locrian. The exception is Dorian. For Dorian mode, we must place the mirror directly in the center of the tritone.
+
+Now show Bach's piece in all modes with sheet music first and then including piano roll.
+
 \section{General Solutions}\label{sec12}
 
 Discussions should be brief and focused. In some disciplines use of Discussion or `Conclusion' is interchangeable. It is not mandatory to use both. Some journals prefer a section `Results and Discussion' followed by a section `Conclusion'. Please refer to Journal-level guidance for any specific requirements.
