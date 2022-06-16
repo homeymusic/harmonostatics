@@ -157,10 +157,22 @@ Sample body text. Sample body text. Sample body text. Sample body text. Sample b
 
 prove that solutions to these equations obey superposition
 
-\subsection{Special Solution for 12 Just Intonation Tuning}
+\subsection{Special Solution}
 
 \begin{equation}
-\phi=a_o a_\tau + \Omega
+  \frac{\omega_{i}}{\omega_{j}} = \prod_{p \in \mathbb{P}} p^{\alpha_{rp}}, \ r=|i-j|
+\end{equation}
+
+\begin{equation}
+  d_r = \sum_{p \in \mathbb{P}} \left| p \alpha_{rp} \right|
+\end{equation}
+
+\begin{equation}
+  a_r = d_{max} - d_r
+\end{equation}
+
+\begin{equation}
+  \phi=a_{r_o} a_{r_\tau} + \Omega
 \end{equation}
 
 \begin{equation}
@@ -176,7 +188,7 @@ prove that solutions to these equations obey superposition
 \end{equation}
 
 \begin{equation}
-  B=\frac{\beta}{C-\sqrt[\Delta]{C_{max}}}, \ \beta=\{-1,0,1\}  \label{brillianceEq}
+  B=\frac{\beta}{C-\kappa} \ where \ \beta=\{-1,0,1\}  \ and \  \kappa = \sqrt[\Delta]{C_{max}} \label{brillianceEq}
 \end{equation}
 
 \begin{equation}
@@ -241,23 +253,23 @@ For the corresponding footnotemark use \verb+\footnotemark[...]+
 \begin{center}
 \begin{minipage}{174pt}
 \caption{Interval-Tonic Affinity}\label{tab1}%
-\begin{tabular}{@{}llll@{}}
+\begin{tabular}{@{}lllll@{}}
 \toprule
-$\tau$ \footnotemark[1] & Name  & Ratio \footnotemark[2] & Affinity  \\
+$\tau$ \footnotemark[1] & Name  & Ratio \footnotemark[2] & Example & Affinity  \\
 \midrule
-$0$ & Tonic & $1:1$ & 16 \\
-$1$ & Minor 2nd & $16:15$ & 0 \\
-$2$ & Major 2nd & $9:8$ & 4 \\
-$3$ & Minor 3rd & $6:5$ & 6 \\
-$4$ & Major 3rd & $5:4$ & 7 \\
-$5$ & Perfect 4th & $4:3$ & 9 \\
-$6$ & Tritone \footnotemark[3] & $\sqrt{2}:1 $ & 3 \\
-$7$ & Perfect 5th & $3:2$ & 11 \\
-$8$ & Minor 6th & $8:5$ & 5 \\
-$9$ & Major 6th & $5:3$ & 8 \\
-$10$ & Minor 7th & $16:9$ & 2 \\
-$11$ & Major 7th & $15:8$ & 2 \\
-$12$ & Octave & $2:1$ & 14 \\
+$0$ & Tonic & $1:1$ & $C4:C4$ & 16 \\
+$1$ & Minor 2nd & $16:15$ & $C\sharp:C4$ & 0 \\
+$2$ & Major 2nd & $9:8$ & $D:C4$ & 4 \\
+$3$ & Minor 3rd & $6:5$ & $D\sharp:C4$ & 6 \\
+$4$ & Major 3rd & $5:4$ & $E:C4$ & 7 \\
+$5$ & Perfect 4th & $4:3$ & $F:C4$ & 9 \\
+$6$ & Tritone \footnotemark[3] & $\sqrt{2}:1 $ & $F\sharp:C4$ & 3 \\
+$7$ & Perfect 5th & $3:2$ & $G:C4$ & 11 \\
+$8$ & Minor 6th & $8:5$ & $G\sharp:C4$ & 5 \\
+$9$ & Major 6th & $5:3$ & $A:C4$ & 8 \\
+$10$ & Minor 7th & $16:9$ & $A\sharp:C4$ & 2 \\
+$11$ & Major 7th & $15:8$ & $B:C4$ & 2 \\
+$12$ & Octave & $2:1$ & $C5:C4$ & 14 \\
 \botrule
 \end{tabular}
 \footnotetext[1]{Semitones from the tonic, $\tau$.}
@@ -271,23 +283,23 @@ $12$ & Octave & $2:1$ & 14 \\
 \begin{center}
 \begin{minipage}{174pt}
 \caption{Interval-Octave Affinity}\label{tab1}%
-\begin{tabular}{@{}llll@{}}
+\begin{tabular}{@{}lllll@{}}
 \toprule
-$o$ \footnotemark[1] & Name  & Ratio \footnotemark[2] & Affinity  \\
+$o$ \footnotemark[1] & Name  & Ratio \footnotemark[2] & Example & Affinity  \\
 \midrule
-$\overline{0}$ & Octave & $1:1$ & 16 \\
-$\overline{1}$ & Major 7th & $15:16$ & 2 \\
-$\overline{2}$ & Minor 7th & $8:9$ & 2 \\
-$\overline{3}$ & Major 6th & $5:6$ & 8 \\
-$\overline{4}$ & Minor 6th & $4:5$ & 5 \\
-$\overline{5}$ & Perfect 5th & $3:4$ & 11 \\
-$\overline{6}$ & Tritone \footnotemark[3] & $1:\sqrt{2} $ & 3 \\
-$\overline{7}$ & Perfect 4th & $2:3$ & 9 \\
-$\overline{8}$ & Major 3rd & $5:8$ & 7 \\
-$\overline{9}$ & Minor 3rd & $3:5$ & 6 \\
-$\overline{10}$ & Major 2nd & $9:16$ & 4 \\
-$\overline{11}$ & Minor 2nd & $8:15$ & 0 \\
-$\overline{12}$ & Tonic & $1:2$ & 14 \\
+$\overline{0}$ & Octave & $1:1$ & $C5:C5$ & 16 \\
+$\overline{1}$ & Major 7th & $15:16$ & $B:C5$ & 2 \\
+$\overline{2}$ & Minor 7th & $8:9$ & $B\flat:C5$ & 2 \\
+$\overline{3}$ & Major 6th & $5:6$ & $A:C5$ & 8 \\
+$\overline{4}$ & Minor 6th & $4:5$ & $A\flat:C5$ & 5 \\
+$\overline{5}$ & Perfect 5th & $3:4$ & $G:C5$ & 11 \\
+$\overline{6}$ & Tritone \footnotemark[3] & $1:\sqrt{2} $ & $G\flat:C5$ & 3 \\
+$\overline{7}$ & Perfect 4th & $2:3$ & $F:C5$ & 9 \\
+$\overline{8}$ & Major 3rd & $5:8$ & $E:C5$ & 7 \\
+$\overline{9}$ & Minor 3rd & $3:5$ & $E\flat:C5$ & 6 \\
+$\overline{10}$ & Major 2nd & $9:16$ & $D:C5$ & 4 \\
+$\overline{11}$ & Minor 2nd & $8:15$ & $D\flat:C5$ & 0 \\
+$\overline{12}$ & Tonic & $1:2$ & $C4:C5$ & 14 \\
 \botrule
 \end{tabular}
 \footnotetext[1]{Semitones from the octave, $o$.}
