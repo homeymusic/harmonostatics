@@ -176,7 +176,7 @@ prove that solutions to these equations obey superposition
 \end{equation}
 
 \begin{equation}
-  B=\frac{\beta}{C}, \ \beta=\{-1,0,1\}  \label{brillianceEq}
+  B=\frac{\beta}{C-\sqrt[\Delta]{C_{max}}}, \ \beta=\{-1,0,1\}  \label{brillianceEq}
 \end{equation}
 
 \begin{equation}
@@ -240,60 +240,64 @@ For the corresponding footnotemark use \verb+\footnotemark[...]+
 \begin{table}[h]
 \begin{center}
 \begin{minipage}{174pt}
-\caption{Caption text}\label{tab1}%
+\caption{Interval-Tonic Affinity}\label{tab1}%
 \begin{tabular}{@{}llll@{}}
 \toprule
-Column 1 & Column 2  & Column 3 & Column 4\\
+$\tau$ \footnotemark[1] & Name  & Ratio \footnotemark[2] & Affinity  \\
 \midrule
-row 1    & data 1   & data 2  & data 3  \\
-row 2    & data 4   & data 5\footnotemark[1]  & data 6  \\
-row 3    & data 7   & data 8  & data 9\footnotemark[2]  \\
+$0$ & Tonic & $1:1$ & 16 \\
+$1$ & Minor 2nd & $16:15$ & 0 \\
+$2$ & Major 2nd & $9:8$ & 4 \\
+$3$ & Minor 3rd & $6:5$ & 6 \\
+$4$ & Major 3rd & $5:4$ & 7 \\
+$5$ & Perfect 4th & $4:3$ & 9 \\
+$6$ & Tritone \footnotemark[3] & $\sqrt{2}:1 $ & 3 \\
+$7$ & Perfect 5th & $3:2$ & 11 \\
+$8$ & Minor 6th & $8:5$ & 5 \\
+$9$ & Major 6th & $5:3$ & 8 \\
+$10$ & Minor 7th & $16:9$ & 2 \\
+$11$ & Major 7th & $15:8$ & 2 \\
+$12$ & Octave & $2:1$ & 14 \\
 \botrule
 \end{tabular}
-\footnotetext{Source: This is an example of table footnote. This is an example of table footnote.}
-\footnotetext[1]{Example for a first table footnote. This is an example of table footnote.}
-\footnotetext[2]{Example for a second table footnote. This is an example of table footnote.}
+\footnotetext[1]{Semitones from the tonic, $\tau$.}
+\footnotetext[2]{Frequency ratio with respect to the tonic as $interval:tonic$.}
+\footnotetext[3]{For tritone ratio and affinity, see the methods section.}
+\end{minipage}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+\begin{minipage}{174pt}
+\caption{Interval-Octave Affinity}\label{tab1}%
+\begin{tabular}{@{}llll@{}}
+\toprule
+$o$ \footnotemark[1] & Name  & Ratio \footnotemark[2] & Affinity  \\
+\midrule
+$\overline{0}$ & Octave & $1:1$ & 16 \\
+$\overline{1}$ & Major 7th & $15:16$ & 2 \\
+$\overline{2}$ & Minor 7th & $8:9$ & 2 \\
+$\overline{3}$ & Major 6th & $5:6$ & 8 \\
+$\overline{4}$ & Minor 6th & $4:5$ & 5 \\
+$\overline{5}$ & Perfect 5th & $3:4$ & 11 \\
+$\overline{6}$ & Tritone \footnotemark[3] & $1:\sqrt{2} $ & 3 \\
+$\overline{7}$ & Perfect 4th & $2:3$ & 9 \\
+$\overline{8}$ & Major 3rd & $5:8$ & 7 \\
+$\overline{9}$ & Minor 3rd & $3:5$ & 6 \\
+$\overline{10}$ & Major 2nd & $9:16$ & 4 \\
+$\overline{11}$ & Minor 2nd & $8:15$ & 0 \\
+$\overline{12}$ & Tonic & $1:2$ & 14 \\
+\botrule
+\end{tabular}
+\footnotetext[1]{Semitones from the octave, $o$.}
+\footnotetext[2]{Frequency ratio with respect to the octave as $interval:octave$.}
+\footnotetext[3]{For tritone ratio and affinity, see the methods section.}
 \end{minipage}
 \end{center}
 \end{table}
 
 \noindent
-The input format for the above table is as follows:
-
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. please ignore this.       %%
-%%=============================================%%
-\bigskip
-\begin{verbatim}
-\begin{table}[<placement-specifier>]
-\begin{center}
-\begin{minipage}{<preferred-table-width>}
-\caption{<table-caption>}\label{<table-label>}%
-\begin{tabular}{@{}llll@{}}
-\toprule
-Column 1 & Column 2 & Column 3 & Column 4\\
-\midrule
-row 1 & data 1 & data 2	 & data 3 \\
-row 2 & data 4 & data 5\footnotemark[1] & data 6 \\
-row 3 & data 7 & data 8	 & data 9\footnotemark[2]\\
-\botrule
-\end{tabular}
-\footnotetext{Source: This is an example of table footnote. 
-This is an example of table footnote.}
-\footnotetext[1]{Example for a first table footnote.
-This is an example of table footnote.}
-\footnotetext[2]{Example for a second table footnote. 
-This is an example of table footnote.}
-\end{minipage}
-\end{center}
-\end{table}
-\end{verbatim}
-\bigskip
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. please ignore this.       %%
-%%=============================================%%
 
 \begin{table}[h]
 \begin{center}
