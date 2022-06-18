@@ -23,7 +23,6 @@
     \Staff
     \omit TimeSignature
     \omit BarLine
-    \omit Clef
   }
 }
 
