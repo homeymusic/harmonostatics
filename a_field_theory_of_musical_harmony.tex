@@ -1,4 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%                                                                 %%
 %% Please do not use \input{...} to include other tex files.       %%
 %% Submit your LaTeX manuscript as one .tex document.              %%
@@ -150,21 +151,23 @@ Sample body text. Sample body text. Sample body text. Sample body text. Sample b
 
 \subsection{Harmonostatics}
 
-\begin{equation}
-  \boldsymbol{H} = \boldsymbol{\nabla}\phi\label{gradPhiEq}
-\end{equation}
+The principle of superposition allows us to use simple sums and averages to understand how multiple pitches in the field impact the harmony of other pitches in the field so that we can construct measures of harmony for chords and scales with any number of pitches.
 
 \begin{equation}
-  \boldsymbol{\nabla \cdot H}=0\label{harmonyFieldStaticsEq}
+  \boldsymbol{H} = \boldsymbol{\nabla}\psi\label{gradPsiEq}
 \end{equation}
 
 \begin{equation}
   \boldsymbol{\nabla \times H}=0\label{harmonyCurlStaticsEq}
 \end{equation}
 
-prove that solutions to these equations obey superposition
+\begin{equation}
+  \boldsymbol{\nabla \cdot H}=0\label{harmonyFieldStaticsEq}
+\end{equation}
 
-\subsection{Special Solution}
+The intuition for setting the divergence of $\mathbf{H}$ to zero is that brilliance (major-minor) seems less detectable when consonance is high or low. Experimental data seem to show that the most brilliant chords are heard in the middle of the one-octave consonance range. So in a sense brilliance seems to stretch out as consonance is compressed and vice versa. In other words, harmony seems to be incompressible.
+
+\subsection{Prime Factors Affinity}
 
 \begin{equation}
   \frac{\omega_{i}}{\omega_{j}} = \prod_{p \in \mathbb{P}} p^{\alpha_{rp}}, \ r=|i-j|
@@ -178,20 +181,31 @@ prove that solutions to these equations obey superposition
   a_r = d_{max} - d_r
 \end{equation}
 
+\subsection{Tonic-Octave Field  with Prime Factors Affinity}
+
 \begin{equation}
-  \phi=a_{r_o} a_{r_\tau} + \Omega
+  \boldsymbol{\nabla \cdot H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla^2}\psi = 0  \label{laplaceEq}
 \end{equation}
 
 \begin{equation}
-  \boldsymbol{H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla}\phi \label{harmonyEq}  
+  z = x + iy \Rightarrow z^2
 \end{equation}
 
 \begin{equation}
-  \boldsymbol{H}=(C\boldsymbol{\hat{c}}+B\boldsymbol{\hat{b}})\cos(\theta) \label{consonanceEq}
+  \Phi(z) = \phi(x,y) + i \psi(x,y)
 \end{equation}
 
 \begin{equation}
-  \boldsymbol{\nabla \cdot H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla^2}\phi = 0  \label{poissonEq}
+  \psi=2xy + \Omega
+\end{equation}
+For $\psi$, $x$ is the affinity with respect to the octave pitch, $y$ is affinity with respect to the tonic pitch and $\Omega$ is an range constant for how many octaves to include above and below the primary octave.
+
+\begin{equation}
+  \boldsymbol{H}=\eta(\boldsymbol{\hat{z}},\theta)\boldsymbol{\nabla}\psi \label{harmonyEq}
+\end{equation}
+
+\begin{equation}
+  \boldsymbol{H}=(2x\boldsymbol{\hat{x}} - 2y\boldsymbol{\hat{y}})\cos(\theta) = 2B\boldsymbol{\hat{b}} - 2C\boldsymbol{\hat{c}} \label{consonanceEq}
 \end{equation}
 
 \begin{equation}
@@ -217,7 +231,7 @@ where $I$ is the set of intervals of a chord or scale.
 3 for 3-note chord
 
 \begin{equation}
-  W=-\int_{a}^{b}\boldsymbol{H \cdot } d\boldsymbol{s} = \phi(b) - \phi(a)    \label{cadentialGravityProofEq}
+  W=-\int_{a}^{b}\boldsymbol{H \cdot } d\boldsymbol{s} = \psi(b) - \psi(a)    \label{cadentialGravityProofEq}
 \end{equation}
 
 \begin{equation}
@@ -316,7 +330,7 @@ $12$ & Octave & $2:1$ & $C5:C4$ & 14 \\
   \end{center}
 \end{table}
 
-\Begin{table}[h]
+\begin{table}[h]
   \begin{center}
     \begin{minipage}{174pt}
       \caption{Frequency Ratio Prime Numbers}\label{tab1}%
@@ -640,7 +654,7 @@ Now show Bach's piece in all modes with sheet music first and then including pia
   
 \item Additional Octaves
 \item Higher Prime Limits / Larger Range of Just Intontation Microtunings in One Octave
-\item Frequency-based $\phi$
+\item Frequency-based $\psi$
 \item $\eta$ variations ... what does this mean? related to freq approach?
 \item $\rho>0$ presence of other pitches
 \item where's magnetism? does that come with harmonodynamics?
