@@ -8,6 +8,6 @@ harmony <- function() {
     name = intervals()$name,
     polarity = rotated_affinity[1,],
     affinity = rotated_affinity[2,],
-    brightness = polarity / affinity # psi = 2xy = +/- 2
+    brightness = polarity / affinity # psi = 2xy = const ±2
   )
 }
