@@ -5,6 +5,7 @@ sum_of_prime_factors <- function(x) {
 }
 
 rotate <- function(coordinates,angle) {
+  checkmate::assert_numeric(angle)
   R = tibble::frame_matrix(
     ~x, ~y,
     cos(angle), -sin(angle),

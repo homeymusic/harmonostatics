@@ -15,7 +15,6 @@ disaffinity <- function() {
   )
 }
 
-
 affinity <- function() {
   t_d = disaffinity()$tonic
   o_d = disaffinity()$octave
