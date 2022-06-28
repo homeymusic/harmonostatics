@@ -1,6 +1,6 @@
 test_that("frequency is structured as we expect", {
-  t = frequency.tonic()
-  o = frequency.octave()
+  t = tonic.frequency()
+  o = octave.frequency()
   expect(tibble::is_tibble(t),"expected tonic frequency ratios to be a tibble")
   expect(tibble::is_tibble(o),"expected octave frequency ratios to be a tibble")
   expect_length(t$interval,13)

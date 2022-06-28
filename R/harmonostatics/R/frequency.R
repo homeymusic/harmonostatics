@@ -1,4 +1,4 @@
-frequency.tonic <- function() {
+tonic.frequency <- function() {
   t = tibble::tibble(
     interval = 0:12,
     name = c("tonic","minor 2nd","major 2nd","minor 3rd","major 3rd",
@@ -12,8 +12,8 @@ frequency.tonic <- function() {
   t
 }
 
-frequency.octave <- function() {
-  tonic = frequency.tonic()
+octave.frequency <- function() {
+  tonic = tonic.frequency()
   t = tibble::tibble(
     interval = tonic$interval,
     name = tonic$name,
