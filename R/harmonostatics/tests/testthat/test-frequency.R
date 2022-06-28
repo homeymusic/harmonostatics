@@ -3,8 +3,6 @@ test_that("frequency is structured as we expect", {
   o = octave.frequency()
   expect(tibble::is_tibble(t),"expected tonic frequency ratios to be a tibble")
   expect(tibble::is_tibble(o),"expected octave frequency ratios to be a tibble")
-  expect_length(t$interval,13)
-  expect_length(o$interval,13)
   expect_equal(t$numerator,c(1,16,9,6,5,4,7,3,8,5,16,15,2))
   expect_equal(t$denominator,c(1,15,8,5,4,3,5,2,5,3,9,8,1))
   expect_equal(o$numerator,rev(c(1,15,8,5,4,3,5,2,5,3,9,8,1)))
