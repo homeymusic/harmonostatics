@@ -1,6 +1,6 @@
 test_that("frequency is structured as we expect", {
-  t = tonic_frequency_ratios
-  o = octave_frequency_ratios
+  t = frequency.tonic()
+  o = frequency.octave()
   expect(tibble::is_tibble(t),"expected tonic frequency ratios to be a tibble")
   expect(tibble::is_tibble(o),"expected octave frequency ratios to be a tibble")
   expect_length(t$interval,13)
@@ -15,10 +15,10 @@ test_that("frequency is structured as we expect", {
   expect_equal(o$name,c("tonic","minor 2nd","major 2nd","minor 3rd","major 3rd",
                         "perfect 4th","tritone","perfect 5th","minor 6th",
                         "major 6th","minor 7th","major 7th","octave"))
-  expect_equal(t$ratio_label,c("1:1","16:15","9:8","6:5","5:4","4:3",
+  expect_equal(t$ratio,c("1:1","16:15","9:8","6:5","5:4","4:3",
                                   "√2:1",
                                   "3:2","8:5","5:3","16:9","15:8","2:1"))
-  expect_equal(o$ratio_label,c("1:2","8:15","9:16","3:5","5:8","2:3",
+  expect_equal(o$ratio,c("1:2","8:15","9:16","3:5","5:8","2:3",
                                "1:√2",
                                "3:4","4:5","5:6","8:9","15:16","1:1"))
 })
