@@ -3,9 +3,9 @@ expected_octave_affinity = c(14,2,2,8,5,11,4,9,7,6,4,0,16)
 expected_mean_affinity = c(15,1,3,7,6,10,4,10,6,7,3,1,15)
 
 test_that("prime factor disaffinity matches expectations", {
-  t_d = tonic.disaffinity()
+  t_d = disaffinity()$tonic
   expect_equal(t_d,c(0,16,12,10,9,7,12,5,11,8,14,14,2))
-  o_d = octave.disaffinity()
+  o_d = disaffinity()$octave
   expect_equal(o_d,c(2,14,14,8,11,5,12,7,9,10,12,16,0))
 })
 

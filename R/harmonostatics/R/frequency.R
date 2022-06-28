@@ -1,11 +1,9 @@
-
+# TODO: consider using the ET tritone √2:1 1:√2 with affinity of 3
 # for the tonic tritone we use 7:5
 # lesser septimal tritone (<tritone): -17.5 cents from 600
-# TODO: consider using the ET tritone √2:1 1:√2
 tonic.frequency <- function() {
-  i = intervals()
   tibble::tibble(
-    name = i$name,
+    name = intervals()$name,
     numerator = c(1,16,9,6,5,4,7,3,8,5,16,15,2),
     denominator = c(1,15,8,5,4,3,5,2,5,3,9,8,1),
     ratio = paste(numerator,":",denominator, sep="")

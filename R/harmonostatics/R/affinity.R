@@ -1,22 +1,27 @@
-tonic.disaffinity <- function() {
+disaffinity <- function() {
   t = tonic.frequency()
-  t$numerator %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
+  t_d = t$numerator %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
     t$denominator %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors)
-}
 
-octave.disaffinity <- function() {
   o = octave.frequency()
-  o$numerator %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
+  o_d = o$numerator %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
     o$denominator %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors)
-}
-
-affinity <- function() {
-  i = intervals()
-  t_d = tonic.disaffinity()
-  o_d = octave.disaffinity()
 
   tibble::tibble(
-    name = i$name,
+    name = intervals()$name,
+    tonic = t_d,
+    octave = o_d,
+    mean = rbind(octave,tonic) %>% colMeans
+  )
+}
+
+
+affinity <- function() {
+  t_d = disaffinity()$tonic
+  o_d = disaffinity()$octave
+
+  tibble::tibble(
+    name = intervals()$name,
     tonic = t_d %>% max - t_d,
     octave = o_d %>% max - o_d,
     mean = rbind(octave,tonic) %>% colMeans
