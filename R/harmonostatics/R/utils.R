@@ -1,7 +1,9 @@
 sum_of_prime_factors <- function(x) {
   checkmate::assert_integerish(x)
-  # only prime numbers greater than 1 as 1 would have exponents of zero
-  x[x>1] %>% sum
+  # because 1 in exponential form would have all exponents = zero
+  # we only sum prime numbers greater than 1
+  # this is a shortcut versus creating the exponential form of all intervals
+  sum(x[x>1])
 }
 
 rotate <- function(coordinates,angle) {
