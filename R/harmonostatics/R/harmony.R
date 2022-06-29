@@ -1,6 +1,6 @@
 harmony.0 <- function() {
-  affinity_tonic = affinity()$tonic
-  affinity_octave = affinity()$octave
+  affinity_tonic = affinity.0()$tonic
+  affinity_octave = affinity.0()$octave
 
   # use the tritone to determine the rotation angle
   tritone_i = 6 + 1

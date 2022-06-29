@@ -1,6 +1,6 @@
-affinity <- function() {
-  tonic_disaffinity = disaffinity()$tonic
-  octave_disaffinity = disaffinity()$octave
+affinity.0 <- function() {
+  tonic_disaffinity = disaffinity.0()$tonic
+  octave_disaffinity = disaffinity.0()$octave
 
   tibble::tibble(
     name = intervals()$name,
@@ -10,7 +10,7 @@ affinity <- function() {
   )
 }
 
-disaffinity <- function() {
+disaffinity.0 <- function() {
   t = tonic.frequency()
   tonic_disaffinity = calculate_disaffinity_with_et_tritone(t$numerator,t$denominator)
 
