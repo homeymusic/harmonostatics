@@ -9,4 +9,9 @@ test_that("harmony meets expectaions", {
   expect_equal(h$affinity, c(15,1,3,7,6,10,4,10,6,7,3,1,15))
   # the mean of the tonic and octave affinities equals rotated affinity
   expect_equal(h$affinity,affinity()$mean)
+  expected_tonic_gravity = c(0.00,1.03,6.08,21.05,24.33,50.00,
+                             24.00,
+                             70.01,48.66,63.16,30.41,11.33,180.00)
+  expect_equal(h$tonic_gravity,expected_tonic_gravity,tolerance = TRUE)
+  expect_equal(h$octave_gravity,expected_tonic_gravity %>% rev,tolerance = TRUE)
 })
