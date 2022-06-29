@@ -36,7 +36,7 @@ calculate_disaffinity_with_et_tritone <- function(numerators, denominators) {
   # calculate disaffinity of remaining intervals
   disaffinity = calculate_disaffinity(numerators,denominators)
 
-  # put the ET tritone estimate
+  # insert the ET tritone estimate into the results
   c(disaffinity[1:6],et_tritone_disaffinity(),disaffinity[7:12])
 }
 
