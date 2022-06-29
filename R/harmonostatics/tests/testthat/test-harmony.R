@@ -50,7 +50,7 @@ test_that("affinity form matches expectations", {
 })
 
 test_that("ET tritone disaffinity matches expectation", {
-  expect_equal(et_tritone_disaffinity(),13)
+  expect_equal(equal_temperament_tritone_disaffinity(),13)
 })
 
 test_that("affinity for chords matches our expectations",{

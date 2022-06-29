@@ -106,20 +106,19 @@ affinity.0 <- function() {
 
 disaffinity.0 <- function() {
   t = tonic.frequency.0()
-  tonic_disaffinity = calculate_disaffinity_with_et_tritone(t$numerator,t$denominator)
+  tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator)
 
   o = octave.frequency.0()
-  octave_disaffinity = calculate_disaffinity_with_et_tritone(o$numerator,o$denominator)
+  octave_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(o$numerator,o$denominator)
 
   tibble::tibble(
     name = intervals.0()$name,
     tonic = tonic_disaffinity,
-    octave = octave_disaffinity,
-    mean = rbind(octave,tonic) %>% colMeans
+    octave = octave_disaffinity
   )
 }
 
-calculate_disaffinity_with_et_tritone <- function(numerators, denominators) {
+calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
   # drop the irrational tritone
   numerators = numerators[-7]
   denominators = denominators[-7]
@@ -131,7 +130,7 @@ calculate_disaffinity_with_et_tritone <- function(numerators, denominators) {
   disaffinity = calculate_disaffinity(numerators,denominators)
 
   # insert the ET tritone estimate into the results
-  c(disaffinity[1:6],et_tritone_disaffinity(),disaffinity[7:12])
+  c(disaffinity[1:6],equal_temperament_tritone_disaffinity(),disaffinity[7:12])
 }
 
 calculate_disaffinity <- function(numerators, denominators) {
@@ -142,9 +141,9 @@ calculate_disaffinity <- function(numerators, denominators) {
     denominators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors)
 }
 
-# Estimate Disaffinity of the ET Tritone
+# Estimate Disaffinity of the Equal Temperament Tritone
 #
-# We use the ET tritone which has a ratio of √2:1 with the tonic
+# We use the equal temperament tritone which has a ratio of √2:1 with the tonic
 # and 1:√2 with the octave
 # Because √2 is not a positive integer we can't use prime factors to determine
 # affinity. So for the tritone values we let symmetry and existing experimental
@@ -167,7 +166,7 @@ calculate_disaffinity <- function(numerators, denominators) {
 # For the affinity value, we take a small leap of intuition and use the mean of
 # the affinities for the lesser septimal tritone and greater septimal tritones
 
-et_tritone_disaffinity <- function() {
+equal_temperament_tritone_disaffinity <- function() {
   lesser_septimal_tritone_disaffinity = sum(numbers::primeFactors(7),numbers::primeFactors(5))
   greater_septimal_tritone_disaffinity = sum(numbers::primeFactors(10),numbers::primeFactors(7))
   mean(c(lesser_septimal_tritone_disaffinity,greater_septimal_tritone_disaffinity))
