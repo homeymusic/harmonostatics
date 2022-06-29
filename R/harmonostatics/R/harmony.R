@@ -1,4 +1,4 @@
-harmony <- function() {
+harmony.0 <- function() {
   affinity_tonic = affinity()$tonic
   affinity_octave = affinity()$octave
 

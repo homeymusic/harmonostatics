@@ -1,5 +1,5 @@
 test_that("harmony meets expectaions", {
-  h = harmony()
+  h = harmony.0()
   expect_equal(h$name %>% length,13)
   expect(tibble::is_tibble(h),"expected harmony to be a tibble")
   expect_equal(h$brightness_polarity, c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1))

@@ -15,7 +15,7 @@ test_that("affinity form matches expectations", {
   expect_equal(a$tonic,expected_tonic_affinity)
   expect_equal(a$octave,expected_octave_affinity)
   expect_equal(a$mean,expected_mean_affinity)
-  expect_equal(a$mean,harmony()$affinity)
+  expect_equal(a$mean,harmony.0()$affinity)
 })
 
 test_that("et tritone disaffinity matches expectation", {
