@@ -1,6 +1,6 @@
 level_and_interval_of <- function(x) {
-  checkmate::qassert(x,"X1")
-  x = c(0,x)
+  checkmate::qassert(x,c("X==1","X==2"))
+  if (x %>% length == 1) {x = c(0,x)}
   s = abs(max(x))-abs(min(x))
   interval = s%%12
   if (s<0) {
