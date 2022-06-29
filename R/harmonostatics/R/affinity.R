@@ -11,10 +11,10 @@ affinity.0 <- function() {
 }
 
 disaffinity.0 <- function() {
-  t = tonic.frequency()
+  t = tonic.frequency.0()
   tonic_disaffinity = calculate_disaffinity_with_et_tritone(t$numerator,t$denominator)
 
-  o = octave.frequency()
+  o = octave.frequency.0()
   octave_disaffinity = calculate_disaffinity_with_et_tritone(o$numerator,o$denominator)
 
   tibble::tibble(
