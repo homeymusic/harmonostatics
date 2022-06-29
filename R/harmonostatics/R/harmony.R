@@ -9,14 +9,15 @@ harmony <- function() {
   # Directional Derivative:
   #
   # rotate around the origin by the rotation angle
-  # we will change coordinate systems
+  # changing the coordinate system
   # from: octave-affinity versus tonic-affinity
-  # to: octave-tonic-affinity versus brightness
-  affinity_brightness = (rbind(affinity_tonic,affinity_octave) %>%
+  # to: octave-tonic-affinity versus brightness polarity
+  affinity_brightness_polarity = (rbind(affinity_tonic,affinity_octave) %>%
                            rotate(angle) * cos(angle)) %>% zapsmall
-  # x [1,] is brightness polarity and y [2,] is affinity
-  brightness_polarity = affinity_brightness[1,]
-  affinity = affinity_brightness[2,]
+  # x [1,] is brightness polarity
+  # y [2,] is affinity
+  brightness_polarity = affinity_brightness_polarity[1,]
+  affinity = affinity_brightness_polarity[2,]
   # we need more experimental data to determine the origin boundary for
   # brightness. our current approach uses the triangular nature of affinity
   # (1,3,6,10,15) to make a best guess that also aligns with the
