@@ -1,23 +1,38 @@
-# TODO: consider using the ET tritone √2:1 1:√2 with affinity of 3
-# for the tonic tritone we use 7:5
-# lesser septimal tritone (<tritone): -17.5 cents from 600
+# for tonic-octave symmetry and applications to equal temperament tuning
+# we use the equal temperament tritone
 tonic.frequency <- function() {
+
+  numerator = c(1,16,9,6,5,4,sqrt(2),3,8,5,16,15,2)
+  denominator = c(1,15,8,5,4,3,1,2,5,3,9,8,1)
+  ratio = paste(numerator,":",denominator, sep="")
+
+  # tritone ratio label
+  ratio[7] = "√2:1"
+
   tibble::tibble(
     name = intervals()$name,
-    numerator = c(1,16,9,6,5,4,7,3,8,5,16,15,2),
-    denominator = c(1,15,8,5,4,3,5,2,5,3,9,8,1),
-    ratio = paste(numerator,":",denominator, sep="")
+    numerator = numerator,
+    denominator = denominator,
+    ratio = ratio
   )
 }
 
-# from the octave's perspective the numerator and denominator of the tonic
-# are swapped and the order of the intervals is reversed
 octave.frequency <- function() {
+
+  # from the octave's perspective the numerator and denominator of the tonic
+  # are swapped and the order of the intervals is reversed
   t = tonic.frequency()
+  numerator = rev(t$denominator)
+  denominator = rev(t$numerator)
+  ratio = paste(numerator,":",denominator, sep="")
+
+  # tritone ratio label
+  ratio[7] = "1:√2"
+
   tibble::tibble(
     name = t$name,
-    numerator = rev(t$denominator),
-    denominator = rev(t$numerator),
-    ratio = paste(numerator,":",denominator, sep="")
+    numerator = numerator,
+    denominator = denominator,
+    ratio = ratio
   )
 }
