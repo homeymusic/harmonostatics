@@ -3,7 +3,7 @@ affinity.0 <- function() {
   octave_disaffinity = disaffinity.0()$octave
 
   tibble::tibble(
-    name = intervals()$name,
+    name = intervals.0()$name,
     tonic = tonic_disaffinity %>% max - tonic_disaffinity,
     octave = octave_disaffinity %>% max - octave_disaffinity,
     mean = rbind(octave,tonic) %>% colMeans
@@ -18,7 +18,7 @@ disaffinity.0 <- function() {
   octave_disaffinity = calculate_disaffinity_with_et_tritone(o$numerator,o$denominator)
 
   tibble::tibble(
-    name = intervals()$name,
+    name = intervals.0()$name,
     tonic = tonic_disaffinity,
     octave = octave_disaffinity,
     mean = rbind(octave,tonic) %>% colMeans

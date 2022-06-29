@@ -29,8 +29,8 @@ harmony.0 <- function() {
   brightness = brightness_polarity / abs(affinity - brightness_boundary)
   # build the table
   tibble(
-    semitone = intervals()$semitone,
-    name = intervals()$name,
+    semitone = intervals.0()$semitone,
+    name = intervals.0()$name,
     brightness_polarity = brightness_polarity,
     affinity = affinity,
     brightness = brightness,

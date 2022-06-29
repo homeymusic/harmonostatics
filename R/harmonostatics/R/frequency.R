@@ -10,7 +10,7 @@ tonic.frequency.0 <- function() {
   ratio[7] = "√2:1"
 
   tibble::tibble(
-    name = intervals()$name,
+    name = intervals.0()$name,
     numerator = numerator,
     denominator = denominator,
     ratio = ratio
