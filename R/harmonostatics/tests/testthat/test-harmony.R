@@ -2,7 +2,7 @@ test_that("harmony meets expectaions", {
   h = harmony()
   expect_equal(h$name %>% length,13)
   expect(tibble::is_tibble(h),"expected harmony to be a tibble")
-  expect_equal(h$polarity, c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1))
+  expect_equal(h$brightness_polarity, c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1))
   expect_equal(h$brightness, c( 0.10,-0.25,0.50,-0.50,1.00,-0.20,
                                 0.00,
                                 0.20,-1.00,0.50,-0.50,0.25,-0.10))

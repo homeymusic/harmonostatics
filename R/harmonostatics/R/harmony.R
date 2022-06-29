@@ -1,16 +1,32 @@
 harmony <- function() {
   affinity_tonic = affinity()$tonic
   affinity_octave = affinity()$octave
-  # use the tritone to find rotation angle
-  angle = atan2(affinity_octave[7],affinity_tonic[7])
-  rotated_affinity = zapsmall(rbind(affinity_tonic,affinity_octave) %>% rotate(angle) * cos(angle))
-  brightness_boundary = rotated_affinity[2,] %>% max %>% triangular_root
+  # use the neutral tritone to determine the rotation angle
+  tritone_i = 6 + 1
+  angle = atan2(affinity_octave[tritone_i],affinity_tonic[tritone_i])
+  # rotate around the origin by the rotation angle
+  # we will change coordinate systems
+  # from: octave-affinity versus tonic-affinity
+  # to: octave-tonic-affinity versus brightness
+  affinity_brightness = zapsmall(rbind(affinity_tonic,affinity_octave) %>% rotate(angle) * cos(angle))
+  brightness_polarity = affinity_brightness[1,]
+  affinity = affinity_brightness[2,]
+  # we need more experimental data to determine the proper boundary for
+  # brightness. our current approach uses the apparently triangular nature
+  # of affinity (1,3,6,10,15) to make a best guess that also aligns with the
+  # experimental data we do have with the Major 3rd and minor 6th
+  # having the greatest positive and negative values of brightness.
+  brightness_boundary = affinity %>% max %>% triangular_root
+  # we use the stream function solution to the Laplace equation 2xy=const
+  # we set const = -2 and +2 for the relationship between brightness & affinity
+  brightness = brightness_polarity / abs(affinity - brightness_boundary)
+  # build the table
   tibble(
     semitone = intervals()$semitone,
     name = intervals()$name,
-    polarity = rotated_affinity[1,],
-    affinity = rotated_affinity[2,],
-    brightness = polarity / abs(affinity - brightness_boundary),
+    brightness_polarity = brightness_polarity,
+    affinity = affinity,
+    brightness = brightness,
     tonic_gravity = sqrt(affinity^2 + brightness^2) * semitone,
     octave_gravity = sqrt(affinity^2 + brightness^2) * (12-semitone)
   )
