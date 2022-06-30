@@ -50,10 +50,12 @@ calculate_brilliance <- function(x,home) {
   brightness_for(brightness_polarity,orig_affinity)
 }
 
-# below are the fundamentals for level 0
-# level 0 is one octave between the tonic and the octave
-# we use the word level instead of octave because throughout
-# because of the name space collision between tonic and octave
+# below are the fundamentals for level 0 affinity and brightness
+# level 0 is the primary group of 13 semitones from tonic to octave
+# we use the word level instead of octave throughout
+# because the name space collision between
+# * octave as in the interval name
+# * octave as in the group of 13 semitones (level)
 
 harmony.0.rotation_angle <- function() {
   # use the tritone to determine the rotation angle
@@ -61,23 +63,18 @@ harmony.0.rotation_angle <- function() {
   atan2(affinity.0.octave()[tritone_i],affinity.0.tonic()[tritone_i])
 }
 harmony.0.affinity_brightness_polarity <-function() {
+  # Directional Derivative:
+  # rotate around the origin by the rotation angle
+  # changing the coordinate system
+  # from: octave-affinity versus tonic-affinity
+  # to: octave-tonic-affinity versus brightness-polarity
   (rbind(affinity.0.tonic(),affinity.0.octave()) %>%
      rotate(harmony.0.rotation_angle()) * cos(harmony.0.rotation_angle())) %>% zapsmall
 }
 harmony.0.affinity <- function() {
-  # Directional Derivative:
-  # rotate around the origin by the rotation angle
-  # changing the coordinate system
-  # from: octave-affinity versus tonic-affinity
-  # to: octave-tonic-affinity versus brightness-polarity
   harmony.0.affinity_brightness_polarity()[2,]
 }
 harmony.0.brightness_polarity <- function() {
-  # Directional Derivative:
-  # rotate around the origin by the rotation angle
-  # changing the coordinate system
-  # from: octave-affinity versus tonic-affinity
-  # to: octave-tonic-affinity versus brightness-polarity
   harmony.0.affinity_brightness_polarity()[1,]
 }
 
@@ -94,12 +91,10 @@ harmony.0.brightness <- function() {
   brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
 }
 
-# TODO: replace this with a general function that takes polarity and affinity
-# and returns brightness so that we don't repeat it later
-# brightness_for(polarity,affinity)
 brightness_for <- function(polarity,affinity) {
   # we use the stream function solution to the Laplace equation 2xy=const
   # with const = -2 and +2 for the relationship between brightness & affinity
+  # x = 1 / y  ->  brightness = 1 / affinity
   centered_affinity = abs(affinity - harmony.0.brightness_boundary())
   ifelse(centered_affinity==0,
          0,
