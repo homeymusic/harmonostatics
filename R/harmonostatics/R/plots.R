@@ -1,5 +1,5 @@
 plot_harmony <- function(x,home,columns,unlist=FALSE,name=NULL) {
-  # checkmate::assert_integerish(x)
+  checkmate::assert(checkmate::check_integer(x),checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S2")
   if (unlist) {x = x %>% unlist}
