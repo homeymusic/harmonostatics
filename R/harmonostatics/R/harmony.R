@@ -1,6 +1,6 @@
 harmony <- function(x, home, name=NULL) {
   checkmate::assert_integerish(x)
-  # checkmate::assert_choice(home,c(0,12))
+  checkmate::assert_choice(home,c(0,12))
   tibble(
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),
@@ -25,7 +25,7 @@ calculate_affinity <- function(x) {
   interval = level_and_interval["interval"]
   level_penalty = 2 * abs(level)
   if (abs(level) == 1) {level_penalty = 1}
-  harmony.0()$affinity[interval+1] - level_penalty
+  harmony.0.affinity()[interval+1] - level_penalty
 }
 
 brightness <- function(x,home) {
@@ -38,84 +38,90 @@ calculate_brilliance <- function(x,home) {
   checkmate::qassert(x,"X1")
   checkmate::assert_choice(home,c(0,12))
 
-  centered_affinity = abs(affinity(x) - harmony.0()$affinity %>% max %>% triangular_root)
+  orig_affinity = affinity(x)
 
   ifelse(home==0,
          (x = x - min(x)),
          (x = x + 12 - max(x))
   )
+
   interval = level_and_interval_of(x)["interval"]
-  brightness_polarity = harmony.0()$brightness_polarity[interval+1]
-  ifelse(centered_affinity==0,
-         0,
-         brightness_polarity / centered_affinity
-  )
+  brightness_polarity = harmony.0.brightness_polarity()[interval+1]
+  brightness_for(brightness_polarity,orig_affinity)
 }
 
-harmony.0 <- function() {
-  affinity_tonic = affinity.0()$tonic
-  affinity_octave = affinity.0()$octave
+# below are the fundamentals for level 0
+# level 0 is one octave between the tonic and the octave
+# we use the word level instead of octave because throughout
+# because of the name space collision between tonic and octave
 
+harmony.0.rotation_angle <- function() {
   # use the tritone to determine the rotation angle
   tritone_i = 6 + 1
-  angle = atan2(affinity_octave[tritone_i],affinity_tonic[tritone_i])
-
+  atan2(affinity.0.octave()[tritone_i],affinity.0.tonic()[tritone_i])
+}
+harmony.0.affinity_brightness_polarity <-function() {
+  (rbind(affinity.0.tonic(),affinity.0.octave()) %>%
+     rotate(harmony.0.rotation_angle()) * cos(harmony.0.rotation_angle())) %>% zapsmall
+}
+harmony.0.affinity <- function() {
   # Directional Derivative:
-  #
   # rotate around the origin by the rotation angle
   # changing the coordinate system
   # from: octave-affinity versus tonic-affinity
   # to: octave-tonic-affinity versus brightness-polarity
-  affinity_brightness_polarity = (rbind(affinity_tonic,affinity_octave) %>%
-                                    rotate(angle) * cos(angle)) %>% zapsmall
-  # x [1,] is brightness polarity
-  # y [2,] is affinity
-  brightness_polarity = affinity_brightness_polarity[1,]
-  affinity = affinity_brightness_polarity[2,]
+  harmony.0.affinity_brightness_polarity()[2,]
+}
+harmony.0.brightness_polarity <- function() {
+  # Directional Derivative:
+  # rotate around the origin by the rotation angle
+  # changing the coordinate system
+  # from: octave-affinity versus tonic-affinity
+  # to: octave-tonic-affinity versus brightness-polarity
+  harmony.0.affinity_brightness_polarity()[1,]
+}
+
+harmony.0.brightness_boundary <- function() {
   # we need more experimental data to determine the origin boundary for
   # brightness. our current approach uses the triangular nature of affinity
   # (1,3,6,10,15) to make a best guess that also aligns with the
   # experimental data with the Major 3rd and minor 6th
   # having the greatest positive and negative values of brightness.
-  brightness_boundary = affinity %>% max %>% triangular_root
+  harmony.0.affinity() %>% max %>% triangular_root
+}
+
+harmony.0.brightness <- function() {
+  brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
+}
+
+# TODO: replace this with a general function that takes polarity and affinity
+# and returns brightness so that we don't repeat it later
+# brightness_for(polarity,affinity)
+brightness_for <- function(polarity,affinity) {
   # we use the stream function solution to the Laplace equation 2xy=const
   # with const = -2 and +2 for the relationship between brightness & affinity
-  brightness = brightness_polarity / abs(affinity - brightness_boundary)
-  # build the table
-  tibble(
-    semitone = intervals.0()$semitone,
-    name = intervals.0()$name,
-    brightness_polarity = brightness_polarity,
-    affinity = affinity,
-    brightness = brightness,
-    tonic_gravity = sqrt(affinity^2 + brightness^2) * semitone,
-    octave_gravity = sqrt(affinity^2 + brightness^2) * (12-semitone)
+  centered_affinity = abs(affinity - harmony.0.brightness_boundary())
+  ifelse(centered_affinity==0,
+         0,
+         polarity / centered_affinity
   )
 }
 
-affinity.0 <- function() {
-  tonic_disaffinity = disaffinity.0()$tonic
-  octave_disaffinity = disaffinity.0()$octave
-
-  tibble::tibble(
-    name = intervals.0()$name,
-    tonic = tonic_disaffinity %>% max - tonic_disaffinity,
-    octave = octave_disaffinity %>% max - octave_disaffinity
-  )
+affinity.0.tonic <- function() {
+  tonic_disaffinity = disaffinity.0.tonic()
+  tonic_disaffinity %>% max - tonic_disaffinity
 }
-
-disaffinity.0 <- function() {
+affinity.0.octave <- function() {
+  octave_disaffinity = disaffinity.0.octave()
+  octave_disaffinity %>% max - octave_disaffinity
+}
+disaffinity.0.tonic <- function() {
   t = tonic.frequency.0()
   tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator)
-
+}
+disaffinity.0.octave <- function() {
   o = octave.frequency.0()
   octave_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(o$numerator,o$denominator)
-
-  tibble::tibble(
-    name = intervals.0()$name,
-    tonic = tonic_disaffinity,
-    octave = octave_disaffinity
-  )
 }
 
 calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
@@ -171,4 +177,3 @@ equal_temperament_tritone_disaffinity <- function() {
   greater_septimal_tritone_disaffinity = sum(numbers::primeFactors(10),numbers::primeFactors(7))
   mean(c(lesser_septimal_tritone_disaffinity,greater_septimal_tritone_disaffinity))
 }
-

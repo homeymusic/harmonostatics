@@ -1,20 +1,12 @@
 test_that("harmony.0 meets expectations", {
-  h = harmony.0()
-  expect_equal(h$name %>% length,13)
-  expect(tibble::is_tibble(h),"expected harmony to be a tibble")
-  expect_equal(h$brightness_polarity, c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1))
-  expect_equal(h$brightness, c( 0.10,-0.25,0.50,-0.50,1.00,-0.20,
+  expect_equal(harmony.0.brightness_polarity(), c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1))
+  expect_equal(harmony.0.brightness(), c( 0.10,-0.25,0.50,-0.50,1.00,-0.20,
                                 0.00,
                                 0.20,-1.00,0.50,-0.50,0.25,-0.10))
-  expect_equal(h$affinity, c(15,1,3,7,6,10,3,10,6,7,3,1,15))
+  expect_equal(harmony.0.affinity(), c(15,1,3,7,6,10,3,10,6,7,3,1,15))
   # the mean of the tonic and octave affinities equals rotated affinity
-  mean_affinity = rbind(affinity.0()$octave,affinity.0()$tonic) %>% colMeans
-  expect_equal(h$affinity,mean_affinity)
-  expected_tonic_gravity = c(0.00,1.03,6.08,21.05,24.33,50.00,
-                             24.00,
-                             70.01,48.66,63.16,30.41,11.33,180.00)
-  expect_equal(h$tonic_gravity,expected_tonic_gravity,tolerance = TRUE)
-  expect_equal(h$octave_gravity,expected_tonic_gravity %>% rev,tolerance = TRUE)
+  mean_affinity = rbind(affinity.0.octave(),affinity.0.tonic()) %>% colMeans
+  expect_equal(harmony.0.affinity(),mean_affinity)
 })
 
 test_that("harmony for chords meets expectations", {
@@ -33,20 +25,20 @@ expected_octave_affinity = c(14,2,2,8,5,11,3,9,7,6,4,0,16)
 expected_mean_affinity = c(15,1,3,7,6,10,3,10,6,7,3,1,15)
 
 test_that("prime factor disaffinity matches expectations", {
-  t_d = disaffinity.0()$tonic
+  t_d = disaffinity.0.tonic()
   expect_equal(t_d,c(0,16,12,10,9,7,13,5,11,8,14,14,2))
-  o_d = disaffinity.0()$octave
+  o_d = disaffinity.0.octave()
   expect_equal(o_d,c(2,14,14,8,11,5,13,7,9,10,12,16,0))
 })
 
 test_that("affinity form matches expectations", {
-  a = affinity.0()
-  expect(tibble::is_tibble(a),"expected affinity to be a tibble")
-  expect_equal(a$tonic,expected_tonic_affinity)
-  expect_equal(a$octave,expected_octave_affinity)
-  mean_affinity = rbind(affinity.0()$octave,affinity.0()$tonic) %>% colMeans
+  t = affinity.0.tonic()
+  o = affinity.0.octave()
+  expect_equal(t,expected_tonic_affinity)
+  expect_equal(o,expected_octave_affinity)
+  mean_affinity = rbind(o,t) %>% colMeans
   expect_equal(mean_affinity,expected_mean_affinity)
-  expect_equal(mean_affinity,harmony.0()$affinity)
+  expect_equal(mean_affinity,harmony.0.affinity())
 })
 
 test_that("ET tritone disaffinity matches expectation", {
