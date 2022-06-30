@@ -46,7 +46,7 @@ harmony <- memoise::memoise(harmony.original)
 # changing the coordinate system
 # from: octave-affinity versus tonic-affinity
 # to: octave-tonic-affinity versus brightness-polarity
-harmony.0.rotated_octave_affinity_tonic_affinity <-function() {
+harmony.0.rotated_octave_affinity_tonic_affinity.original <-function() {
   # use the tritone to determine the rotation angle
   tritone_i = 6 + 1
   rotation_angle = atan2(affinity.0.octave()[tritone_i],affinity.0.tonic()[tritone_i])
@@ -54,3 +54,4 @@ harmony.0.rotated_octave_affinity_tonic_affinity <-function() {
   (rbind(affinity.0.tonic(),affinity.0.octave()) %>%
       rotate(rotation_angle) * cos(rotation_angle)) %>% zapsmall
 }
+harmony.0.rotated_octave_affinity_tonic_affinity <- memoise::memoise(harmony.0.rotated_octave_affinity_tonic_affinity.original)
