@@ -6,6 +6,8 @@ affinity <- function(x) {
   )
 }
 calculate_affinity <- function(x) {
+  # brightness polarity does NOT depend on level
+  # affinity does NOT depend on the home note
   checkmate::qassert(x,c("X==1","X==2"))
   level_and_interval = level_and_interval_for(x)
   level = level_and_interval["level"]

@@ -1,4 +1,4 @@
-harmony <- function(x, home, name=NULL) {
+harmony.original <- function(x, home, name=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   tibble(
@@ -10,6 +10,7 @@ harmony <- function(x, home, name=NULL) {
     potential_energy = potential_energy(affinity,brightness,home,semitone)
   )
 }
+harmony <- memoise::memoise(harmony.original)
 
 #########
 #

@@ -8,16 +8,17 @@ calculate_brightness <- function(x,home) {
   checkmate::qassert(x,"X1")
   checkmate::assert_choice(home,c(0,12))
 
-  orig_affinity = affinity(x)
-
+  # brightness polarity does NOT depend on level
+  # affinity does NOT depend on the home note
+  interval = level_and_interval_for(x)["interval"]
+  home_interval = c(home,interval)
   ifelse(home==0,
-         (x = x - min(x)),
-         (x = x + 12 - max(x))
+         (interval = interval - min(home_interval)),
+         (interval = interval + 12 - max(home_interval))
   )
 
-  interval = level_and_interval_for(x)["interval"]
   brightness_polarity = harmony.0.brightness_polarity()[interval+1]
-  brightness_for(brightness_polarity,orig_affinity)
+  brightness_for(brightness_polarity,affinity(x))
 }
 
 brightness_for <- function(polarity,affinity) {
