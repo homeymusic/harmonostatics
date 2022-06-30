@@ -1,15 +1,14 @@
-# for tonic-octave symmetry and applications to equal temperament tuning
-# we use the equal temperament tritone
-tonic.frequency.0 <- function() {
-
+frequency.0.tonic <- function() {
+  # for tonic-octave symmetry we use the equal temperament tritone
   numerator = c(1,16,9,6,5,4,sqrt(2),3,8,5,16,15,2)
   denominator = c(1,15,8,5,4,3,1,2,5,3,9,8,1)
   ratio = paste(numerator,":",denominator, sep="")
 
-  # tritone ratio label
+  # equal temperament tritone ratio label
   ratio[7] = "√2:1"
 
   tibble::tibble(
+    semitone = intervals.0()$semitone,
     name = intervals.0()$name,
     numerator = numerator,
     denominator = denominator,
@@ -17,20 +16,20 @@ tonic.frequency.0 <- function() {
   )
 }
 
-octave.frequency.0 <- function() {
-
+frequency.0.octave <- function() {
   # from the octave's perspective the numerator and denominator of the tonic
-  # are swapped and the order of the intervals is reversed
-  t = tonic.frequency.0()
+  # frequency ratio are swapped and the order of the intervals is reversed
+  t = frequency.0.tonic()
   numerator = rev(t$denominator)
   denominator = rev(t$numerator)
   ratio = paste(numerator,":",denominator, sep="")
 
-  # tritone ratio label
+  # equal temperament tritone ratio label
   ratio[7] = "1:√2"
 
   tibble::tibble(
-    name = t$name,
+    semitone = intervals.0()$semitone,
+    name = intervals.0()$name,
     numerator = numerator,
     denominator = denominator,
     ratio = ratio

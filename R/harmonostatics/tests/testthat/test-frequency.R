@@ -5,8 +5,8 @@ test_that("frequency is structured as we expect", {
                               "perfect 4th","tritone","perfect 5th","minor 6th",
                               "major 6th","minor 7th","major 7th","octave")
 
-  t = tonic.frequency.0()
-  o = octave.frequency.0()
+  t = frequency.0.tonic()
+  o = frequency.0.octave()
 
   expect(tibble::is_tibble(t),"expected tonic frequency ratios to be a tibble")
   expect(tibble::is_tibble(o),"expected octave frequency ratios to be a tibble")
