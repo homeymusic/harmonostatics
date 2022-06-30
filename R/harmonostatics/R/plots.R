@@ -1,3 +1,14 @@
+plot_harmony <- function(x,home,columns,unlist=FALSE,name=NULL) {
+  # checkmate::assert_integerish(x)
+  checkmate::assert_choice(home,c(0,12))
+  checkmate::qassert(columns,"S2")
+  if (unlist) {x = x %>% unlist}
+  h = x %>% purrr::map(harmony,home,name) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+  plot(h[,columns])
+  text(h[,columns],labels=h$intervallic_name,pos=1)
+  TRUE
+}
+
 theme_homey <- function(){
   brown = '#664433'
   cream = '#F3DDAB'
