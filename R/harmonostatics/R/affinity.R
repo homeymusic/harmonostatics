@@ -14,6 +14,12 @@ calculate_affinity <- function(x) {
   if (abs(level) == 1) {level_penalty = 1}
   harmony.0.affinity()[interval+1] - level_penalty
 }
+
+#########
+#
+# level 0
+#
+
 affinity.0.tonic <- function() {
   tonic_disaffinity = disaffinity.0.tonic()
   tonic_disaffinity %>% max - tonic_disaffinity
@@ -21,7 +27,4 @@ affinity.0.tonic <- function() {
 affinity.0.octave <- function() {
   octave_disaffinity = disaffinity.0.octave()
   octave_disaffinity %>% max - octave_disaffinity
-}
-harmony.0.affinity <- function() {
-  harmony.0.affinity_brightness_polarity()[2,]
 }

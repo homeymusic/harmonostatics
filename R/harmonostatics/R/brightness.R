@@ -30,21 +30,3 @@ brightness_for <- function(polarity,affinity) {
          polarity / centered_affinity
   )
 }
-
-harmony.0.brightness_polarity <- function() {
-  harmony.0.affinity_brightness_polarity()[1,]
-}
-
-harmony.0.brightness_boundary <- function() {
-  # we need more experimental data to determine the origin boundary for
-  # brightness. our current approach uses the triangular nature of affinity
-  # (1,3,6,10,15) to make a best guess that also aligns with the
-  # experimental data with the Major 3rd and minor 6th
-  # having the greatest positive and negative values of brightness.
-  harmony.0.affinity() %>% max %>% triangular_root
-}
-
-harmony.0.brightness <- function() {
-  brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
-}
-

@@ -1,3 +1,8 @@
+#########
+#
+# level 0
+#
+
 frequency.0.tonic <- function() {
   # for tonic-octave symmetry we use the equal temperament tritone
   numerator = c(1,16,9,6,5,4,sqrt(2),3,8,5,16,15,2)

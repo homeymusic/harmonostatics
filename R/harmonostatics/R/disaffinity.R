@@ -1,3 +1,8 @@
+#########
+#
+# level 0
+#
+
 disaffinity.0.tonic <- function() {
   t = frequency.0.tonic()
   tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator)
