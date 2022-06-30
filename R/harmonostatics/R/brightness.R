@@ -42,7 +42,10 @@ harmony.0.brightness_polarity <- function() {
 harmony.0.brightness_boundary <- function() {
   # we need more major-minor experimental data to determine the boundary
   # for brightness. our current approach:
-  harmony.0.brightness_boundary_triangular_root()
+  harmony.0.brightness_boundary_3rds_and_6ths()
+}
+harmony.0.brightness_boundary_3rds_and_6ths <- function() {
+  c(3,4,8,9) %>% sapply(affinity) %>% mean
 }
 harmony.0.brightness_boundary_triangular_root <- function() {
   # use the triangular nature of affinity
