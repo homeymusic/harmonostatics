@@ -6,3 +6,7 @@ test_that("brightness for chords matches our expectations",{
   expect_gt(brightness(-5,0),0)
   expect_gt(brightness(-17,0),0)
 })
+
+test_that("triangular root brightness boundary works as expected", {
+  expect_equal(harmony.0.brightness_boundary_triangular_root(),5)
+})

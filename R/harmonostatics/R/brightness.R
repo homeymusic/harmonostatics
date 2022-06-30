@@ -1,10 +1,10 @@
 brightness <- function(x,home) {
   checkmate::assert_choice(home,c(0,12))
   checkmate::assert_integerish(x)
-  sapply(x,calculate_brilliance,home) %>% mean
+  sapply(x,calculate_brightness,home) %>% mean
 }
 
-calculate_brilliance <- function(x,home) {
+calculate_brightness <- function(x,home) {
   checkmate::qassert(x,"X1")
   checkmate::assert_choice(home,c(0,12))
 
@@ -30,3 +30,28 @@ brightness_for <- function(polarity,affinity) {
          polarity / centered_affinity
   )
 }
+
+#########
+#
+# level 0
+#
+
+harmony.0.brightness_polarity <- function() {
+  harmony.0.rotated_octave_affinity_tonic_affinity()[1,]
+}
+harmony.0.brightness_boundary <- function() {
+  # we need more major-minor experimental data to determine the boundary
+  # for brightness. our current approach:
+  harmony.0.brightness_boundary_triangular_root()
+}
+harmony.0.brightness_boundary_triangular_root <- function() {
+  # use the triangular nature of affinity
+  # (1,3,6,10,15) to make a best guess that also aligns with the
+  # experimental data with the Major 3rd and minor 6th
+  # having the greatest positive and negative values of brightness.
+  harmony.0.affinity() %>% max %>% triangular_root
+}
+harmony.0.brightness <- function() {
+  brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
+}
+

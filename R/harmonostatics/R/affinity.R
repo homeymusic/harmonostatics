@@ -28,3 +28,6 @@ affinity.0.octave <- function() {
   octave_disaffinity = disaffinity.0.octave()
   octave_disaffinity %>% max - octave_disaffinity
 }
+harmony.0.affinity <- function() {
+  harmony.0.rotated_octave_affinity_tonic_affinity()[2,]
+}

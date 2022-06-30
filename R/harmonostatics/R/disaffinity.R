@@ -14,7 +14,7 @@ disaffinity.0.octave <- function() {
 }
 
 calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
-  # drop the irrational tritone
+  # drop the irrational tritone in order to calculate the other prime intervals
   numerators = numerators[-7]
   denominators = denominators[-7]
   # confirm the vectors are ready for prime operations
@@ -24,7 +24,7 @@ calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, den
   # calculate disaffinity of remaining intervals
   disaffinity = calculate_disaffinity(numerators,denominators)
 
-  # insert the ET tritone estimate into the results
+  # insert the equal temperament tritone estimate back into the results
   c(disaffinity[1:6],equal_temperament_tritone_disaffinity(),disaffinity[7:12])
 }
 
