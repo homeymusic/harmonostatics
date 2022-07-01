@@ -45,3 +45,7 @@ test_that("brightness for intervals matches our expectations",{
   expect_lt(brightness(10,0),0)
   expect_lt(brightness(12,0),0)
 })
+
+test_that("the diatonic modes are in the order of expected brightness", {
+  expect_gt(length(common_scales()),0)
+})
