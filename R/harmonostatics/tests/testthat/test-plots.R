@@ -76,9 +76,9 @@ test_that("potential energy look good", {
   expect(p, "plot is probably ok")
   p = plot_harmony(x=0:12,home=12,columns=c("semitone","potential_energy"),title="Octave Potential Energy 0")
   expect(p, "plot is probably ok")
-  p = plot_harmony(ionian_tonic_chords.0(),0,columns=c("semitone","potential_energy"),title="ionian tonic chords level 0")
+  p = plot_harmony(ionian_tonic_chords.0(),0,home_chord=c(0,4,7),columns=c("semitone","potential_energy"),title="ionian tonic chords level 0")
   expect(p, "plot is probably ok")
-  p = plot_harmony(ionian_tonic_chords.0(),0,columns=c("brightness","potential_energy"),title="ionian tonic chords level 0")
+  p = plot_harmony(ionian_tonic_chords.0(),0,home_chord=c(0,4,7),columns=c("brightness","potential_energy"),title="ionian tonic chords level 0")
   expect(p, "plot is probably ok")
 })
 test_that("phrygian chords look good", {

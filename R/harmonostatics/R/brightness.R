@@ -1,10 +1,6 @@
 brightness <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
-  calculate_brightness(x,home)
-}
-
-calculate_brightness <- function(x,home) {
   polarity = calculate_brightness_polarity(x,home)
   brightness_for(polarity,affinity(x))
 }
@@ -12,34 +8,17 @@ calculate_brightness <- function(x,home) {
 calculate_brightness_polarity <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
-  if (length(x)==1) {
-    min_max_test = c(home,x)
-  } else {
-    min_max_test = x
+  if (length(x)>1) {
+    ifelse (home==0,(x = x - min(abs(x))),(x = x + 12 - max(abs(x))))
   }
-  ifelse(home==0,
-         (x = x - min(abs(min_max_test))),
-         (x = x + 12 - max(abs(min_max_test)))
-  )
   intervals = sapply(x,level_and_interval_for)[2,]
-
-  brightness.0 = sapply(intervals,calculate_brightness.0) %>% mean
-  if (brightness.0 < 0) {
-    -1
-  } else if (brightness.0 == 0) {
-    0
-  } else if (brightness.0 > 0) {
-    1
-  }
+  b = sapply(intervals,calculate_brightness.0) %>% mean
+  ifelse(b==0,0,b/abs(b))
 }
 
 calculate_brightness.0 <- function(x) {
-  checkmate::qassert(x,"X1")
-
-  interval = level_and_interval_for(x)["interval"]
-
-  brightness_polarity = harmony.0.brightness_polarity()[interval+1]
-  brightness_for(brightness_polarity,affinity(x))
+  checkmate::qassert(x,"X1[0,12]")
+  brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x))
 }
 
 brightness_for <- function(polarity,affinity) {
