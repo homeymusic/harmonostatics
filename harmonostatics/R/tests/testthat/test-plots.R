@@ -40,3 +40,31 @@ test_that("phrygian chords look good", {
   p = plot_harmony(phrygian_tonic_chords(),0,columns=c("semitone","potential_energy"),title="phrygian tonic chords")
   expect(p, "plot is probably ok")
 })
+test_that("all one note pitches look good", {
+  p = plot_harmony(combn(0:12,1,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 1 note pitches in level 0")
+  expect(p, "plot is probably ok")
+})
+test_that("all two note chords look good", {
+  p = plot_harmony(combn(0:12,2,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
+  expect(p, "plot is probably ok")
+})
+test_that("all two note chords look good", {
+  p = plot_harmony(combn(0:12,2,simplify=FALSE),12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
+  expect(p, "plot is probably ok")
+})
+test_that("all three note chords look good", {
+  p = plot_harmony(combn(0:12,3,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 3 note chords in level 0")
+  expect(p, "plot is probably ok")
+})
+test_that("all four note chords look good", {
+  p = plot_harmony(combn(0:12,4,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 4 note chords in level 0")
+  expect(p, "plot is probably ok")
+})
+test_that("all five note chords look good", {
+  p = plot_harmony(combn(0:12,5,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 5 note chords in level 0")
+  expect(p, "plot is probably ok")
+})
+test_that("all six note chords look good", {
+  p = plot_harmony(combn(0:12,6,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 6 note chords in level 0")
+  expect(p, "plot is probably ok")
+})
