@@ -53,3 +53,7 @@ phrygian_tonic_chords <- function() {
        "vii"=c(10,13,17)
   )
 }
+intervals_list <- function() {
+  tbl = intervals.0()
+  setNames(as.list(tbl$semitone), tbl$name)
+}
