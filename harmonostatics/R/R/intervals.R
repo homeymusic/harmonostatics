@@ -3,7 +3,7 @@
 # level 0
 #
 
-intervals.0 <- function() {
+intervals.0.original <- function() {
   semtitones = 0:12
   names = c("tonic","minor 2nd","major 2nd","minor 3rd","major 3rd",
             "perfect 4th","tritone","perfect 5th","minor 6th",
@@ -13,3 +13,4 @@ intervals.0 <- function() {
     name = names
   )
 }
+intervals.0 <- memoise::memoise(intervals.0.original)

@@ -3,7 +3,7 @@
 # level 0
 #
 
-frequency.0.tonic <- function() {
+frequency.0.tonic.original <- function() {
   # for tonic-octave symmetry we use the equal temperament tritone
   numerator = c(1,16,9,6,5,4,sqrt(2),3,8,5,16,15,2)
   denominator = c(1,15,8,5,4,3,1,2,5,3,9,8,1)
@@ -20,8 +20,9 @@ frequency.0.tonic <- function() {
     ratio = ratio
   )
 }
+frequency.0.tonic <- memoise::memoise(frequency.0.tonic.original)
 
-frequency.0.octave <- function() {
+frequency.0.octave.original <- function() {
   # from the octave's perspective the numerator and denominator of the tonic
   # frequency ratio are swapped and the order of the intervals is reversed
   t = frequency.0.tonic()
@@ -40,3 +41,4 @@ frequency.0.octave <- function() {
     ratio = ratio
   )
 }
+frequency.0.octave <- memoise::memoise(frequency.0.octave.original)

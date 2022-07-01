@@ -4,7 +4,8 @@ brightness.original <- function(x,home) {
   calculate_brightness(x,home)
 }
 brightness <- memoise::memoise(brightness.original)
-calculate_brightness <- function(x,home) {
+
+calculate_brightness.original <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   if (length(x)>1) {
@@ -13,13 +14,14 @@ calculate_brightness <- function(x,home) {
   intervals = sapply(x,level_and_interval_for)[2,]
   sapply(intervals,calculate_brightness.0) %>% mean
 }
+calculate_brightness <- memoise::memoise(calculate_brightness.original)
 
 calculate_brightness.0 <- function(x) {
   checkmate::qassert(x,"X1[0,12]")
   brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x))
 }
 
-brightness_for <- function(polarity,affinity) {
+brightness_for.original <- function(polarity,affinity) {
   # we use the stream function solution to the Laplace equation 2xy=const
   # with const = -2 and +2 for the relationship between brightness & affinity
   # x = 1 / y  ->  brightness = 1 / affinity
@@ -29,6 +31,7 @@ brightness_for <- function(polarity,affinity) {
          polarity / centered_affinity
   )
 }
+brightness_for <- memoise::memoise(brightness_for.original)
 
 #########
 #

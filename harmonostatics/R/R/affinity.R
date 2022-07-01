@@ -7,7 +7,7 @@ affinity.original <- function(x) {
 }
 affinity <- memoise::memoise(affinity.original)
 
-calculate_affinity <- function(x) {
+calculate_affinity.original <- function(x) {
   # brightness polarity does NOT depend on level
   # affinity does NOT depend on the home note
   checkmate::qassert(x,c("X==1","X==2"))
@@ -18,6 +18,7 @@ calculate_affinity <- function(x) {
   if (abs(level) == 1) {level_penalty = 1}
   harmony.0.affinity()[interval+1] - level_penalty
 }
+calculate_affinity <- memoise::memoise(calculate_affinity.original)
 
 #########
 #

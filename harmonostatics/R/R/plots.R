@@ -10,7 +10,7 @@ plot_harmony <- function(x,home,columns,home_chord=NULL,unlist=FALSE,include_nam
     l = list(x=x,name=n)
     h = purrr::pmap(l,harmony,home=home,home_chord=home_chord) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   } else {
-    h = purrr::map(x,harmony,home,home_chord) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::map(x,harmony,home=home,home_chord=home_chord) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   }
   plot(h[,columns],main=title)
   text(h[,columns],labels=h$intervallic_name,pos=1)
