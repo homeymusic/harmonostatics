@@ -1,5 +1,5 @@
 # TODO: need to require the home_chord even if it's just the same as home for single notes
-potential_energy.original <- function(x,home,home_chord=NULL) {
+potential_energy.original <- function(x,home,home_chord) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   checkmate::assert_integerish(home_chord,null.ok = TRUE)

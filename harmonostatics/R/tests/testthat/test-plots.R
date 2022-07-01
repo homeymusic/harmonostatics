@@ -40,8 +40,8 @@ test_that("potential energy look good", {
   expect(p, "plot is probably ok")
 })
 test_that("phrygian chords look good", {
-  p = plot_harmony(phrygian_tonic_chords(),home=0,columns=c("semitone","potential_energy"),title="phrygian tonic chords")
-  expect(p, "plot is probably ok")
+    p = plot_harmony(phrygian_tonic_chords(),home=0,home_chord=c(0,3,7),columns=c("brightness","potential_energy"),title="phrygian tonic chords")
+    expect(p, "plot is probably ok")
 })
 test_that("all one note pitches look good", {
   p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title="all 1 note pitches in level 0")
