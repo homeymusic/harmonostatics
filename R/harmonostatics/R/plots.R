@@ -1,10 +1,10 @@
-plot_harmony <- function(x,home,columns,unlist=FALSE,name=NULL) {
+plot_harmony <- function(x,home,columns,home_chord=NULL,unlist=FALSE,name=NULL,title=NULL) {
   checkmate::assert(checkmate::check_integer(x),checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S2")
   if (unlist) {x = x %>% unlist}
-  h = x %>% purrr::map(harmony,home,name) %>% purrr::map_dfr(.f=dplyr::bind_rows)
-  plot(h[,columns])
+  h = x %>% purrr::map(harmony,home,name,home_chord) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+  plot(h[,columns],main=title)
   text(h[,columns],labels=h$intervallic_name,pos=1)
   TRUE
 }

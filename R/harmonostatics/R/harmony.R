@@ -1,4 +1,4 @@
-harmony.original <- function(x, home, name=NULL) {
+harmony.original <- function(x, home, name=NULL, home_chord=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   tibble(
@@ -7,7 +7,8 @@ harmony.original <- function(x, home, name=NULL) {
     name = name,
     affinity=affinity(x),
     brightness=brightness(x,home),
-    potential_energy = potential_energy(affinity,brightness,home,semitone)
+    magnitude=magnitude(x,home),
+    potential_energy = potential_energy(x,home,home_chord)
   )
 }
 
@@ -29,6 +30,13 @@ harmony.original <- function(x, home, name=NULL) {
 #'
 #' @export
 harmony <- memoise::memoise(harmony.original)
+
+magnitude.orig <- function(x,home) {
+  checkmate::assert_integerish(x)
+  checkmate::assert_choice(home,c(0,12))
+  sqrt(affinity(x)^2+brightness(x,home)^2)
+}
+magnitude <- memoise::memoise(magnitude.orig)
 
 #########
 #

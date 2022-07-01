@@ -1,6 +1,6 @@
 brightness <- function(x,home) {
-  checkmate::assert_choice(home,c(0,12))
   checkmate::assert_integerish(x)
+  checkmate::assert_choice(home,c(0,12))
   sapply(x,calculate_brightness,home) %>% mean
 }
 
