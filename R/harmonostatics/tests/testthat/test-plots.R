@@ -23,9 +23,9 @@ test_that("affinity brightness plots look good", {
 })
 
 test_that("potential energy look good", {
-  p = plot_harmony(ionian_tonic_chords(),0,home_chord=c(0,4,7),columns=c("brightness","potential_energy"),title="ionian tonic chords w home")
+  p = plot_harmony(ionian_tonic_chords(),0,home_chord=c(0,4,7),columns=c("brightness","potential_energy"),title="ionian tonic chords")
   expect(p, "plot is probably ok")
-  p = plot_harmony(ionian_tonic_chords(),0,home_chord=c(0,4,7),columns=c("semitone","potential_energy"),title="ionian tonic chords w home")
+  p = plot_harmony(ionian_tonic_chords(),0,home_chord=c(0,4,7),columns=c("semitone","potential_energy"),title="ionian tonic chords")
   expect(p, "plot is probably ok")
   p = plot_harmony(x=0:12,home=0,columns=c("semitone","potential_energy"),title="Tonic Potential Energy 0")
   expect(p, "plot is probably ok")

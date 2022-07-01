@@ -1,5 +1,4 @@
 test_that("potential energy in harmony context works as expected",{
-  expect_equal(potential_energy(c(0,4,7),0),23.23,tolerance=.001)
   expect_equal(potential_energy(c(0,4,7),0,c(0,4,7)),0)
   expect_equal(potential_energy(c(7,11,14),0,c(0,4,7)),61.53,tolerance=.001)
 })

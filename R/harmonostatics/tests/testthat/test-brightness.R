@@ -47,5 +47,5 @@ test_that("brightness for intervals matches our expectations",{
 })
 
 test_that("the diatonic modes are in the order of expected brightness", {
-  expect_gt(length(common_scales()),0)
+  expect_false(diatonic_scales() %>% purrr::map(brightness,0) %>% unlist %>% is.unsorted, "the scales should be in increasing order of brightness")
 })

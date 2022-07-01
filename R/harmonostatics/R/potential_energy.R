@@ -19,8 +19,5 @@ calculate_potential_energy <-function(x,y,home) {
   x_magnitude = magnitude(x,home)
   y_magnitude = magnitude(y,home)
 
-
-
-  # abs(x_magnitude-y_magnitude)*abs(x-y)
   abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
 }

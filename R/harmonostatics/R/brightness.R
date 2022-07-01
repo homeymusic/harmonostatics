@@ -1,19 +1,17 @@
 brightness <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
-  polarity = calculate_brightness_polarity(x,home)
-  brightness_for(polarity,affinity(x))
+  calculate_brightness(x,home)
 }
 
-calculate_brightness_polarity <- function(x,home) {
+calculate_brightness <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   if (length(x)>1) {
     ifelse (home==0,(x = x - min(abs(x))),(x = x + 12 - max(abs(x))))
   }
   intervals = sapply(x,level_and_interval_for)[2,]
-  b = sapply(intervals,calculate_brightness.0) %>% mean
-  ifelse(b==0,0,b/abs(b))
+  sapply(intervals,calculate_brightness.0) %>% mean
 }
 
 calculate_brightness.0 <- function(x) {
