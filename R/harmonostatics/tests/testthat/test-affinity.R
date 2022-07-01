@@ -26,4 +26,6 @@ test_that("affinity for chords matches our expectations",{
   expect_equal(affinity(7),9,tolerance=TRUE)
   expect_equal(affinity(-5),8,tolerance=TRUE)
   expect_equal(affinity(-17),6,tolerance=TRUE)
+  expect_equal( affinity(c(2,5,9)) , affinity(c(14,17,21)))
+  expect_equal( affinity(c(1,5,8)) , affinity(c(13,17,20)))
 })
