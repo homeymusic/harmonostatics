@@ -12,7 +12,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = plot_harmony(12:24,0,columns=c("brightness","affinity"))
   expect(p, "plot is probably ok")
-  p = plot_harmony(common_scales(),0,columns=c("brightness","affinity"))
+  p = plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"))
   expect(p, "plot is probably ok")
   p = plot_harmony(common_scales()['locrian'],0,unlist=TRUE,columns=c("brightness","affinity"),title='locrian')
   expect(p, "plot is probably ok")
@@ -45,15 +45,15 @@ test_that("all one note pitches look good", {
   expect(p, "plot is probably ok")
 })
 test_that("all two note chords look good", {
-  p = plot_harmony(combn(0:12,2,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
+  p = plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
   expect(p, "plot is probably ok")
-})
-test_that("all two note chords look good", {
-  p = plot_harmony(combn(0:12,2,simplify=FALSE),12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
+  p = plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
   expect(p, "plot is probably ok")
 })
 test_that("all three note chords look good", {
-  p = plot_harmony(combn(0:12,3,simplify=FALSE),0,columns=c("brightness","affinity"),title="all 3 note chords in level 0")
+  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 3 note chords in level 0")
+  expect(p, "plot is probably ok")
+  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 3 note chords in level 0")
   expect(p, "plot is probably ok")
 })
 test_that("all four note chords look good", {

@@ -1,9 +1,9 @@
-brightness <- function(x,home) {
+brightness.original <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   calculate_brightness(x,home)
 }
-
+brightness <- memoise::memoise(brightness.original)
 calculate_brightness <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))

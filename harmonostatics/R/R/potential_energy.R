@@ -1,5 +1,5 @@
 # TODO: need to require the home_chord even if it's just the same as home for single notes
-potential_energy <- function(x,home,home_chord=NULL) {
+potential_energy.original <- function(x,home,home_chord=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   checkmate::assert_integerish(home_chord,null.ok = TRUE)
@@ -11,6 +11,8 @@ potential_energy <- function(x,home,home_chord=NULL) {
     t$potential_energy %>% mean
   }
 }
+potential_energy <- memoise::memoise(potential_energy.original)
+
 calculate_potential_energy <-function(x,y,home) {
   checkmate::qassert(x,"X1")
   checkmate::qassert(y,"X1")

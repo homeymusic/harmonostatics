@@ -6,6 +6,7 @@ plot_harmony <- function(x,home,columns,home_chord=NULL,unlist=FALSE,name=NULL,t
   h = x %>% purrr::map(harmony,home,name,home_chord) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   plot(h[,columns],main=title)
   text(h[,columns],labels=h$intervallic_name,pos=1)
+  text(h[,columns],labels=name,pos=3)
   TRUE
 }
 

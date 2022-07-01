@@ -1,10 +1,12 @@
-affinity <- function(x) {
+affinity.original <- function(x) {
   checkmate::assert_integerish(x)
   ifelse (x %>% length < 2,
           calculate_affinity(x),
           combn(x,2,calculate_affinity) %>% mean
   )
 }
+affinity <- memoise::memoise(affinity.original)
+
 calculate_affinity <- function(x) {
   # brightness polarity does NOT depend on level
   # affinity does NOT depend on the home note
