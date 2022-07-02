@@ -32,7 +32,7 @@ test_that("potential energy look good", {
   expect(p, "plot is probably ok")
   p = plot_harmony(list("level:0"=0:12),unlist=TRUE,home=0,home_chord=0,columns=c("semitone","potential_energy"),title="Tonic Potential Energy 0",include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = plot_harmony(list("level:0"=0:12),unlist=TRUE,home=12,home_chord=0,columns=c("semitone","potential_energy"),title="Octave Potential Energy 0",include_names=FALSE)
+  p = plot_harmony(list("level:0"=0:12),unlist=TRUE,home=12,home_chord=12,columns=c("semitone","potential_energy"),title="Octave Potential Energy 0",include_names=FALSE)
   expect(p, "plot is probably ok")
   p = plot_harmony(ionian_tonic_chords.0(),home=0,home_chord=c(0,4,7),columns=c("semitone","potential_energy"),title="ionian tonic chords level 0")
   expect(p, "plot is probably ok")
