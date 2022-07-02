@@ -66,8 +66,9 @@ plot_harmony_homey <- function(x,home,columns,unlist=FALSE,include_names=TRUE,ti
     ggplot2::geom_point() +
     ggplot2::scale_color_manual(values = c(rep("#F3A904",colour_reps),"#FF5500",rep("#ABDAF3",colour_reps)), guide="none") +
     ggplot2::scale_y_continuous(breaks = numbers::pascal_triangle(6)[,3], minor_breaks=c(7)) +
-    ggplot2::scale_x_continuous(breaks = c(-2,-1,0,1,2), minor_breaks=c(-1/4,1/4)) +
+    ggplot2::scale_x_continuous(breaks = c(-2,-1,0,1,2), minor_breaks=c(-1/2,1/2)) +
     ggplot2::geom_text(ggplot2::aes(label=name),hjust="inward", vjust="inward") +
+    ggplot2::ggtitle(title) +
     theme_homey()
 }
 

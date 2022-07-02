@@ -12,7 +12,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"))
   expect(p, "plot is probably ok")
-  title = "Level 1 Intervals"
+  title = "Harmony Field"
   p = plot_harmony_homey(intervals_list(),home=0,columns=c("brightness","affinity"), title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
   expect_identical(p$labels$x, "brightness")
