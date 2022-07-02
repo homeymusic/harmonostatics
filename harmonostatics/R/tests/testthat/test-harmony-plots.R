@@ -25,24 +25,6 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
 })
 
-test_that("potential energy look good", {
-  p = plot_harmony(ionian_tonic_chords(),home=0,home_chord=c(0,4,7),columns=c("brightness","potential_energy"),title="ionian tonic chords")
-  expect(p, "plot is probably ok")
-  p = plot_harmony(ionian_tonic_chords(),home=0,home_chord=c(0,4,7),columns=c("semitone","potential_energy"),title="ionian tonic chords")
-  expect(p, "plot is probably ok")
-  p = plot_harmony(list("level:0"=0:12),unlist=TRUE,home=0,home_chord=0,columns=c("semitone","potential_energy"),title="Tonic Potential Energy 0",include_names=FALSE)
-  expect(p, "plot is probably ok")
-  p = plot_harmony(list("level:0"=0:12),unlist=TRUE,home=12,home_chord=12,columns=c("semitone","potential_energy"),title="Octave Potential Energy 0",include_names=FALSE)
-  expect(p, "plot is probably ok")
-  p = plot_harmony(ionian_tonic_chords.0(),home=0,home_chord=c(0,4,7),columns=c("semitone","potential_energy"),title="ionian tonic chords level 0")
-  expect(p, "plot is probably ok")
-  p = plot_harmony(ionian_tonic_chords.0(),home=0,home_chord=c(0,4,7),columns=c("brightness","potential_energy"),title="ionian tonic chords level 0")
-  expect(p, "plot is probably ok")
-})
-test_that("phrygian chords look good", {
-    p = plot_harmony(phrygian_tonic_chords(),home=0,home_chord=c(0,3,7),columns=c("brightness","potential_energy"),title="phrygian tonic chords")
-    expect(p, "plot is probably ok")
-})
 test_that("all one note pitches look good", {
   p = plot_harmony(intervals_list(),home=0,home_chord=0,columns=c("brightness","affinity"),title="all 1 note pitches in level 0")
   expect(p, "plot is probably ok")
