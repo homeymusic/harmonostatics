@@ -1,4 +1,8 @@
-harmony.uncached <- function(x, home, name=NULL, home_chord=NULL) {
+# TODO: remove potential energy from harmony
+# modify the existing potential energy function to accept
+# (x,y,home) where x any y are integerish and home is 0 or 12
+# export the potential energy function for use as package fun
+harmony.uncached <- function(x, home, name=NULL, home_chord) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   tibble(
