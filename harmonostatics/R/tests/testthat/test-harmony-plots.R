@@ -10,9 +10,13 @@ test_that("tonic.affinity octave-affinity scatter plots look like we expect", {
 test_that("affinity brightness plots look good", {
   p = plot_harmony(list("level:-1"=-12:0),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
   expect(p, "plot is probably ok")
-
   p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"))
   expect(p, "plot is probably ok")
+  title = "Level 1 Intervals"
+  p = plot_harmony_homey(intervals_list(),home=0,columns=c("brightness","affinity"), title=title)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
   p = plot_harmony(list("level:+1"=12:24),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
   expect(p, "plot is probably ok")
   p = plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"))

@@ -41,6 +41,36 @@ plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NU
   TRUE
 }
 
+plot_harmony_homey <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
+  if (is.null(names(x))) {include_names=FALSE}
+  checkmate::assert(checkmate::check_list(x,types="integerish"))
+  checkmate::assert_choice(home,c(0,12))
+  checkmate::qassert(columns,"S2")
+  checkmate::assert_logical(unlist)
+  checkmate::assert_logical(include_names)
+  checkmate::assert_character(title,null.ok=TRUE)
+
+  h = x
+  if (unlist) { x = x %>% unlist}
+  if (include_names) {
+    n = names(x)
+    l = list(x=x,name=n)
+    h = purrr::pmap(l,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+  } else {
+    h = purrr::map(x,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+  }
+
+  colour_factor = h[[columns[1]]] %>% factor
+  colour_reps = (length(levels(colour_factor))-1) / 2
+  h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
+    ggplot2::geom_point() +
+    ggplot2::scale_color_manual(values = c(rep("#F3A904",colour_reps),"#FF5500",rep("#ABDAF3",colour_reps)), guide="none") +
+    ggplot2::scale_y_continuous(breaks = numbers::pascal_triangle(6)[,3], minor_breaks=c(7)) +
+    ggplot2::scale_x_continuous(breaks = c(-2,-1,0,1,2), minor_breaks=c(-1/4,1/4)) +
+    ggplot2::geom_text(ggplot2::aes(label=name),hjust="inward", vjust="inward") +
+    theme_homey()
+}
+
 theme_homey <- function(){
   brown = '#664433'
   cream = '#F3DDAB'
