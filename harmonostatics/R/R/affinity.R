@@ -1,13 +1,13 @@
-affinity.original <- function(x) {
+affinity.uncached <- function(x) {
   checkmate::assert_integerish(x)
   ifelse (x %>% length < 2,
           calculate_affinity(x),
           combn(x,2,calculate_affinity) %>% mean
   )
 }
-affinity <- memoise::memoise(affinity.original)
+affinity <- memoise::memoise(affinity.uncached)
 
-calculate_affinity.original <- function(x) {
+calculate_affinity.uncached <- function(x) {
   # brightness polarity does NOT depend on level
   # affinity does NOT depend on the home note
   checkmate::qassert(x,c("X==1","X==2"))
@@ -18,7 +18,7 @@ calculate_affinity.original <- function(x) {
   if (abs(level) == 1) {level_penalty = 1}
   harmony.0.affinity()[interval+1] - level_penalty
 }
-calculate_affinity <- memoise::memoise(calculate_affinity.original)
+calculate_affinity <- memoise::memoise(calculate_affinity.uncached)
 
 #########
 #

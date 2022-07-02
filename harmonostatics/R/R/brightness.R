@@ -1,11 +1,11 @@
-brightness.original <- function(x,home) {
+brightness.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   calculate_brightness(x,home)
 }
-brightness <- memoise::memoise(brightness.original)
+brightness <- memoise::memoise(brightness.uncached)
 
-calculate_brightness.original <- function(x,home) {
+calculate_brightness.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   if (length(x)>1) {
@@ -14,14 +14,14 @@ calculate_brightness.original <- function(x,home) {
   intervals = sapply(x,level_and_interval_for)[2,]
   sapply(intervals,calculate_brightness.0) %>% mean
 }
-calculate_brightness <- memoise::memoise(calculate_brightness.original)
+calculate_brightness <- memoise::memoise(calculate_brightness.uncached)
 
 calculate_brightness.0 <- function(x) {
   checkmate::qassert(x,"X1[0,12]")
   brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x))
 }
 
-brightness_for.original <- function(polarity,affinity) {
+brightness_for.uncached <- function(polarity,affinity) {
   # we use the stream function solution to the Laplace equation 2xy=const
   # with const = -2 and +2 for the relationship between brightness & affinity
   # x = 1 / y  ->  brightness = 1 / affinity
@@ -31,7 +31,7 @@ brightness_for.original <- function(polarity,affinity) {
          polarity / centered_affinity
   )
 }
-brightness_for <- memoise::memoise(brightness_for.original)
+brightness_for <- memoise::memoise(brightness_for.uncached)
 
 #########
 #
@@ -46,6 +46,9 @@ harmony.0.brightness_boundary <- function() {
   # for brightness. our current approach:
   harmony.0.brightness_boundary_3rds_and_6ths()
 }
+harmony.0.brightness <- function() {
+  brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
+}
 harmony.0.brightness_boundary_3rds_and_6ths <- function() {
   c(3,4,8,9) %>% sapply(affinity) %>% mean
 }
@@ -56,7 +59,3 @@ harmony.0.brightness_boundary_triangular_root <- function() {
   # having the greatest positive and negative values of brightness.
   harmony.0.affinity() %>% max %>% triangular_root
 }
-harmony.0.brightness <- function() {
-  brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
-}
-

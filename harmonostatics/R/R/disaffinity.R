@@ -3,17 +3,17 @@
 # level 0
 #
 
-disaffinity.0.tonic.original <- function() {
+disaffinity.0.tonic.uncached <- function() {
   t = frequency.0.tonic()
   tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator)
 }
-disaffinity.0.tonic <- memoise::memoise(disaffinity.0.tonic.original)
+disaffinity.0.tonic <- memoise::memoise(disaffinity.0.tonic.uncached)
 
-disaffinity.0.octave.original <- function() {
+disaffinity.0.octave.uncached <- function() {
   o = frequency.0.octave()
   octave_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(o$numerator,o$denominator)
 }
-disaffinity.0.octave <- memoise::memoise(disaffinity.0.octave.original)
+disaffinity.0.octave <- memoise::memoise(disaffinity.0.octave.uncached)
 
 calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
   # drop the irrational tritone in order to calculate the other prime intervals

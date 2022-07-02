@@ -1,4 +1,4 @@
-level_and_interval_for.original <- function(x) {
+level_and_interval_for.uncached <- function(x) {
   checkmate::qassert(x,c("X==1","X==2"))
   if (x %>% length == 1) {x = c(0,x)}
   s = abs(max(x))-abs(min(x))
@@ -19,4 +19,4 @@ level_and_interval_for.original <- function(x) {
   }
   c(level=level,interval=interval)
 }
-level_and_interval_for <- memoise::memoise(level_and_interval_for.original)
+level_and_interval_for <- memoise::memoise(level_and_interval_for.uncached)
