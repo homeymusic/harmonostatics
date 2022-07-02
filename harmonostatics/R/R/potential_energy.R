@@ -14,6 +14,20 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
     potential_energy = calculate_potential_energy(x,y,home)
   )
 }
+#' Potential Energy
+#'
+#' Provides the potential energy between two chords or notes
+#'
+#' @param x A note or chord expressed as an interval integers or vector of interval integers
+#' @param y A note or chord expressed as an interval integers or vector of interval integers
+#' @param home The home pitch expressed an as interval integer
+#' @param name=NULL An optional custom name for the note or chord
+#' @return A tibble with semitone, intervallic_name, name, affinity, brightness, magnitude and potential energy
+#'
+#' @examples
+#' potential_energy(x=c(7,11,14),y=c(0,4,7),home=0 # provides the potential energy between I and V
+#'
+#' @export
 potential_energy <- memoise::memoise(potential_energy.uncached)
 
 calculate_potential_energy.uncached <-function(x,y,home) {

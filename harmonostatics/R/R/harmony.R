@@ -11,7 +11,6 @@ harmony.uncached <- function(x, home, name=NULL) {
     magnitude=magnitude(x,home),
   )
 }
-
 #' Harmony
 #'
 #' Provides the musical harmony metrics of a note or chord.
@@ -19,7 +18,7 @@ harmony.uncached <- function(x, home, name=NULL) {
 #' @param x A note or chord expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
 #' @param name=NULL An optional custom name for the note or chord
-#' @return A tibble with semitone, intervallic_name, name, affinity and brightness
+#' @return A tibble with semitone, intervallic_name, name, affinity, brightness and magnitude
 #'
 #' @examples
 #' harmony(4,0) # provides the harmony metrics of the Major 3rd

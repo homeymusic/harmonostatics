@@ -14,7 +14,7 @@ harmony(x, home, name = NULL)
 \item{name=NULL}{An optional custom name for the note or chord}
 }
 \value{
-A tibble with semitone, intervallic_name, name, affinity, brightness and potential energy
+A tibble with semitone, intervallic_name, name, affinity, brightness and magnitude
 }
 \description{
 Provides the musical harmony metrics of a note or chord.

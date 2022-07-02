@@ -1,8 +1,29 @@
-plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,name=NULL,title=NULL) {
+#' Plot Harmony
+#'
+#' Provides scatter plots of musical harmony metrics of a note or chord.
+#'
+#' @param x A list of notes or chords expressed as an interval integers or vector of interval integers
+#' @param home The home pitch expressed an as interval integer
+#' @param columns A vector of 2 column names to plot: semitone, affinity, brightness and magnitude
+#' @param unlist=FALSE A logical TRUE or FALSE to plot points individually or as one point
+#' @param include_names=TRUE Include the names from the list x on the plot
+#' @param title=NULL An optional title for the plot
+#' @return Generates the requested scatter plot and returns TRUE
+#'
+#' @examples
+#' plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
+#' plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
+#'
+#' @export
+plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S2")
+  checkmate::assert_logical(unlist)
+  checkmate::assert_logical(include_names)
+  checkmate::assert_character(title,null.ok=TRUE)
+
   h = x
   if (unlist) { x = x %>% unlist}
   if (include_names) {
