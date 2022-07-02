@@ -1,20 +1,34 @@
-# TODO: remove potential energy from harmony
-# modify the existing potential energy function to accept
-# (x,y,home) where x any y are integerish and home is 0 or 12
-# export the potential energy function for use as package fun
-potential_energy.uncached <- function(x,home,home_chord) {
+potential_energy.uncached <- function(x,y,home,name=NULL) {
   checkmate::assert_integerish(x)
+  checkmate::assert_integerish(y)
   checkmate::assert_choice(home,c(0,12))
-  checkmate::assert_integerish(home_chord)
+  checkmate::assert_character(name,null.ok=TRUE)
 
-  t = tidyr::crossing(x=x,y=home_chord) %>% dplyr::rowwise() %>%
-    dplyr::mutate(potential_energy=calculate_potential_energy(x,y,home))
-
-  t$potential_energy %>% mean
+  tibble(
+    semitone = x %>% mean,
+    intervallic_name = x %>% paste(collapse = ":"),
+    name = name,
+    affinity=affinity(x),
+    brightness=brightness(x,home),
+    magnitude=magnitude(x,home),
+    potential_energy = calculate_potential_energy(x,y,home)
+  )
 }
 potential_energy <- memoise::memoise(potential_energy.uncached)
 
 calculate_potential_energy.uncached <-function(x,y,home) {
+  checkmate::assert_integerish(x)
+  checkmate::assert_integerish(y)
+  checkmate::assert_choice(home,c(0,12))
+
+  crossing_of_pitches = tidyr::crossing(x=x,y=y) %>% dplyr::rowwise() %>%
+    dplyr::mutate(potential_energy=calculate_potential_energy_for(x,y,home))
+
+  crossing_of_pitches$potential_energy %>% mean
+}
+calculate_potential_energy <- memoise::memoise(calculate_potential_energy.uncached)
+
+calculate_potential_energy_for.uncached <-function(x,y,home) {
   checkmate::qassert(x,"X1")
   checkmate::qassert(y,"X1")
   checkmate::assert_choice(home,c(0,12))
@@ -24,4 +38,4 @@ calculate_potential_energy.uncached <-function(x,y,home) {
 
   abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
 }
-calculate_potential_energy <- memoise::memoise(calculate_potential_energy.uncached)
+calculate_potential_energy_for <- memoise::memoise(calculate_potential_energy_for.uncached)

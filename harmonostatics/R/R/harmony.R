@@ -1,10 +1,7 @@
-# TODO: remove potential energy from harmony
-# modify the existing potential energy function to accept
-# (x,y,home) where x any y are integerish and home is 0 or 12
-# export the potential energy function for use as package fun
-harmony.uncached <- function(x, home, name=NULL, home_chord) {
+harmony.uncached <- function(x, home, name=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
+  # TODO: assert name is a strin with null ok
   tibble(
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),
@@ -12,7 +9,6 @@ harmony.uncached <- function(x, home, name=NULL, home_chord) {
     affinity=affinity(x),
     brightness=brightness(x,home),
     magnitude=magnitude(x,home),
-    potential_energy = potential_energy(x,home,home_chord)
   )
 }
 
@@ -23,7 +19,7 @@ harmony.uncached <- function(x, home, name=NULL, home_chord) {
 #' @param x A note or chord expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
 #' @param name=NULL An optional custom name for the note or chord
-#' @return A tibble with semitone, intervallic_name, name, affinity, brightness and potential energy
+#' @return A tibble with semitone, intervallic_name, name, affinity and brightness
 #'
 #' @examples
 #' harmony(4,0) # provides the harmony metrics of the Major 3rd
