@@ -2,9 +2,8 @@
 \version "2.22.2"
 \header {
   title = "May Your Soul Rest"
-  composer = "Brian McAuliff Mulloy"
+  composer = "Brian Scott Columkille McAuliff Mulloy"
 }
-
 \layout {
   indent = 0.0
   \context {
@@ -21,13 +20,13 @@ musicOne = \relative {
   g,8. g16 af4 c4 bf4 c2~ c4
 }
 verseOne = \lyricmode {
-May your soul rest in peace.
-May your soul rest in peace.
-May your soul rest, dear Pad -- dy.
-May your soul rest in peace.
+  May your soul rest in peace.
+  May your soul rest in peace.
+  May your soul rest, dear Pad -- dy.
+  May your soul rest in peace.
 }  
 
-\Score {
+\score {
   <<
     \new Voice = "one" {
       \time 2/4
