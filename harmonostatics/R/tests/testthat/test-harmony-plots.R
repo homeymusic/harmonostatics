@@ -10,17 +10,24 @@ test_that("tonic.affinity octave-affinity scatter plots look like we expect", {
 test_that("affinity brightness plots look good", {
   p = plot_harmony(list("level:-1"=-12:0),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"))
+  title = "Harmony.0 Field"
+  p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
-  title = "Harmony Field"
-  p = plot_harmony_homey(intervals_list(),home=0,columns=c("brightness","affinity"), title=title)
+  p = homey_plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"), title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
   p = plot_harmony(list("level:+1"=12:24),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"))
+
+  title = "Common Scales"
+  p = plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"), title=title)
   expect(p, "plot is probably ok")
+  p = homey_plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"), title=title)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
   p = plot_harmony(common_scales()['locrian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title='locrian',include_names=FALSE)
   expect(p, "plot is probably ok")
   p = plot_harmony(common_scales()['dorian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title='dorian',include_names=FALSE)
