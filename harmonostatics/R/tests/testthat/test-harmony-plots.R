@@ -28,12 +28,30 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
-  p = plot_harmony(common_scales()['locrian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title='locrian',include_names=FALSE)
+  title = 'Locrian'
+  p = plot_harmony(common_scales()['locrian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = plot_harmony(common_scales()['dorian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title='dorian',include_names=FALSE)
+  p = homey_plot_harmony(common_scales()['locrian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
+  title='Dorian'
+  p = plot_harmony(common_scales()['dorian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = plot_harmony(common_scales()['lydian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title='lydian',include_names=FALSE)
+  p = homey_plot_harmony(common_scales()['dorian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
+  title='Lydian'
+  p = plot_harmony(common_scales()['lydian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
   expect(p, "plot is probably ok")
+  p = homey_plot_harmony(common_scales()['lydian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
 })
 
 test_that("all one note pitches look good", {

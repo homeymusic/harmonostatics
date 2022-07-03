@@ -81,11 +81,17 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_na
 
   colour_factor = colour_factor_homey(h)
   color_values = color_values_homey()
-  h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
-    ggplot2::geom_point() +
+  p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
+    ggplot2::geom_point(ggplot2::aes(size=affinity)) +
+    ggplot2::scale_size(guide="none") +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
-    ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines")) +
-    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.6)) +
+    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.6), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey()
+
+  if (include_names) {
+    p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+  } else {
+    p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+  }
 }

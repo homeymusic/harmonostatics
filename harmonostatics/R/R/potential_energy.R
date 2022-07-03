@@ -49,7 +49,6 @@ calculate_potential_energy_for.uncached <-function(x,y,home) {
 
   x_magnitude = magnitude(x,home)
   y_magnitude = magnitude(y,home)
-
-  abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
+  u = abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
 }
 calculate_potential_energy_for <- memoise::memoise(calculate_potential_energy_for.uncached)

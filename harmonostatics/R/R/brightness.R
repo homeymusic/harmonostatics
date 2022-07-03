@@ -11,8 +11,8 @@ calculate_brightness.uncached <- function(x,home) {
   if (length(x)>1) {
     ifelse (home==0,(x = x - min(abs(x))),(x = x + 12 - max(abs(x))))
   }
-  intervals = sapply(x,level_and_interval_for)[2,]
-  sapply(intervals,calculate_brightness.0) %>% mean
+  x = sapply(x,level_and_interval_for)[2,]
+  sapply(x,calculate_brightness.0) %>% mean
 }
 calculate_brightness <- memoise::memoise(calculate_brightness.uncached)
 

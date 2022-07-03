@@ -33,7 +33,7 @@ ionian_tonic_chords <- function() {
        "vii*"=c(11,14,17)
   )
 }
-ionian_tonic_chords.0 <- function() {
+ionian_tonic_chords.in_one_level <- function() {
   list("I"=c(0,4,7),
        "ii"=c(2,5,9),
        "iii"=c(4,7,11),
@@ -51,6 +51,16 @@ phrygian_tonic_chords <- function() {
        "v*"=c(7,10,13),
        "VI"=c(8,12,15),
        "vii"=c(10,13,17)
+  )
+}
+phrygian_octave_chords <- function() {
+  list("-i"=c(12,8,5),
+       "-II"=c(3,7,10),
+       "-III"=c(1,5,8),
+       "-iv"=c(0,3,7),
+       "-v"=c(5,1,-2),
+       "-VI"=c(3,0,-4),
+       "-vii*"=c(1,-2,-5)
   )
 }
 intervals_list <- function() {

@@ -14,8 +14,12 @@ calculate_affinity.uncached <- function(x) {
   level_and_interval = level_and_interval_for(x)
   level = level_and_interval["level"]
   interval = level_and_interval["interval"]
-  level_penalty = 2 * abs(level)
-  if (abs(level) == 1) {level_penalty = 1}
+  level_penalty = 0
+  if (level == 1) {
+    level_penalty = 1
+  } else if (level > 1) {
+    level_penalty = 2 * level
+  }
   harmony.0.affinity()[interval+1] - level_penalty
 }
 calculate_affinity <- memoise::memoise(calculate_affinity.uncached)
