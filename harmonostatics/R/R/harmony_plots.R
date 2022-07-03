@@ -54,8 +54,8 @@ plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NU
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @examples
-#' ggplot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-#' ggplot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
+#' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
+#' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
 homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
@@ -82,7 +82,8 @@ homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,ti
   h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
     ggplot2::geom_point() +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
-    ggplot2::geom_text(ggplot2::aes(label=name)) +
+    ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines")) +
+    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.6)) +
     ggplot2::ggtitle(title) +
     theme_homey()
 }

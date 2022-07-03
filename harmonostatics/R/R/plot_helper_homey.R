@@ -2,9 +2,9 @@ colors_homey <- function() {
   list(
     'background' = '#664433',
     'foreground' = '#F3DDAB',
-    'minor' = '#F3A904',
+    'minor' = '#ABDAF3',
     'neutral' = '#FF5500',
-    'major' = '#ABDAF3'
+    'major' = '#F3A904'
   )
 }
 colour_factor_homey <- function(x) {
