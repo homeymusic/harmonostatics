@@ -20,22 +20,22 @@ test_that("affinity form matches expectations", {
 })
 
 test_that("affinity for chords matches our expectations",{
-  expect_equal(affinity(c(5,-2)),10,tolerance=0.001)
+  expect_equal(affinity(c(5,-2),0),10,tolerance=0.001)
   # above primary level
-  expect_equal(affinity(14),2,tolerance=0.001)
-  expect_equal(affinity(-2),3,tolerance=0.001)
+  expect_equal(affinity(14,0),2,tolerance=0.001)
+  expect_equal(affinity(-2,0),3,tolerance=0.001)
   # above primary level
   # major chords
-  expect_equal(affinity(c(0,4,7)),7.66,tolerance=0.001)
-  expect_equal(affinity(c(5,9,12)),7.66,tolerance=0.001)
-  expect_equal(affinity(c(7,11,14)),7.66,tolerance=0.001)
+  expect_equal(affinity(c(0,4,7),0),7.66,tolerance=0.001)
+  expect_equal(affinity(c(5,9,12),0),7.66,tolerance=0.001)
+  expect_equal(affinity(c(7,11,14),0),7.66,tolerance=0.001)
   # minor chords
-  expect_equal(affinity(c(12,8,5)),7.66,tolerance=0.001)
-  expect_equal(affinity(c(7,3,0)),7.66,tolerance=0.001)
-  expect_equal(affinity(c(5,1,-2)),7.66,tolerance=0.001)
-  expect_equal(affinity(7),10,tolerance=0.001)
-  expect_equal(affinity(-5),10,tolerance=0.001)
-  expect_equal(affinity(-17),9,tolerance=0.001)
-  expect_equal( affinity(c(2,5,9)) , affinity(c(14,17,21)))
-  expect_equal( affinity(c(1,5,8)) , affinity(c(13,17,20)))
+  expect_equal(affinity(c(12,8,5),0),7.66,tolerance=0.001)
+  expect_equal(affinity(c(7,3,0),0),7.66,tolerance=0.001)
+  expect_equal(affinity(c(5,1,-2),0),7.66,tolerance=0.001)
+  expect_equal(affinity(7,0),10,tolerance=0.001)
+  expect_equal(affinity(-5,0),10,tolerance=0.001)
+  expect_equal(affinity(-17,0),9,tolerance=0.001)
+  expect_equal( affinity(c(2,5,9),0) , affinity(c(14,17,21),0))
+  expect_equal( affinity(c(1,5,8),0) , affinity(c(13,17,20),0))
 })

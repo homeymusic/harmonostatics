@@ -1,17 +1,21 @@
-affinity.uncached <- function(x) {
+affinity.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
+  checkmate::assert_choice(home,c(0,12))
+
   ifelse (x %>% length < 2,
-          calculate_affinity(x),
-          combn(x,2,calculate_affinity) %>% mean
+          calculate_affinity(x,home),
+          combn(x,2,calculate_affinity,simplify=TRUE,home) %>% mean
   )
 }
 affinity <- memoise::memoise(affinity.uncached)
 
-calculate_affinity.uncached <- function(x) {
+calculate_affinity.uncached <- function(x,home) {
   # brightness polarity does NOT depend on level
   # affinity does NOT depend on the home note
   checkmate::qassert(x,c("X==1","X==2"))
-  level_and_interval = level_and_interval_for(x)
+  checkmate::assert_choice(home,c(0,12))
+
+  level_and_interval = level_and_interval_for(x,home)
   level = level_and_interval["level"]
   interval = level_and_interval["interval"]
   level_penalty = 0

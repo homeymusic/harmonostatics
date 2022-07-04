@@ -8,7 +8,7 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),
     name = name,
-    affinity=affinity(x),
+    affinity=affinity(x,home),
     brightness=brightness(x,home),
     magnitude=magnitude(x,home),
     potential_energy = calculate_potential_energy(x,y,home)
@@ -49,6 +49,7 @@ calculate_potential_energy_for.uncached <-function(x,y,home) {
 
   x_magnitude = magnitude(x,home)
   y_magnitude = magnitude(y,home)
-  u = abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
+  abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
+
 }
 calculate_potential_energy_for <- memoise::memoise(calculate_potential_energy_for.uncached)

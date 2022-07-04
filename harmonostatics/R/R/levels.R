@@ -1,7 +1,8 @@
-level_and_interval_for.uncached <- function(x) {
+level_and_interval_for.uncached <- function(x,home) {
   checkmate::qassert(x,c("X==1","X==2"))
+  checkmate::assert_choice(home,c(0,12))
   interval = 0
-  if (x %>% length == 1) { x = c(0,x) }
+  if (x %>% length == 1) { x = c(home,x) }
   distance = abs(x[1] - x[2])
   if (distance <=12) {
     level = 0

@@ -60,7 +60,7 @@ phrygian_octave_chords <- function() {
        "-iv"=c(0,3,7),
        "-v"=c(5,1,-2),
        "-VI"=c(3,0,-4),
-       "-vii*"=c(1,-2,-5)
+       "-VII*"=c(1,-2,-5)
   )
 }
 intervals_list <- function() {

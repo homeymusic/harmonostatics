@@ -9,16 +9,17 @@ calculate_brightness.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
   if (length(x)>1) {
-    ifelse (home==0,(x = x - min(abs(x))),(x = x + 12 - max(abs(x))))
+    ifelse ((home==0),(x = x - min(abs(x))),(x = x + 12 - max(x)))
   }
-  x = sapply(x,level_and_interval_for)[2,]
-  sapply(x,calculate_brightness.0) %>% mean
+  x = sapply(x,level_and_interval_for,0)[2,]
+  sapply(x,calculate_brightness.0,home) %>% mean
 }
 calculate_brightness <- memoise::memoise(calculate_brightness.uncached)
 
-calculate_brightness.0 <- function(x) {
+calculate_brightness.0 <- function(x,home) {
   checkmate::qassert(x,"X1[0,12]")
-  brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x))
+  checkmate::assert_choice(home,c(0,12))
+  brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x,home))
 }
 
 brightness_for.uncached <- function(polarity,affinity) {
@@ -50,7 +51,7 @@ harmony.0.brightness <- function() {
   brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
 }
 harmony.0.brightness_boundary_3rds_and_6ths <- function() {
-  c(3,4,8,9) %>% sapply(affinity) %>% mean
+  c(3,4,8,9) %>% sapply(affinity,0) %>% mean
 }
 harmony.0.brightness_boundary_triangular_root <- function() {
   # use the triangular nature of affinity

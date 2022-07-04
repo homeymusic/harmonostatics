@@ -8,6 +8,8 @@ test_that("brightness for chords matches our expectations",{
 
   expect_gt(brightness(c(0,4,7),0),0)
   expect_lt(brightness(c(0,3,7),0),0)
+  expect_lt(brightness(c(0,3,7),12),0)
+  expect_gt(brightness(c(3,0,-4),12),0)
 
   expect_lt(brightness(c(11,14,17),0),0)
   expect_equal(brightness(c(11,14,17),0),brightness(c(0,3,6),0))
@@ -16,6 +18,10 @@ test_that("brightness for chords matches our expectations",{
   expect_gt( brightness(c(1,5,8),0) ,0)
   expect_gt( brightness(c(11,2,5),0) ,0)
   expect_gt( brightness(c(9,0,3),0) ,0)
+  expect_lt(brightness(c(9,12,16),0),0)
+  expect_gt(brightness(c(8,12,15),12),0)
+  expect_gt(brightness(c(12,9,6),12),0)
+  expect_lt(brightness(c(0,3,6),0),0)
 
   expect_equal( brightness(c(11,2,5),0), brightness(c(9,0,3),0))
 
