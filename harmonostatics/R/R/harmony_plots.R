@@ -58,7 +58,7 @@ plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NU
 #' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
-homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
+homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
@@ -87,8 +87,12 @@ homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,ti
     ggplot2::ggtitle(title) +
     theme_homey()
   if (include_names) {
-    p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
+    p = p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
   } else {
-    p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
+    p = p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
   }
+  if (pascal_triangle) {
+    p = p + ggplot2::scale_y_continuous(breaks = numbers::pascal_triangle(6)[,3], minor_breaks=c(7))
+  }
+  p
 }

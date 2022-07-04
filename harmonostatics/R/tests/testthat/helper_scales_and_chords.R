@@ -54,13 +54,13 @@ phrygian_tonic_chords <- function() {
   )
 }
 phrygian_octave_chords <- function() {
-  list("-i"=c(12,8,5),
-       "-II"=c(3,7,10),
-       "-III"=c(1,5,8),
-       "-iv"=c(0,3,7),
-       "-v"=c(5,1,-2),
-       "-VI"=c(3,0,-4),
-       "-VII*"=c(1,-2,-5)
+  list("viii"=c(12,8,5),
+       "VII"=c(3,7,10),
+       "VI"=c(1,5,8),
+       "v"=c(0,3,7),
+       "iv"=c(5,1,-2),
+       "III"=c(3,0,-4),
+       "II*"=c(1,-2,-5)
   )
 }
 intervals_list <- function() {

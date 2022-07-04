@@ -60,8 +60,7 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
 #' homey_plot_potential_energy(combn(0:12,2,simplify=FALSE),c(0,12),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
-homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
-  if (is.null(names(x))) {include_names=FALSE}
+homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,symmetrical=TRUE,expansion_mult = 0.6,title=NULL) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S2")
@@ -69,8 +68,8 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_na
   checkmate::assert_logical(include_names)
   checkmate::assert_character(title,null.ok=TRUE)
 
+  if (unlist) {x = x %>% unlist }
   h = x
-  if (unlist) { x = x %>% unlist}
   if (include_names) {
     n = names(x)
     l = list(x=x,name=n)
@@ -85,13 +84,18 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_na
     ggplot2::geom_point(ggplot2::aes(size=affinity)) +
     ggplot2::scale_size(guide="none") +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
-    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.6), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey()
 
-  if (include_names) {
-    p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+  if (symmetrical) {
+    p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]])))))
   } else {
-    p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+    p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult))
   }
+  if (include_names) {
+    p = p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+  } else {
+    p = p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+  }
+  p
 }
