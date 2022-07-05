@@ -15,6 +15,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
   p = plot_harmony(list("level:+1"=12:24),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
@@ -25,6 +26,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"),title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
@@ -33,6 +35,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(common_scales()['locrian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
@@ -41,6 +44,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(common_scales()['dorian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
@@ -49,6 +53,7 @@ test_that("affinity brightness plots look good", {
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(common_scales()['lydian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
