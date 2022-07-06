@@ -15,10 +15,10 @@
 #' plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
-plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
+plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
-  checkmate::assert_choice(home,c(0,12))
+  checkmate::assert_choice(home,c(0,12),null.ok = TRUE)
   checkmate::qassert(columns,"S2")
   checkmate::assert_logical(unlist)
   checkmate::assert_logical(include_names)
@@ -58,7 +58,7 @@ plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NU
 #' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
-homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE) {
+homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE,max_overlaps=Inf) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12),null.ok=TRUE)
@@ -91,9 +91,9 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TR
   }
   if (repel_labels) {
     if (include_names) {
-      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=name), max.overlaps = Inf)
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=name), max.overlaps = max_overlaps)
     } else {
-      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=intervallic_name), max.overlaps = Inf)
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=intervallic_name), max.overlaps = max_overlaps)
     }
   } else {
     if (include_names) {
