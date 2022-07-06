@@ -113,7 +113,7 @@ test_that("all six note chords look good", {
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
 
-  p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE,repel_labels=TRUE,max_overlaps=40)
+  p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE,max_overlaps=40)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
