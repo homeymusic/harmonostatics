@@ -1,7 +1,15 @@
-harmony.uncached <- function(x, home, name=NULL) {
+harmony.uncached <- function(x, home=NULL, name=NULL) {
   checkmate::assert_integerish(x)
-  checkmate::assert_choice(home,c(0,12))
-  # TODO: assert name is a strin with null ok
+  checkmate::assert_choice(home,c(0,12), null.ok=TRUE)
+  if (is.null(home)) {
+    if (0 %in% x) {
+      home = 0
+    } else if (12 %in% x) {
+      home = 12
+    } else {
+      stop('home must be specified or x must contain 0 or 12 or both')
+    }
+  }
   tibble(
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),

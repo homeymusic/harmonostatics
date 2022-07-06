@@ -58,10 +58,10 @@ plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NU
 #' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
-homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE) {
+homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
-  checkmate::assert_choice(home,c(0,12))
+  checkmate::assert_choice(home,c(0,12),null.ok=TRUE)
   checkmate::qassert(columns,"S2")
   checkmate::assert_logical(unlist)
   checkmate::assert_logical(include_names)
@@ -86,13 +86,21 @@ homey_plot_harmony <- function(x,home,columns,unlist=FALSE,include_names=TRUE,ti
     ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.6), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey()
-  if (include_names) {
-    p = p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
-  } else {
-    p = p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
-  }
   if (pascal_triangle) {
     p = p + ggplot2::scale_y_continuous(breaks = numbers::pascal_triangle(6)[,3], minor_breaks=c(7))
+  }
+  if (repel_labels) {
+    if (include_names) {
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=name), max.overlaps = Inf)
+    } else {
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=intervallic_name), max.overlaps = Inf)
+    }
+  } else {
+    if (include_names) {
+      p = p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
+    } else {
+      p = p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
+    }
   }
   p
 }

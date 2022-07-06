@@ -70,10 +70,44 @@ test_that("all two note chords look good", {
   expect(p, "plot is probably ok")
 })
 test_that("all three note chords look good", {
-  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 3 note chords in level 0 home 0")
+
+  title="All Tonic & Octave 3-Note Chords"
+  chords = c(combn(1:11,2,function(x){c(0,x)},simplify=FALSE),combn(1:11,2,function(x){c(x,12)},simplify=FALSE))
+  p = plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
-  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 3 note chords in level 0 home 12")
+  p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE,repel_labels=TRUE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title," repel labels",".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title," repel labels",".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
+  title="All 3-Note Chords - Tonic Home"
+  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=0,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
+  p = homey_plot_harmony(combn(0:12,3,simplify=FALSE),home=0,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
+  title="All 3-Note Chords - Tonic Home"
+  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=0,columns=c("brightness","affinity"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(combn(0:12,3,simplify=FALSE),home=0,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE,repel_labels=TRUE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title," repel labels",".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title," repel labels",".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
+  title="All 3-Note Chords - Octave Home"
+  p = plot_harmony(combn(0:12,3,simplify=FALSE),home=12,columns=c("brightness","affinity"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(combn(0:12,3,simplify=FALSE),home=12,columns=c("brightness","affinity"),title=title,include_names=FALSE,pascal_triangle=TRUE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
 })
 test_that("all four note chords look good", {
   p = plot_harmony(combn(0:12,4,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 4 note chords in level 0")
