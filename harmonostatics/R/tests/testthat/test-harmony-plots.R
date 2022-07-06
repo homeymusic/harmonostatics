@@ -10,7 +10,7 @@ test_that("tonic.affinity octave-affinity scatter plots look like we expect", {
 test_that("affinity brightness plots look good", {
   p = plot_harmony(list("level:-1"=-12:0),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
   expect(p, "plot is probably ok")
-  title = "Harmony.0 Field"
+  title = "Intervals"
   p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE)
@@ -18,8 +18,17 @@ test_that("affinity brightness plots look good", {
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
+
   p = plot_harmony(list("level:+1"=12:24),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
   expect(p, "plot is probably ok")
+
+  # TODO: fix this
+  title="Intervals over 5 Octaves"
+  p = homey_plot_harmony(list("level:+1"=-24:36),unlist=TRUE,home=0,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
 
   title = "Common Scales"
   p = plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"), title=title)
@@ -80,6 +89,17 @@ test_that("all three note chords look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 })
+test_that("all symmetrical three note chords look good", {
+  title="All Tonic-Octave Symmetrical 'Triads'"
+  chords = combn(1:11,2,function(x){c(0,x,12)},simplify=FALSE)
+  p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE,max_overlaps=20)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+})
 test_that("all four note chords look good", {
   title="All 4 Note Chords"
   chords = c(combn(1:11,3,function(x){c(0,x)},simplify=FALSE),combn(1:11,3,function(x){c(x,12)},simplify=FALSE))
@@ -88,6 +108,17 @@ test_that("all four note chords look good", {
   expect(p, "plot is probably ok")
 
   p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE,max_overlaps=20)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+})
+test_that("all symmetrical four note chords look good", {
+  title="All Tonic-Octave Symmetrical 'Tetrads'"
+  chords = combn(1:11,3,function(x){c(0,x,12)},simplify=FALSE)
+  p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE,max_overlaps=10)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")

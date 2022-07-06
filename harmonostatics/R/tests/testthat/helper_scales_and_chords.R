@@ -43,6 +43,16 @@ ionian_tonic_chords.in_one_level <- function() {
        "vii*"=c(11,2,5)
   )
 }
+aeolian_tonic_chords <- function() {
+  list("i"=c(0,3,7),
+       "ii*"=c(2,5,8),
+       "III"=c(3,7,10),
+       "iv"=c(5,8,12),
+       "v"=c(7,10,14),
+       "VI"=c(8,12,15),
+       "VII"=c(10,14,17)
+  )
+}
 phrygian_tonic_chords <- function() {
   list("i"=c(0,3,7),
        "II"=c(1,5,8),
