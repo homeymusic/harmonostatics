@@ -1,3 +1,5 @@
+# TODO: create an affinity_for(interval, level) function for handling multiple octaves
+
 affinity.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))

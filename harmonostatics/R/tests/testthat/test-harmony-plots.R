@@ -8,8 +8,6 @@ test_that("tonic.affinity octave-affinity scatter plots look like we expect", {
 })
 
 test_that("affinity brightness plots look good", {
-  p = plot_harmony(list("level:-1"=-12:0),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
-  expect(p, "plot is probably ok")
   title = "Intervals"
   p = plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
@@ -19,12 +17,19 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
-  p = plot_harmony(list("level:+1"=12:24),unlist=TRUE,home=0,columns=c("brightness","affinity"),include_names=FALSE)
-  expect(p, "plot is probably ok")
+  # TODO: fix this
+  title="Tonic Intervals over 5 Levels"
+  intervals_5_levels = list(-24:36)
+  p = homey_plot_harmony(intervals_5_levels,home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
 
   # TODO: fix this
-  title="Intervals over 5 Octaves"
-  p = homey_plot_harmony(list("level:+1"=-24:36),unlist=TRUE,home=0,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE)
+  title="Octave Intervals over 5 Levels"
+  intervals_5_levels = list(-24:36)
+  p = homey_plot_harmony(intervals_5_levels,home=12,unlist=TRUE,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "brightness")
