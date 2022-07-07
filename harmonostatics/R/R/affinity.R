@@ -12,21 +12,14 @@ affinity.uncached <- function(x,home) {
 affinity <- memoise::memoise(affinity.uncached)
 
 calculate_affinity.uncached <- function(x,home) {
-  # brightness polarity does NOT depend on level
-  # affinity does NOT depend on the home note
   checkmate::qassert(x,c("X==1","X==2"))
   checkmate::assert_choice(home,c(0,12))
 
   level_and_interval = level_and_interval_for(x,home)
   level = level_and_interval["level"]
   interval = level_and_interval["interval"]
-  level_penalty = 0
-  if (level == 1) {
-    level_penalty = 1
-  } else if (level > 1) {
-    level_penalty = 2 * level
-  }
-  harmony.0.affinity()[interval+1] - level_penalty
+
+  affinity.0(interval,level)
 }
 calculate_affinity <- memoise::memoise(calculate_affinity.uncached)
 
@@ -34,6 +27,19 @@ calculate_affinity <- memoise::memoise(calculate_affinity.uncached)
 #
 # level 0
 #
+
+affinity.0 <- function(position,level=0) {
+  checkmate::assert_choice(position,0:12)
+  checkmate::qassert(level,"X1")
+
+  level_penalty = 0
+  if (abs(level) == 1) {
+    level_penalty = 1
+  } else if (abs(level) > 1) {
+    level_penalty = (2 * abs(level)) - 1
+  }
+  harmony.0.affinity()[position+1] - level_penalty
+}
 
 affinity.0.tonic <- function() {
   tonic_disaffinity = disaffinity.0.tonic()

@@ -39,3 +39,44 @@ test_that("affinity for chords matches our expectations",{
   expect_equal( affinity(c(2,5,9),0) , affinity(c(14,17,21),0))
   expect_equal( affinity(c(1,5,8),0) , affinity(c(13,17,20),0))
 })
+
+test_that("affinity.0 meets expectations", {
+  expect_error(affinity.0(position=-1))
+  expect_error(affinity.0(position=13))
+  # level -3
+  expect_equal(affinity.0(position=12,level=-3),10)
+  expect_equal(affinity.0(position=6,level=-3),-2)
+  expect_equal(affinity.0(position=11,level=-3),-4)
+  expect_equal(affinity.0(position=0,level=-3),10)
+  # level -2
+  expect_equal(affinity.0(position=12,level=-2),12)
+  expect_equal(affinity.0(position=6,level=-2),0)
+  expect_equal(affinity.0(position=11,level=-2),-2)
+  expect_equal(affinity.0(position=0,level=-2),12)
+  # level -1
+  expect_equal(affinity.0(position=12,level=-1),14)
+  expect_equal(affinity.0(position=6,level=-1),2)
+  expect_equal(affinity.0(position=11,level=-1),0)
+  expect_equal(affinity.0(position=0,level=-1),14)
+  # level 0
+  expect_equal(affinity.0(position=0),15)
+  expect_equal(affinity.0(position=1),1)
+  expect_equal(affinity.0(position=6),3)
+  expect_equal(affinity.0(position=11),1)
+  expect_equal(affinity.0(position=12),15)
+  # level 1
+  expect_equal(affinity.0(position=12,level=1),14)
+  expect_equal(affinity.0(position=1,level=1),0)
+  expect_equal(affinity.0(position=6,level=1),2)
+  expect_equal(affinity.0(position=0,level=1),14)
+  # level 2
+  expect_equal(affinity.0(position=12,level=2),12)
+  expect_equal(affinity.0(position=1,level=2),-2)
+  expect_equal(affinity.0(position=6,level=2),0)
+  expect_equal(affinity.0(position=0,level=2),12)
+  # level 3
+  expect_equal(affinity.0(position=12,level=3),10)
+  expect_equal(affinity.0(position=1,level=3),-4)
+  expect_equal(affinity.0(position=6,level=3),-2)
+  expect_equal(affinity.0(position=0,level=3),10)
+})

@@ -38,7 +38,17 @@ brightness_for <- memoise::memoise(brightness_for.uncached)
 #
 # level 0
 #
+brightness.0 <- function(position,level=0) {
+  checkmate::assert_choice(position,0:12)
+  checkmate::qassert(level,"X1")
 
+  brightness_polarity = harmony.0.brightness_polarity()[position+1]
+  centered_affinity = abs(affinity.0(position,level) - harmony.0.brightness_boundary())
+  ifelse(centered_affinity==0,
+         0,
+         brightness_polarity / centered_affinity
+  )
+}
 harmony.0.brightness_polarity <- function() {
   harmony.0.rotated_octave_affinity_tonic_affinity()[1,]
 }
