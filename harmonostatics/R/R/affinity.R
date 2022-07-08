@@ -18,7 +18,7 @@ affinity <- memoise::memoise(affinity.uncached)
 # level 0
 #
 
-affinity.0 <- function(position,level=0) {
+affinity.0.uncached <- function(position,level=0) {
   checkmate::assert_choice(position,0:12)
   checkmate::qassert(level,"X1")
 
@@ -30,6 +30,7 @@ affinity.0 <- function(position,level=0) {
   }
   harmony.0.affinity()[position+1] - level_penalty
 }
+affinity.0 <- memoise::memoise(affinity.0.uncached)
 
 affinity.0.tonic <- function() {
   tonic_disaffinity = disaffinity.0.tonic()
