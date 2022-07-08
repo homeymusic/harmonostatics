@@ -20,15 +20,6 @@ test_that("we can get the correct interval and level given an integer within, ab
   expect_equal(level_and_interval_for(37,0),c(level=3,interval=1))
 })
 
-test_that("we can get the correct interval and level given a pair of integers within, above or below the primary octave", {
-  expect_equal(level_and_interval_for(c(0,4),0),c(level=0,interval=4))
-  expect_equal(level_and_interval_for(c(0,7),0),c(level=0,interval=7))
-  expect_equal(level_and_interval_for(c(4,7),0),c(level=0,interval=3))
-  expect_equal(level_and_interval_for(c(-14,27),0),c(level=3,interval=5))
-  expect_equal(level_and_interval_for(c(5,-2),0),c(level=0,interval=7))
-  expect_equal(level_and_interval_for(c(7,14),0),c(level=0,interval=7))
-})
-
 test_that("we can get the correct integer given a level and position", {
   expect_equal(integer_from_position_and_level(11,-3),-25)
   expect_equal(integer_from_position_and_level(12,-3),-24)

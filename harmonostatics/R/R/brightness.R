@@ -5,6 +5,7 @@ brightness.uncached <- function(x,home) {
     ifelse ((home==0),(x = x - min(abs(x))),(x = x + 12 - max(x)))
   }
   x = sapply(x,level_and_interval_for,0)[2,]
+  # TODO: use brightness.0 instead of calculate_brightness.0
   sapply(x,calculate_brightness.0,home) %>% mean
 }
 brightness <- memoise::memoise(brightness.uncached)
