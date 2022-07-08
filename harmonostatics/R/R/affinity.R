@@ -1,13 +1,15 @@
 # TODO: create an affinity_for(interval, level) function for handling multiple octaves
 
-affinity.uncached <- function(x,home) {
+affinity.uncached <- function(x,home=0) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
-
-  ifelse (x %>% length < 2,
-          calculate_affinity(x,home),
-          combn(x,2,calculate_affinity,simplify=TRUE,home) %>% mean
-  )
+  length = x %>% length
+  if (length == 1) {
+    position_and_level = position_and_level_from_integer(x)
+    affinity.0(position_and_level[1],position_and_level[2])
+  } else {
+    combn(x,2,calculate_affinity,simplify=TRUE,home) %>% mean
+  }
 }
 affinity <- memoise::memoise(affinity.uncached)
 

@@ -23,7 +23,7 @@ test_that("affinity for chords matches our expectations",{
   expect_equal(affinity(c(5,-2),0),10,tolerance=0.001)
   # above primary level
   expect_equal(affinity(14,0),2,tolerance=0.001)
-  expect_equal(affinity(-2,0),3,tolerance=0.001)
+  expect_equal(affinity(-2,0),2,tolerance=0.001)
   # above primary level
   # major chords
   expect_equal(affinity(c(0,4,7),0),7.66,tolerance=0.001)
@@ -34,8 +34,8 @@ test_that("affinity for chords matches our expectations",{
   expect_equal(affinity(c(7,3,0),0),7.66,tolerance=0.001)
   expect_equal(affinity(c(5,1,-2),0),7.66,tolerance=0.001)
   expect_equal(affinity(7,0),10,tolerance=0.001)
-  expect_equal(affinity(-5,0),10,tolerance=0.001)
-  expect_equal(affinity(-17,0),9,tolerance=0.001)
+  expect_equal(affinity(-5,0),9,tolerance=0.001)
+  expect_equal(affinity(-17,0),7,tolerance=0.001)
   expect_equal( affinity(c(2,5,9),0) , affinity(c(14,17,21),0))
   expect_equal( affinity(c(1,5,8),0) , affinity(c(13,17,20),0))
 })
@@ -79,4 +79,41 @@ test_that("affinity.0 meets expectations", {
   expect_equal(affinity.0(position=1,level=3),-4)
   expect_equal(affinity.0(position=6,level=3),-2)
   expect_equal(affinity.0(position=0,level=3),10)
+})
+test_that("affinity of positions meets expectations", {
+  # level -3
+  expect_equal(affinity(-24),12)
+  expect_equal(affinity(-30),-2)
+  expect_equal(affinity(-25),-4)
+  expect_equal(affinity(-36),10)
+  # level -2
+  expect_equal(affinity(-12),14)
+  expect_equal(affinity(-18),0)
+  expect_equal(affinity(-13),-2)
+  expect_equal(affinity(-24),12)
+  # level -1
+  expect_equal(affinity(0),15)
+  expect_equal(affinity(-6),2)
+  expect_equal(affinity(-1),0)
+  expect_equal(affinity(-12),14)
+  # level 0
+  expect_equal(affinity(0),15)
+  expect_equal(affinity(1),1)
+  expect_equal(affinity(6),3)
+  expect_equal(affinity(11),1)
+  expect_equal(affinity(12),15)
+  # level 1
+  expect_equal(affinity(24),14)
+  expect_equal(affinity(13),0)
+  expect_equal(affinity(18),2)
+  expect_equal(affinity(12),15)
+  # level 2
+  expect_equal(affinity(25),-2)
+  expect_equal(affinity(30),0)
+  expect_equal(affinity(36),12)
+  # level 3
+  expect_equal(affinity(36),12)
+  expect_equal(affinity(37),-4)
+  expect_equal(affinity(42),-2)
+  expect_equal(affinity(48),10)
 })

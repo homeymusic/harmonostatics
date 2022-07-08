@@ -126,3 +126,9 @@ test_that("brightness.0 meets expectations", {
   expect_equal(brightness.0(position=11,level=level),0.0952,tolerance=0.001)
   expect_equal(brightness.0(position=12,level=level),-0.286,tolerance=0.001)
 })
+
+test_that("brightness beyond level 0 with integer notation matches expectations", {
+  expect_gt(brightness(-12,0),0)
+  expect_gt(brightness(-24,0),0)
+  expect_gt(brightness(-36,0),0)
+})
