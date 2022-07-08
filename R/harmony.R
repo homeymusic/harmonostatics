@@ -10,7 +10,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
       stop('home must be specified or x must contain 0 or 12 or both')
     }
   }
-  tibble(
+  tibble::tibble(
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),
     name = name,
