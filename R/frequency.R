@@ -10,7 +10,7 @@ frequency.0.tonic.uncached <- function() {
   ratio = paste(numerator,":",denominator, sep="")
 
   # equal temperament tritone ratio label
-  ratio[7] = "√2:1"
+  ratio[7] = "\u221A2:1"
 
   tibble::tibble(
     semitone = intervals.0()$semitone,
@@ -31,7 +31,7 @@ frequency.0.octave.uncached <- function() {
   ratio = paste(numerator,":",denominator, sep="")
 
   # equal temperament tritone ratio label
-  ratio[7] = "1:√2"
+  ratio[7] = "1:\u221A2"
 
   tibble::tibble(
     semitone = intervals.0()$semitone,

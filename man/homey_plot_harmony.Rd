@@ -23,11 +23,17 @@ homey_plot_harmony(
 
 \item{columns}{A vector of 2 column names to plot: semitone, affinity, brightness and magnitude}
 
-\item{unlist=FALSE}{A logical TRUE or FALSE to plot points individually or as one point}
+\item{unlist}{A logical TRUE or FALSE to plot points individually or as one point}
 
-\item{include_names=TRUE}{Include the names from the list x on the plot}
+\item{include_names}{Include the names from the list x on the plot}
 
-\item{title=NULL}{An optional title for the plot}
+\item{title}{An optional title for the plot}
+
+\item{pascal_triangle}{Plot with triangular numbers as vertical gridlines}
+
+\item{repel_labels}{Space labels apart}
+
+\item{max_overlaps}{for repel labels}
 }
 \value{
 Generates the requested scatter plot and returns TRUE

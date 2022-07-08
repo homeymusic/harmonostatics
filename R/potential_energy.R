@@ -21,7 +21,7 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
 #' @param x A note or chord expressed as an interval integers or vector of interval integers
 #' @param y A note or chord expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
-#' @param name=NULL An optional custom name for the note or chord
+#' @param name An optional custom name for the note or chord
 #' @return A tibble with semitone, intervallic_name, name, affinity, brightness, magnitude and potential energy
 #'
 #' @export

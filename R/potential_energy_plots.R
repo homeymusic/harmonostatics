@@ -6,9 +6,9 @@
 #' @param y A list of notes or chords expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
 #' @param columns A vector of 2 column names to plot: semitone, affinity, brightness and magnitude
-#' @param unlist=FALSE A logical TRUE or FALSE to plot points individually or as one point
-#' @param include_names=TRUE Include the names from the list x on the plot
-#' @param title=NULL An optional title for the plot
+#' @param unlist A logical TRUE or FALSE to plot points individually or as one point
+#' @param include_names Include the names from the list x on the plot
+#' @param title An optional title for the plot
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
@@ -45,9 +45,11 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
 #' @param y A list of notes or chords expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
 #' @param columns A vector of 2 column names to plot: semitone, affinity, brightness and magnitude
-#' @param unlist=FALSE A logical TRUE or FALSE to plot points individually or as one point
-#' @param include_names=TRUE Include the names from the list x on the plot
-#' @param title=NULL An optional title for the plot
+#' @param unlist A logical TRUE or FALSE to plot points individually or as one point
+#' @param include_names Include the names from the list x on the plot
+#' @param title An optional title for the plot
+#' @param symmetrical Center the plot horizontally
+#' @param expansion_mult Leave space for the labels within the chart
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export

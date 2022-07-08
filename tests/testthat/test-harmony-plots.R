@@ -80,14 +80,14 @@ test_that("all one note pitches look good", {
   expect(p, "plot is probably ok")
 })
 test_that("all two note chords look good", {
-  p = plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords tonic home")
+  p = plot_harmony(utils::combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords tonic home")
   expect(p, "plot is probably ok")
-  p = plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords octave home")
+  p = plot_harmony(utils::combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords octave home")
   expect(p, "plot is probably ok")
 })
 test_that("all three note chords look good", {
   title="All 3 Note Chords"
-  chords = c(combn(1:11,2,function(x){c(0,x)},simplify=FALSE),combn(1:11,2,function(x){c(x,12)},simplify=FALSE))
+  chords = c(utils::combn(1:11,2,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,2,function(x){c(x,12)},simplify=FALSE))
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE)
@@ -98,7 +98,7 @@ test_that("all three note chords look good", {
 })
 test_that("all symmetrical three note chords look good", {
   title="All Tonic-Octave Symmetrical 'Triads'"
-  chords = combn(1:11,2,function(x){c(0,x,12)},simplify=FALSE)
+  chords = utils::combn(1:11,2,function(x){c(0,x,12)},simplify=FALSE)
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE,max_overlaps=20)
@@ -109,7 +109,7 @@ test_that("all symmetrical three note chords look good", {
 })
 test_that("all four note chords look good", {
   title="All 4 Note Chords"
-  chords = c(combn(1:11,3,function(x){c(0,x)},simplify=FALSE),combn(1:11,3,function(x){c(x,12)},simplify=FALSE))
+  chords = c(utils::combn(1:11,3,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,3,function(x){c(x,12)},simplify=FALSE))
 
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
@@ -122,7 +122,7 @@ test_that("all four note chords look good", {
 })
 test_that("all symmetrical four note chords look good", {
   title="All Tonic-Octave Symmetrical 'Tetrads'"
-  chords = combn(1:11,3,function(x){c(0,x,12)},simplify=FALSE)
+  chords = utils::combn(1:11,3,function(x){c(0,x,12)},simplify=FALSE)
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE,max_overlaps=10)
@@ -133,7 +133,7 @@ test_that("all symmetrical four note chords look good", {
 })
 test_that("all five note chords look good", {
   title="All 5 Note Chords"
-  chords = c(combn(1:11,4,function(x){c(0,x)},simplify=FALSE),combn(1:11,4,function(x){c(x,12)},simplify=FALSE))
+  chords = c(utils::combn(1:11,4,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,4,function(x){c(x,12)},simplify=FALSE))
 
   p = plot_harmony(chords,columns=c("brightness","affinity"),title = title)
   expect(p, "plot is probably ok")
@@ -146,7 +146,7 @@ test_that("all five note chords look good", {
 })
 test_that("all six note chords look good", {
   title="All 6 Note Chords"
-  chords = c(combn(1:11,5,function(x){c(0,x)},simplify=FALSE),combn(1:11,5,function(x){c(x,12)},simplify=FALSE))
+  chords = c(utils::combn(1:11,5,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,5,function(x){c(x,12)},simplify=FALSE))
 
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")

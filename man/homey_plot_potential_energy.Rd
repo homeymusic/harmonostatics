@@ -25,11 +25,15 @@ homey_plot_potential_energy(
 
 \item{columns}{A vector of 2 column names to plot: semitone, affinity, brightness and magnitude}
 
-\item{unlist=FALSE}{A logical TRUE or FALSE to plot points individually or as one point}
+\item{unlist}{A logical TRUE or FALSE to plot points individually or as one point}
 
-\item{include_names=TRUE}{Include the names from the list x on the plot}
+\item{include_names}{Include the names from the list x on the plot}
 
-\item{title=NULL}{An optional title for the plot}
+\item{symmetrical}{Center the plot horizontally}
+
+\item{expansion_mult}{Leave space for the labels within the chart}
+
+\item{title}{An optional title for the plot}
 }
 \value{
 Generates the requested scatter plot and returns TRUE

@@ -13,7 +13,7 @@ potential_energy(x, y, home, name = NULL)
 
 \item{home}{The home pitch expressed an as interval integer}
 
-\item{name=NULL}{An optional custom name for the note or chord}
+\item{name}{An optional custom name for the note or chord}
 }
 \value{
 A tibble with semitone, intervallic_name, name, affinity, brightness, magnitude and potential energy

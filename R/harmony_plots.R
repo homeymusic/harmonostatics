@@ -5,11 +5,10 @@
 #' @param x A list of notes or chords expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
 #' @param columns A vector of 2 column names to plot: semitone, affinity, brightness and magnitude
-#' @param unlist=FALSE A logical TRUE or FALSE to plot points individually or as one point
-#' @param include_names=TRUE Include the names from the list x on the plot
-#' @param title=NULL An optional title for the plot
+#' @param unlist A logical TRUE or FALSE to plot points individually or as one point
+#' @param include_names Include the names from the list x on the plot
+#' @param title An optional title for the plot
 #' @return Generates the requested scatter plot and returns TRUE
-#'
 #' @export
 plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
   if (is.null(names(x))) {include_names=FALSE}
@@ -44,9 +43,12 @@ plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,tit
 #' @param x A list of notes or chords expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
 #' @param columns A vector of 2 column names to plot: semitone, affinity, brightness and magnitude
-#' @param unlist=FALSE A logical TRUE or FALSE to plot points individually or as one point
-#' @param include_names=TRUE Include the names from the list x on the plot
-#' @param title=NULL An optional title for the plot
+#' @param unlist A logical TRUE or FALSE to plot points individually or as one point
+#' @param include_names Include the names from the list x on the plot
+#' @param title An optional title for the plot
+#' @param pascal_triangle Plot with triangular numbers as vertical gridlines
+#' @param repel_labels Space labels apart
+#' @param max_overlaps for repel labels
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export

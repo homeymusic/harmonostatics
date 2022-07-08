@@ -25,8 +25,12 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
 #'
 #' @param x A note or chord expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
-#' @param name=NULL An optional custom name for the note or chord
+#' @param name An optional custom name for the note or chord
 #' @return A tibble with semitone, intervallic_name, name, affinity, brightness and magnitude
+#'
+#' @importFrom ggplot2 ggsave
+#' @importFrom ggrepel geom_text_repel
+#' @importFrom tidyr crossing
 #'
 #' @export
 harmony <- memoise::memoise(harmony.uncached)
@@ -63,3 +67,4 @@ harmony.0.rotated_octave_affinity_tonic_affinity.uncached <-function() {
       rotate(rotation_angle) * cos(rotation_angle)) %>% zapsmall
 }
 harmony.0.rotated_octave_affinity_tonic_affinity <- memoise::memoise(harmony.0.rotated_octave_affinity_tonic_affinity.uncached)
+
