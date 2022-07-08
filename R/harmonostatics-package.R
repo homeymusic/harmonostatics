@@ -12,5 +12,6 @@
 #' @importFrom checkmate assert_integerish assert_choice qassert assert_logical
 #' @importFrom magrittr %>%
 #' @importFrom numbers primeFactors
+#' @importFrom svglite svglite
 ## usethis namespace: end
 NULL
