@@ -19,7 +19,7 @@ calculate_brightness <- memoise::memoise(calculate_brightness.uncached)
 calculate_brightness.0 <- function(x,home) {
   checkmate::qassert(x,"X1[0,12]")
   checkmate::assert_choice(home,c(0,12))
-  brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x,home))
+  brightness_for(harmony.0.brightness_polarity()[x+1],affinity(x))
 }
 
 brightness_for.uncached <- function(polarity,affinity) {
@@ -61,7 +61,7 @@ harmony.0.brightness <- function() {
   brightness_for(harmony.0.brightness_polarity(), harmony.0.affinity())
 }
 harmony.0.brightness_boundary_3rds_and_6ths <- function() {
-  c(3,4,8,9) %>% sapply(affinity,0) %>% mean
+  c(3,4,8,9) %>% sapply(affinity) %>% mean
 }
 harmony.0.brightness_boundary_triangular_root <- function() {
   # use the triangular nature of affinity

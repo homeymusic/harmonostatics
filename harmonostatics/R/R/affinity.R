@@ -1,27 +1,19 @@
-# TODO: create an affinity_for(interval, level) function for handling multiple octaves
-
-affinity.uncached <- function(x,home=0) {
+# TODO: remove home param
+affinity.uncached <- function(x) {
   checkmate::assert_integerish(x)
-  checkmate::assert_choice(home,c(0,12))
-  length = x %>% length
-  if (length == 1) {
+  if (x %>% length == 1) {
     position_and_level = position_and_level_from_integer(x)
     affinity.0(position_and_level[1],position_and_level[2])
   } else {
-    combn(x,2,calculate_affinity,simplify=TRUE,home) %>% mean
+    combn(x,2,calculate_affinity,simplify=TRUE) %>% mean
   }
 }
 affinity <- memoise::memoise(affinity.uncached)
 
-calculate_affinity.uncached <- function(x,home) {
-  checkmate::qassert(x,c("X==1","X==2"))
-  checkmate::assert_choice(home,c(0,12))
-
-  level_and_interval = level_and_interval_for(x,home)
-  level = level_and_interval["level"]
-  interval = level_and_interval["interval"]
-
-  affinity.0(interval,level)
+calculate_affinity.uncached <- function(x) {
+  checkmate::qassert(x,"X2")
+  position_and_level = position_and_level_from_integer(abs(x[1] - x[2]))
+  affinity.0(position_and_level[1],position_and_level[2])
 }
 calculate_affinity <- memoise::memoise(calculate_affinity.uncached)
 

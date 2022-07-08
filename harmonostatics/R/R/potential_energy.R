@@ -8,7 +8,7 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),
     name = name,
-    affinity=affinity(x,home),
+    affinity=affinity(x),
     brightness=brightness(x,home),
     magnitude=magnitude(x,home),
     potential_energy = calculate_potential_energy(x,y,home)

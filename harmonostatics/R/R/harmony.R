@@ -14,7 +14,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
     semitone = x %>% mean,
     intervallic_name = x %>% paste(collapse = ":"),
     name = name,
-    affinity=affinity(x,home),
+    affinity=affinity(x),
     brightness=brightness(x,home),
     magnitude=magnitude(x,home),
   )
@@ -41,7 +41,7 @@ harmony <- memoise::memoise(harmony.uncached)
 magnitude.orig <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
-  sqrt(affinity(x,home)^2+brightness(x,home)^2)
+  sqrt(affinity(x)^2+brightness(x,home)^2)
 }
 magnitude <- memoise::memoise(magnitude.orig)
 

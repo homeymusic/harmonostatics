@@ -1,4 +1,4 @@
-level_and_interval_for.uncached <- function(x,home) {
+level_and_interval_for.uncached <- function(x,home=0) {
   checkmate::qassert(x,c("X==1","X==2"))
   checkmate::assert_choice(home,c(0,12))
   interval = 0
@@ -20,9 +20,12 @@ level_and_interval_for.uncached <- function(x,home) {
 level_and_interval_for <- memoise::memoise(level_and_interval_for.uncached)
 
 integer_from_position_and_level <- function(position,level) {
+  checkmate::assert_choice(position,0:12)
+  checkmate::qassert(level,"X1")
   12 * level + position
 }
 position_and_level_from_integer <- function(x) {
+  checkmate::assert_integerish(x)
   position = NULL
   level = NULL
   if (x < 0) {
