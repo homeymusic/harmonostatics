@@ -31,9 +31,6 @@ test_that("brightness for chords matches our expectations",{
   expect_lt(brightness(-5,0),0)
   expect_lt(brightness(-17,0),0)
 })
-test_that("triangular root brightness boundary works as expected", {
-  expect_equal(harmony.0.brightness_boundary_triangular_root(),5)
-})
 test_that("the mean affinity of the minor/major 3rd and minor/major 6th are as expected", {
   expect_equal(harmony.0.brightness_boundary_3rds_and_6ths(),6.5)
 })
@@ -131,4 +128,13 @@ test_that("brightness beyond level 0 with integer notation matches expectations"
   expect_gt(brightness(-12,0),0)
   expect_gt(brightness(-24,0),0)
   expect_gt(brightness(-36,0),0)
+  expect_gt(brightness(-12,12),0)
+  expect_gt(brightness(-24,12),0)
+  expect_gt(brightness(-36,12),0)
+  expect_lt(brightness(12,0),0)
+  expect_lt(brightness(24,0),0)
+  expect_lt(brightness(36,0),0)
+  expect_lt(brightness(12,12),0)
+  expect_lt(brightness(24,12),0)
+  expect_lt(brightness(36,12),0)
 })

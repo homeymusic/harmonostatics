@@ -5,17 +5,13 @@ affinity.uncached <- function(x) {
     position_and_level = position_and_level_from_integer(x)
     affinity.0(position_and_level[1],position_and_level[2])
   } else {
-    combn(x,2,calculate_affinity,simplify=TRUE) %>% mean
+    combn(x,2,function(x){
+      position_and_level = position_and_level_from_integer(abs(x[1] - x[2]))
+      affinity.0(position_and_level[1],position_and_level[2])
+    },simplify=TRUE) %>% mean
   }
 }
 affinity <- memoise::memoise(affinity.uncached)
-
-calculate_affinity.uncached <- function(x) {
-  checkmate::qassert(x,"X2")
-  position_and_level = position_and_level_from_integer(abs(x[1] - x[2]))
-  affinity.0(position_and_level[1],position_and_level[2])
-}
-calculate_affinity <- memoise::memoise(calculate_affinity.uncached)
 
 #########
 #

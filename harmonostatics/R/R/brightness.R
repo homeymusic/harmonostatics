@@ -63,10 +63,3 @@ harmony.0.brightness <- function() {
 harmony.0.brightness_boundary_3rds_and_6ths <- function() {
   c(3,4,8,9) %>% sapply(affinity) %>% mean
 }
-harmony.0.brightness_boundary_triangular_root <- function() {
-  # use the triangular nature of affinity
-  # (1,3,6,10,15) to make a best guess that also aligns with the
-  # experimental data with the Major 3rd and minor 6th
-  # having the greatest positive and negative values of brightness.
-  harmony.0.affinity() %>% max %>% triangular_root
-}
