@@ -8,6 +8,14 @@
 \description{
 What the package does (one paragraph).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/homeymusic/a_field_theory_of_musical_harmony}
+  \item Report bugs at \url{https://github.com/homeymusic/a_field_theory_of_musical_harmony/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 

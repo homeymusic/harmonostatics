@@ -4,7 +4,7 @@
 \alias{harmony}
 \title{Harmony}
 \usage{
-harmony(x, home, name = NULL)
+harmony(x, home = NULL, name = NULL)
 }
 \arguments{
 \item{x}{A note or chord expressed as an interval integers or vector of interval integers}

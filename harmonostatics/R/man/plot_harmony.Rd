@@ -6,7 +6,7 @@
 \usage{
 plot_harmony(
   x,
-  home,
+  home = NULL,
   columns,
   unlist = FALSE,
   include_names = TRUE,

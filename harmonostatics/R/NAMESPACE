@@ -2,6 +2,7 @@
 
 export(harmony)
 export(homey_plot_harmony)
+export(homey_plot_potential_energy)
 export(plot_harmony)
 export(plot_potential_energy)
 export(potential_energy)

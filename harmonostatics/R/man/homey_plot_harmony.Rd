@@ -6,11 +6,14 @@
 \usage{
 homey_plot_harmony(
   x,
-  home,
+  home = NULL,
   columns,
   unlist = FALSE,
   include_names = TRUE,
-  title = NULL
+  title = NULL,
+  pascal_triangle = FALSE,
+  repel_labels = FALSE,
+  max_overlaps = Inf
 )
 }
 \arguments{
@@ -33,7 +36,7 @@ Generates the requested scatter plot and returns TRUE
 Provides scatter plots of musical harmony metrics of a note or chord with the homey theme.
 }
 \examples{
-ggplot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-ggplot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
+homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
+homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 
 }

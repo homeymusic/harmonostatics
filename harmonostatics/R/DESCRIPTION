@@ -17,3 +17,5 @@ Imports:
     tibble,
     checkmate,
     numbers
+URL: https://github.com/homeymusic/a_field_theory_of_musical_harmony
+BugReports: https://github.com/homeymusic/a_field_theory_of_musical_harmony/issues
