@@ -37,8 +37,3 @@ Generates the requested scatter plot and returns TRUE
 \description{
 Provides scatter plots of musical potential energy of a note or chord with the homey theme.
 }
-\examples{
-homey_plot_potential_energy(combn(0:12,2,simplify=FALSE),c(0,12),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-homey_plot_potential_energy(combn(0:12,2,simplify=FALSE),c(0,12),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
-
-}

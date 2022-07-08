@@ -32,8 +32,3 @@ Generates the requested scatter plot and returns TRUE
 \description{
 Provides scatter plots of musical harmony metrics of a note or chord.
 }
-\examples{
-plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
-
-}

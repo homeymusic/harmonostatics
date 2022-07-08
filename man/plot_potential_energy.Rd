@@ -35,8 +35,3 @@ Generates the requested scatter plot and returns TRUE
 \description{
 Provides scatter plots of potential energy between two notes or chords
 }
-\examples{
-plot_potential_energy(x=list("level:0"=0:12),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),title="Tonic Potential Energy 0",include_names=FALSE)
-plot_potential_energy(x=list("level:0"=0:12),y=12,home=12,unlist=TRUE,columns=c("semitone","potential_energy"),title="Octave Potential Energy 0",include_names=FALSE)
-
-}

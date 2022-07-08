@@ -11,10 +11,6 @@
 #' @param title=NULL An optional title for the plot
 #' @return Generates the requested scatter plot and returns TRUE
 #'
-#' @examples
-#' plot_potential_energy(x=list("level:0"=0:12),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),title="Tonic Potential Energy 0",include_names=FALSE)
-#' plot_potential_energy(x=list("level:0"=0:12),y=12,home=12,unlist=TRUE,columns=c("semitone","potential_energy"),title="Octave Potential Energy 0",include_names=FALSE)
-#'
 #' @export
 plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
@@ -53,10 +49,6 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
 #' @param include_names=TRUE Include the names from the list x on the plot
 #' @param title=NULL An optional title for the plot
 #' @return Generates the requested scatter plot and returns TRUE
-#'
-#' @examples
-#' homey_plot_potential_energy(combn(0:12,2,simplify=FALSE),c(0,12),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-#' homey_plot_potential_energy(combn(0:12,2,simplify=FALSE),c(0,12),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
 homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,symmetrical=TRUE,expansion_mult = 0.6,title=NULL) {

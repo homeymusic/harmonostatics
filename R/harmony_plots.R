@@ -10,10 +10,6 @@
 #' @param title=NULL An optional title for the plot
 #' @return Generates the requested scatter plot and returns TRUE
 #'
-#' @examples
-#' plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-#' plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
-#'
 #' @export
 plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
   if (is.null(names(x))) {include_names=FALSE}
@@ -52,10 +48,6 @@ plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,tit
 #' @param include_names=TRUE Include the names from the list x on the plot
 #' @param title=NULL An optional title for the plot
 #' @return Generates the requested scatter plot and returns TRUE
-#'
-#' @examples
-#' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=0,columns=c("brightness","affinity"),title="all 2 note chords in level 0 tonic home")
-#' homey_plot_harmony(combn(0:12,2,simplify=FALSE),home=12,columns=c("brightness","affinity"),title="all 2 note chords in level 0 octave home")
 #'
 #' @export
 homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE,max_overlaps=Inf) {

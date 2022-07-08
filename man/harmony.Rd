@@ -19,11 +19,3 @@ A tibble with semitone, intervallic_name, name, affinity, brightness and magnitu
 \description{
 Provides the musical harmony metrics of a note or chord.
 }
-\examples{
-harmony(4,0) # provides the harmony metrics of the Major 3rd
-harmony(8,12) # provides the harmony metrics of the inverted Major 3rd (Minor 6th with Octave)
-
-harmony(x=c(0,4,7),home=0, name="C Major Triad") # provides the harmony metrics of a C Major Triad
-harmony(x=c(12,8,5),home=12, name="Inverted C Major Triad") # provides the harmony metrics of the inverted C Major Triad
-
-}
