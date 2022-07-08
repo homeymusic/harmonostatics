@@ -1,25 +1,3 @@
-# TODO: merge the 2 level functions into one
-level_and_interval_for.uncached <- function(x,home=0) {
-  checkmate::qassert(x,"X1")
-  checkmate::assert_choice(home,c(0,12))
-  interval = 0
-  x = c(home,x)
-  distance = abs(x[1] - x[2])
-  if (distance <12) {
-    level = 0
-    interval = distance
-  } else {
-    interval = distance %% 12
-    level = (abs(distance - 12) / 12) %>% ceiling
-    # intervals above the octave behave like the octave = 12
-    if (interval == 0 && abs(max(x))-abs(min(x)) > 0) {
-      interval = 12
-    }
-  }
-  c(level=level,interval=interval)
-}
-level_and_interval_for <- memoise::memoise(level_and_interval_for.uncached)
-
 position_and_level_from_integer.uncached <- function(x) {
   checkmate::qassert(x,"X1")
   position = NULL

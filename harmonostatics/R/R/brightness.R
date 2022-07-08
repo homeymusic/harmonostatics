@@ -1,31 +1,31 @@
 brightness.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
-  if (length(x)>1) {
+  if (x %>% length == 1) {
+    position_and_level = position_and_level_from_integer(x)
+    brightness.0(position_and_level[1],position_and_level[2])
+  } else if (length(x)>1) {
     ifelse ((home==0),(x = x - min(abs(x))),(x = x + 12 - max(x)))
+    sapply(x,function(x){
+      position_and_level = position_and_level_from_integer(x)
+      brightness.0(position_and_level[1],position_and_level[2])
+    },simplify=TRUE) %>% mean
   }
-  x = sapply(x,level_and_interval_for,0)[2,]
-  # TODO: use brightness.0 instead of calculate_brightness.0
-  sapply(x,calculate_brightness.0,home) %>% mean
 }
 brightness <- memoise::memoise(brightness.uncached)
-
-calculate_brightness.0 <- function(x,home) {
-  checkmate::qassert(x,"X1[0,12]")
-  checkmate::assert_choice(home,c(0,12))
-  brightness_from_affinity(harmony.0.brightness_polarity()[x+1],affinity(x))
-}
 
 #########
 #
 # level 0
 #
-brightness.0 <- function(position,level=0) {
+brightness.0.uncached <- function(position,level=0) {
   checkmate::assert_choice(position,0:12)
   checkmate::qassert(level,"X1")
   brightness_polarity = harmony.0.brightness_polarity()[position+1]
   brightness_from_affinity(brightness_polarity,affinity.0(position,level))
 }
+brightness.0 <- memoise::memoise(brightness.0.uncached)
+
 harmony.0.brightness_polarity <- function() {
   harmony.0.rotated_octave_affinity_tonic_affinity()[1,]
 }
