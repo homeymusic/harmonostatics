@@ -21,7 +21,3 @@ A tibble with semitone, intervallic_name, name, affinity, brightness, magnitude 
 \description{
 Provides the potential energy between two chords or notes
 }
-\examples{
-potential_energy(x=c(7,11,14),y=c(0,4,7),home=0 # provides the potential energy between I and V
-
-}
