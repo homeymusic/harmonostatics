@@ -7,6 +7,12 @@ test_that("potential energy of tonic intervals looks good", {
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".png",sep="")))
   expect_identical(p$labels$x, "semitone")
   expect_identical(p$labels$y, "potential_energy")
+
+  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,expansion_mult=0.2,title=title,include_names=FALSE)
+  expect_identical(p$labels$x, "semitone")
+  expect_identical(p$labels$y, "potential_energy")
+
+
   title="Tonic Potential Energy of Intervals v Brightness"
   p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("brightness","potential_energy"),expansion_mult=0.2,title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",title,".svg",sep="")))

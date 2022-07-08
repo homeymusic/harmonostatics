@@ -17,7 +17,6 @@
 #'
 #' @export
 plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
-  if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_integerish(y)
   checkmate::assert_choice(home,c(0,12))

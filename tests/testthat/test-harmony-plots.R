@@ -17,7 +17,10 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
-  # TODO: fix this
+  p = homey_plot_harmony(intervals_list(),home=0,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,repel_labels=TRUE,include_names=TRUE)
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
   title="Tonic Intervals over 5 Levels"
   intervals_5_levels = list(-24:36)
   p = homey_plot_harmony(intervals_5_levels,home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE)
@@ -26,7 +29,6 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
-  # TODO: fix this
   title="Octave Intervals over 5 Levels"
   intervals_5_levels = list(-24:36)
   p = homey_plot_harmony(intervals_5_levels,home=12,unlist=TRUE,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE)

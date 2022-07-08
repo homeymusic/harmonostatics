@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony/branch/main/graph/badge.svg)](https://app.codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony?branch=main)
 <!-- badges: end -->
 
 The goal of harmonostatics is to ...
