@@ -2,9 +2,15 @@ test_that("tonic.affinity octave-affinity scatter plots look like we expect", {
   # simple scatter plot
   p = plot(affinity.0.octave(),affinity.0.tonic())
   text(affinity.0.octave(),affinity.0.tonic(),labels=names(intervals_list()),pos=3)
-
   # do not see how to test much with the default scatter plot
   expect_equal(p,NULL)
+
+  # simple scatter plot
+  p = plot(harmony.0.brightness_polarity(),harmony.0.affinity())
+  text(harmony.0.brightness_polarity(),harmony.0.affinity(),labels=names(intervals_list()),pos=3)
+  # do not see how to test much with the default scatter plot
+  expect_equal(p,NULL)
+
 })
 
 test_that("affinity brightness plots look good", {
