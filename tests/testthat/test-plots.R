@@ -11,6 +11,21 @@ test_that("tonic.affinity octave-affinity scatter plots look like we expect", {
   # do not see how to test much with the default scatter plot
   expect_equal(p,NULL)
 
+  title = "Tonic-Octave Affinity"
+  tonic_octave_affinity = tibble::tibble(
+    name = intervals()$name,
+    tonic_affinity=affinity_tonic(),
+    octave_affinity=affinity_octave()
+  )
+  p = tonic_octave_affinity %>% ggplot2::ggplot(ggplot2::aes(tonic_affinity,octave_affinity)) +
+    ggplot2::geom_point() +
+    ggplot2::ggtitle(title) +
+    ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines")) +
+    theme_homey()
+  expect_identical(p$labels$x, "tonic_affinity")
+  expect_identical(p$labels$y, "octave_affinity")
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
 })
 
 test_that("affinity brightness plots look good", {
