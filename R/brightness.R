@@ -14,6 +14,19 @@ brightness.uncached <- function(x,home) {
 }
 brightness <- memoise::memoise(brightness.uncached)
 
+brightness_polarity.uncached <- function(x,home) {
+  checkmate::assert_integerish(x)
+  checkmate::assert_choice(home,c(0,12))
+  brightness = brightness(x,home)
+  if (brightness<0) {
+    -1
+  } else if (brightness==0) {
+    0
+  } else if (brightness > 0) {
+    1
+  }
+}
+brightness_polarity <- memoise::memoise(brightness_polarity.uncached)
 #########
 #
 # level 0

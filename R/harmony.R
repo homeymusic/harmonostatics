@@ -16,6 +16,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
     name = name,
     affinity=affinity(x),
     brightness=brightness(x,home),
+    brightness_polarity=brightness_polarity(x,home),
     magnitude=harmony.magnitude(x,home),
   )
 }
