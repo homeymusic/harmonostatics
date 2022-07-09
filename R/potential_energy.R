@@ -10,8 +10,8 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
     name = name,
     affinity=affinity(x),
     brightness=brightness(x,home),
-    magnitude=magnitude(x,home),
-    potential_energy = calculate_potential_energy(x,y,home)
+    magnitude=harmony.magnitude(x,home),
+    potential_energy = potential_energy_difference(x,y,home)
   )
 }
 #' Potential Energy
@@ -27,26 +27,15 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
 #' @export
 potential_energy <- memoise::memoise(potential_energy.uncached)
 
-calculate_potential_energy.uncached <-function(x,y,home) {
+potential_energy_difference.uncached <-function(x,y,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_integerish(y)
   checkmate::assert_choice(home,c(0,12))
 
-  crossing_of_pitches = tidyr::crossing(x=x,y=y) %>% dplyr::rowwise() %>%
-    dplyr::mutate(potential_energy=calculate_potential_energy_for(x,y,home))
+  crossing_of_pitches = tidyr::crossing(x,y) %>% dplyr::rowwise() %>%
+    dplyr::mutate(potential_energy=
+      abs(harmony.magnitude(x,home)-harmony.magnitude(y,home))*(ifelse(home==0,x-y,y-x)))
 
   crossing_of_pitches$potential_energy %>% mean
 }
-calculate_potential_energy <- memoise::memoise(calculate_potential_energy.uncached)
-
-calculate_potential_energy_for.uncached <-function(x,y,home) {
-  checkmate::qassert(x,"X1")
-  checkmate::qassert(y,"X1")
-  checkmate::assert_choice(home,c(0,12))
-
-  x_magnitude = magnitude(x,home)
-  y_magnitude = magnitude(y,home)
-  abs(x_magnitude-y_magnitude)*(ifelse(home==0,x-y,y-x))
-
-}
-calculate_potential_energy_for <- memoise::memoise(calculate_potential_energy_for.uncached)
+potential_energy_difference <- memoise::memoise(potential_energy_difference.uncached)
