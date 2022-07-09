@@ -1,35 +1,19 @@
-
 #########
 #
 # level 0
 #
 
-disaffinity.0.tonic.uncached <- function() {
-  t = frequency.0.tonic()
+disaffinity_tonic.uncached <- function() {
+  t = frequency_ratio_tonic()
   tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator)
 }
-disaffinity.0.tonic <- memoise::memoise(disaffinity.0.tonic.uncached)
+disaffinity_tonic <- memoise::memoise(disaffinity_tonic.uncached)
 
-disaffinity.0.octave.uncached <- function() {
-  o = frequency.0.octave()
+disaffinity_octave.uncached <- function() {
+  o = frequency_ratio_octave()
   octave_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(o$numerator,o$denominator)
 }
-disaffinity.0.octave <- memoise::memoise(disaffinity.0.octave.uncached)
-
-calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
-  # drop the irrational tritone in order to calculate the other prime intervals
-  numerators = numerators[-7]
-  denominators = denominators[-7]
-  # confirm the vectors are ready for prime operations
-  checkmate::qassert(numerators,"X12")
-  checkmate::qassert(denominators,"X12")
-
-  # calculate disaffinity of remaining intervals
-  disaffinity = calculate_disaffinity(numerators,denominators)
-
-  # insert the equal temperament tritone estimate back into the results
-  c(disaffinity[1:6],equal_temperament_tritone_disaffinity(),disaffinity[7:12])
-}
+disaffinity_octave <- memoise::memoise(disaffinity_octave.uncached)
 
 calculate_disaffinity <- function(numerators, denominators) {
   checkmate::assert_integerish(numerators)
@@ -38,6 +22,12 @@ calculate_disaffinity <- function(numerators, denominators) {
   numerators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
     denominators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors)
 }
+
+
+################################################
+#
+# estimating the equal temperament tritone
+#
 
 # Estimate Disaffinity of the Equal Temperament Tritone
 #
@@ -68,4 +58,19 @@ equal_temperament_tritone_disaffinity <- function() {
   lesser_septimal_tritone_disaffinity = sum(numbers::primeFactors(7),numbers::primeFactors(5))
   greater_septimal_tritone_disaffinity = sum(numbers::primeFactors(10),numbers::primeFactors(7))
   mean(c(lesser_septimal_tritone_disaffinity,greater_septimal_tritone_disaffinity))
+}
+
+calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
+  # drop the irrational tritone in order to calculate the other prime intervals
+  numerators = numerators[-7]
+  denominators = denominators[-7]
+  # confirm the vectors are ready for prime operations
+  checkmate::qassert(numerators,"X12")
+  checkmate::qassert(denominators,"X12")
+
+  # calculate disaffinity of remaining intervals
+  disaffinity = calculate_disaffinity(numerators,denominators)
+
+  # insert the equal temperament tritone estimate back into the results
+  c(disaffinity[1:6],equal_temperament_tritone_disaffinity(),disaffinity[7:12])
 }

@@ -74,6 +74,6 @@ phrygian_octave_chords <- function() {
   )
 }
 intervals_list <- function() {
-  tbl = intervals.0()
+  tbl = intervals()
   setNames(as.list(tbl$semitone), tbl$name)
 }

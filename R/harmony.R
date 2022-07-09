@@ -1,3 +1,8 @@
+##############
+#
+# all levels
+#
+
 harmony.uncached <- function(x, home=NULL, name=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12), null.ok=TRUE)
@@ -20,6 +25,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
     magnitude=harmony.magnitude(x,home),
   )
 }
+
 #' Harmony
 #'
 #' Provides the musical harmony metrics of a note or chord.
@@ -36,6 +42,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
 #' @export
 harmony <- memoise::memoise(harmony.uncached)
 
+#' L2 norm of affinity and brightness
 harmony.magnitude.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
@@ -47,25 +54,30 @@ harmony.magnitude <- memoise::memoise(harmony.magnitude.uncached)
 #
 # level 0
 #
-
 # level 0 is the primary group of 13 semitones from tonic to octave
 # we use the word level instead of octave throughout
 # due to the name space collision between
-# * octave as in the interval name
-# * octave as in the group of 13 semitones (level)
+# * octave: the name of an interval
+# * octave: a group of a dozen semitones (level)
 
-# Directional Derivative:
 # rotate around the origin by the rotation angle
 # changing the coordinate system
 # from: octave-affinity versus tonic-affinity
 # to: octave-tonic-affinity versus brightness-polarity
-harmony.0.rotated_octave_affinity_tonic_affinity.uncached <-function() {
+harmony.rotated_tonic_octave_affinity.uncached <-function() {
   # use the tritone to determine the rotation angle
-  tritone_i = 6 + 1
-  rotation_angle = atan2(affinity.0.octave()[tritone_i],affinity.0.tonic()[tritone_i])
+  tritone = 6
+  rotation_angle = atan2(affinity_octave()[tritone+1],affinity_tonic()[tritone+1])
 
-  (rbind(affinity.0.tonic(),affinity.0.octave()) %>%
+  (affinity_tonic_octave() %>%
       rotate(rotation_angle) * cos(rotation_angle)) %>% zapsmall
 }
-harmony.0.rotated_octave_affinity_tonic_affinity <- memoise::memoise(harmony.0.rotated_octave_affinity_tonic_affinity.uncached)
+harmony.rotated_tonic_octave_affinity <- memoise::memoise(harmony.rotated_tonic_octave_affinity.uncached)
 
+harmony_brightness_polarity <- function() {
+  harmony.rotated_tonic_octave_affinity()[1,]
+}
+
+harmony_affinity <- function() {
+  harmony.rotated_tonic_octave_affinity()[2,]
+}

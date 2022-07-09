@@ -1,5 +1,5 @@
 test_that("intervals match expected form", {
-  i = intervals.0()
+  i = intervals()
   expect_equal(i$semitone,0:12)
   expect_equal(i$name,c("tonic","minor 2nd","major 2nd","minor 3rd","major 3rd",
                         "perfect 4th","tritone","perfect 5th","minor 6th",
@@ -14,8 +14,8 @@ test_that("frequency is structured as we expect", {
                               "perfect 4th","tritone","perfect 5th","minor 6th",
                               "major 6th","minor 7th","major 7th","octave")
 
-  t = frequency.0.tonic()
-  o = frequency.0.octave()
+  t = frequency_ratio_tonic()
+  o = frequency_ratio_octave()
 
   expect(tibble::is_tibble(t),"expected tonic frequency ratios to be a tibble")
   expect(tibble::is_tibble(o),"expected octave frequency ratios to be a tibble")

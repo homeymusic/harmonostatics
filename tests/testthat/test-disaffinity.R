@@ -1,7 +1,7 @@
 test_that("prime factor disaffinity matches expectations", {
-  t_d = disaffinity.0.tonic()
+  t_d = disaffinity_tonic()
   expect_equal(t_d,c(0,16,12,10,9,7,13,5,11,8,14,14,2))
-  o_d = disaffinity.0.octave()
+  o_d = disaffinity_octave()
   expect_equal(o_d,c(2,14,14,8,11,5,13,7,9,10,12,16,0))
 })
 
