@@ -11,10 +11,10 @@ harmony(x, home = NULL, name = NULL)
 
 \item{home}{The home pitch expressed an as interval integer}
 
-\item{name}{An optional custom name for the note or chord}
+\item{name}{A custom name for the note or chord}
 }
 \value{
-A tibble with semitone, intervallic_name, name, affinity, brightness and magnitude
+A tibble with semitone, intervallic_name, name, affinity, brightness and harmony.magnitude
 }
 \description{
 Provides the musical harmony metrics of a note or chord.

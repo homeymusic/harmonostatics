@@ -32,7 +32,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
 #'
 #' @param x A note or chord expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
-#' @param name An optional custom name for the note or chord
+#' @param name A custom name for the note or chord
 #' @return A tibble with semitone, intervallic_name, name, affinity, brightness and harmony.magnitude
 #'
 #' @importFrom ggplot2 ggsave
@@ -42,10 +42,10 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
 #' @export
 harmony <- memoise::memoise(harmony.uncached)
 
-#' L2 norm of affinity and brightness
 harmony.magnitude.uncached <- function(x,home) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(home,c(0,12))
+  # L2 norm of affinity and brightness
   sqrt(affinity(x)^2+brightness(x,home)^2)
 }
 harmony.magnitude <- memoise::memoise(harmony.magnitude.uncached)
