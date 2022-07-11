@@ -11,7 +11,8 @@ coverage](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony/bra
 [![test-coverage](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
-The goal of harmonostatics is to …
+The goal of harmonostatics is to explore a field theory of musical
+harmony.
 
 ## Installation
 
@@ -20,7 +21,7 @@ You can install the development version of harmonostatics from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("homeymusic/a_field_theory_of_musical_harmony")
+devtools::install_github("homeymusic/harmonostatics")
 ```
 
 ## Example
@@ -30,31 +31,14 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(harmonostatics)
 ## basic example code
+harmony(c(0,4,7),0,"C Major")
+#> # A tibble: 1 × 6
+#>   semitone intervallic_name name    affinity brightness magnitude
+#>      <dbl> <chr>            <chr>      <dbl>      <dbl>     <dbl>
+#> 1     3.67 0:4:7            C Major     7.67      0.801      7.71
+potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Degree")
+#> # A tibble: 1 × 7
+#>   semitone intervallic_name name  affinity brightness magnitude potential_energy
+#>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
+#> 1     10.7 7:11:14          Ioni…     7.67      0.801      7.71             61.5
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
