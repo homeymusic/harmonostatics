@@ -66,16 +66,6 @@ mixolydian_tonic_chords <- function() {
        "VII"=c(10,14,17)
   )
 }
-mixolydian_tonic_sixth_chords <- function() {
-  list("I"=c(0,5,9),
-       "ii"=c(2,7,10),
-       "iii*"=c(4,9,12),
-       "IV"=c(5,9,14),
-       "V"=c(7,12,16),
-       "vi*"=c(9,14,17),
-       "VII"=c(10,14,19)
-  )
-}
 dorian_tonic_chords <- function() {
   list("i"=c(0,3,7),
        "ii"=c(2,5,9),
@@ -119,6 +109,26 @@ locrian_tonic_chords <- function() {
 #################
 # octave chords
 #
+dorian_octave_chords <- function() {
+  list("VIII"=c(12,9,5),
+       "VII"=c(10,7,3),
+       "vi"=c(9,5,2),
+       "v"=c(7,3,0),
+       "IV"=c(5,2,-2),
+       "III*"=c(3,0,-3),
+       "i"=c(2,-2,-5)
+  )
+}
+aeolian_octave_chords <- function() {
+  list("viii"=c(12,8,5),
+       "VII"=c(10,7,3),
+       "VI*"=c(8,5,2),
+       "v"=c(7,3,0),
+       "IV"=c(5,2,-2),
+       "III"=c(3,0,-4),
+       "ii"=c(2,-2,-5)
+  )
+}
 phrygian_octave_chords <- function() {
   list("viii"=c(12,8,5),
        "VII"=c(3,7,10),
@@ -150,6 +160,19 @@ ionian_tonic_chords.in_one_level <- function() {
        "V"=c(7,11,2),
        "vi"=c(9,12,4),
        "vii*"=c(11,2,5)
+  )
+}
+#################
+# sixth chords
+#
+mixolydian_tonic_sixth_chords <- function() {
+  list("I"=c(0,5,9),
+       "ii"=c(2,7,10),
+       "iii*"=c(4,9,12),
+       "IV"=c(5,9,14),
+       "V"=c(7,12,16),
+       "vi*"=c(9,14,17),
+       "VII"=c(10,14,19)
   )
 }
 intervals_list <- function() {
