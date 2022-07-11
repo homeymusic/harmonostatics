@@ -43,7 +43,6 @@ harmony(c(0,4,7),0,"C Major")
 ```
 
 ```{r potential_energy}
-library(harmonostatics)
 potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Degree")
 ```
 

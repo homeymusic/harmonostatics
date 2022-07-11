@@ -39,7 +39,6 @@ harmony(c(0,4,7),0,"C Major")
 ```
 
 ``` r
-library(harmonostatics)
 potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Degree")
 #> # A tibble: 1 × 7
 #>   semitone intervallic_name name  affinity brightness magnitude potential_energy
