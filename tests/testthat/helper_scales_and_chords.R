@@ -1,5 +1,5 @@
 common_scales <- function() {
-  c(diatonic_scales(),pentatonic_scales(),chromatic_scale())
+  c(diatonic_scales(),non_diatonic_heptatonic_scales(),pentatonic_scales(),chromatic_scale())
 }
 # order by increasing brightness
 diatonic_scales <- function() {
@@ -11,6 +11,16 @@ diatonic_scales <- function() {
     "mixolydian"=c(0,2,4,5,7,9,10,12),
     "ionian"=c(0,2,4,5,7,9,11,12),
     "lydian"=c(0,2,4,6,7,9,11,12)
+  )
+}
+non_diatonic_heptatonic_scales <- function() {
+  list(
+    "melodic minor"=c(0,2,3,5,7,9,11,12),
+    "harmonic minor"=c(0,2,3,5,7,8,11,12),
+    "neapolitan minor"=c(0,1,3,5,7,8,11,12),
+    "neapolitan major"=c(0,1,3,5,7,9,11,12),
+    "hungarian minor"=c(0,2,3,6,7,8,11,12),
+    "phrygian dominant"=c(0,1,4,5,7,8,10,12)
   )
 }
 pentatonic_scales <- function() {
