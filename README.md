@@ -24,18 +24,22 @@ You can install the development version of harmonostatics from
 devtools::install_github("homeymusic/harmonostatics")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## Examples
 
 ``` r
 library(harmonostatics)
-## basic example code
+```
+
+``` r
 harmony(c(0,4,7),0,"C Major")
 #> # A tibble: 1 × 6
 #>   semitone intervallic_name name    affinity brightness magnitude
 #>      <dbl> <chr>            <chr>      <dbl>      <dbl>     <dbl>
 #> 1     3.67 0:4:7            C Major     7.67      0.801      7.71
+```
+
+``` r
+library(harmonostatics)
 potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Degree")
 #> # A tibble: 1 × 7
 #>   semitone intervallic_name name  affinity brightness magnitude potential_energy

@@ -32,15 +32,18 @@ You can install the development version of harmonostatics from [GitHub](https://
 devtools::install_github("homeymusic/harmonostatics")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
+```{r library}
 library(harmonostatics)
-## basic example code
-harmony(c(0,4,7),0,"C Major")
-potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Degree")
 ```
 
+```{r harmony}
+harmony(c(0,4,7),0,"C Major")
+```
+
+```{r potential_energy}
+library(harmonostatics)
+potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Degree")
+```
 
