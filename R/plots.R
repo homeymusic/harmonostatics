@@ -52,7 +52,7 @@ plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,tit
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
-homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE,max_overlaps=Inf) {
+homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE,max_overlaps=Inf,expansion_mult = 0.6) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12),null.ok=TRUE)
@@ -77,7 +77,7 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TR
   p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
     ggplot2::geom_point() +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
-    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.6), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
+    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey()
   if (pascal_triangle) {
