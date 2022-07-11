@@ -55,14 +55,14 @@ harmony(0:12,0,"Chromatic")
 ```
 
 ```{r potential_energy_I}
-potential_energy(c(0,4,7),c(0,4,7),0,"Ionian I - 1st Scale Degree")
+potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian - 1st Scale Degree")
 ```
 
 ```{r potential_energy_IV}
-potential_energy(c(5,9,12),c(0,4,7),0,"Ionian IV - 4th Scale Degree")
+potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian - 4th Scale Degree")
 ```
 
 ```{r potential_energy_V}
-potential_energy(c(7,11,14),c(0,4,7),0,"Ionian V - 5th Scale Degree")
+potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian - 5th Scale Degree")
 ```
 
