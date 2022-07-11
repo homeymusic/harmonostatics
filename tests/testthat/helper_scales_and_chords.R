@@ -33,6 +33,19 @@ pentatonic_scales <- function() {
 chromatic_scale <- function() {
   list("chromatic"=c(0,1,2,3,4,5,6,7,8,9,10,11,12))
 }
+#################
+# tonic chords
+#
+lydian_tonic_chords <- function() {
+  list("I"=c(0,4,7),
+       "II"=c(2,6,9),
+       "iii"=c(4,7,11),
+       "iv*"=c(6,9,12),
+       "V"=c(7,11,14),
+       "vi"=c(9,12,16),
+       "vii"=c(11,14,18)
+  )
+}
 ionian_tonic_chords <- function() {
   list("I"=c(0,4,7),
        "ii"=c(2,5,9),
@@ -43,14 +56,34 @@ ionian_tonic_chords <- function() {
        "vii*"=c(11,14,17)
   )
 }
-ionian_tonic_chords.in_one_level <- function() {
+mixolydian_tonic_chords <- function() {
   list("I"=c(0,4,7),
        "ii"=c(2,5,9),
-       "iii"=c(4,7,11),
+       "iii*"=c(4,7,10),
        "IV"=c(5,9,12),
-       "V"=c(7,11,2),
-       "vi"=c(9,12,4),
-       "vii*"=c(11,2,5)
+       "v"=c(7,10,14),
+       "vi"=c(9,12,16),
+       "VII"=c(10,14,17)
+  )
+}
+mixolydian_tonic_sixth_chords <- function() {
+  list("I"=c(0,5,9),
+       "ii"=c(2,7,10),
+       "iii*"=c(4,9,12),
+       "IV"=c(5,9,14),
+       "V"=c(7,12,16),
+       "vi*"=c(9,14,17),
+       "VII"=c(10,14,19)
+  )
+}
+dorian_tonic_chords <- function() {
+  list("i"=c(0,3,7),
+       "ii"=c(2,5,9),
+       "III"=c(3,7,10),
+       "IV"=c(5,9,12),
+       "v"=c(7,10,14),
+       "vi*"=c(9,12,15),
+       "VII"=c(10,14,17)
   )
 }
 aeolian_tonic_chords <- function() {
@@ -73,6 +106,19 @@ phrygian_tonic_chords <- function() {
        "vii"=c(10,13,17)
   )
 }
+locrian_tonic_chords <- function() {
+  list("i*"=c(0,3,6),
+       "II"=c(1,5,8),
+       "iii"=c(3,6,10),
+       "iv"=c(5,8,12),
+       "V"=c(6,10,13),
+       "VI"=c(8,12,15),
+       "vii"=c(10,13,17)
+  )
+}
+#################
+# octave chords
+#
 phrygian_octave_chords <- function() {
   list("viii"=c(12,8,5),
        "VII"=c(3,7,10),
@@ -81,6 +127,29 @@ phrygian_octave_chords <- function() {
        "iv"=c(5,1,-2),
        "III"=c(3,0,-4),
        "II*"=c(1,-2,-5)
+  )
+}
+locrian_octave_chords <- function() {
+  list("viii"=c(12,8,5),
+       "vii"=c(10,6,3),
+       "VI"=c(8,5,1),
+       "v*"=c(6,3,0),
+       "iv"=c(5,1,-2),
+       "III"=c(3,0,-4),
+       "II"=c(1,-2,-6)
+  )
+}
+#################
+# one level chords
+#
+ionian_tonic_chords.in_one_level <- function() {
+  list("I"=c(0,4,7),
+       "ii"=c(2,5,9),
+       "iii"=c(4,7,11),
+       "IV"=c(5,9,12),
+       "V"=c(7,11,2),
+       "vi"=c(9,12,4),
+       "vii*"=c(11,2,5)
   )
 }
 intervals_list <- function() {
