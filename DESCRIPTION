@@ -4,8 +4,8 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Brian", "McAuliff Mulloy", , "brian@homeymusic.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1803-3172"))
-Description: A field theory of musical harmony
-License: MIT
+Description: Harmonostatics allows researchers and music makers to explore a static field theory of musical harmony.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
@@ -24,6 +24,7 @@ Imports:
     ggrepel,
     tidyr,
     magrittr,
-    svglite
+    svglite,
+    rlang
 URL: https://github.com/homeymusic/a_field_theory_of_musical_harmony
 BugReports: https://github.com/homeymusic/a_field_theory_of_musical_harmony/issues

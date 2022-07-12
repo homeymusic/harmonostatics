@@ -4,9 +4,9 @@
 \name{harmonostatics-package}
 \alias{harmonostatics}
 \alias{harmonostatics-package}
-\title{harmonostatics: What the Package Does (One Line, Title Case)}
+\title{harmonostatics: Harmonostatics}
 \description{
-What the package does (one paragraph).
+Harmonostatics allows researchers and music makers to explore a static field theory of musical harmony.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Brian McAuliff Mulloy \email{brian@homeymusic.com} (\href{https://orcid.org/0000-0002-1803-3172}{ORCID})
 
 }
 \keyword{internal}

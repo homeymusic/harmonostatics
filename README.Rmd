@@ -21,7 +21,12 @@ knitr::opts_chunk$set(
 [![test-coverage](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
-The goal of harmonostatics is to explore a field theory of musical harmony.
+The goal of harmonostatics is to explore a static field theory of musical harmony.
+
+
+## Logical Overview 
+
+![A Logical Overview of the Harmonostatics Package](images/logical_overview.png)
 
 ## Installation
 

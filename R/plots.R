@@ -86,15 +86,15 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TR
   }
   if (repel_labels) {
     if (include_names) {
-      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=name), max.overlaps = max_overlaps)
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=.data$name), max.overlaps = max_overlaps)
     } else {
-      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=intervallic_name), max.overlaps = max_overlaps)
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=.data$intervallic_name), max.overlaps = max_overlaps)
     }
   } else {
     if (include_names) {
-      p = p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
+      p = p + ggplot2::geom_label(ggplot2::aes(label=.data$name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
     } else {
-      p = p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
+      p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
     }
   }
   p
@@ -187,9 +187,9 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_na
     p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult))
   }
   if (include_names) {
-    p = p + ggplot2::geom_label(ggplot2::aes(label=name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+    p = p + ggplot2::geom_label(ggplot2::aes(label=.data$name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   } else {
-    p = p + ggplot2::geom_label(ggplot2::aes(label=intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+    p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   }
   p
 }

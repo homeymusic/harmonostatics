@@ -13,5 +13,6 @@
 #' @importFrom magrittr %>%
 #' @importFrom numbers primeFactors
 #' @importFrom svglite svglite
+#' @importFrom rlang .data
 ## usethis namespace: end
 NULL
