@@ -40,7 +40,7 @@ lydian_tonic_chords <- function() {
   list("I"=c(0,4,7),
        "II"=c(2,6,9),
        "iii"=c(4,7,11),
-       "iv*"=c(6,9,12),
+       "iv\u00B0"=c(6,9,12),
        "V"=c(7,11,14),
        "vi"=c(9,12,16),
        "vii"=c(11,14,18)
@@ -53,13 +53,13 @@ ionian_tonic_chords <- function() {
        "IV"=c(5,9,12),
        "V"=c(7,11,14),
        "vi"=c(9,12,16),
-       "vii*"=c(11,14,17)
+       "vii\u00B0"=c(11,14,17)
   )
 }
 mixolydian_tonic_chords <- function() {
   list("I"=c(0,4,7),
        "ii"=c(2,5,9),
-       "iii*"=c(4,7,10),
+       "iii\u00B0"=c(4,7,10),
        "IV"=c(5,9,12),
        "v"=c(7,10,14),
        "vi"=c(9,12,16),
@@ -72,13 +72,13 @@ dorian_tonic_chords <- function() {
        "III"=c(3,7,10),
        "IV"=c(5,9,12),
        "v"=c(7,10,14),
-       "vi*"=c(9,12,15),
+       "vi\u00B0"=c(9,12,15),
        "VII"=c(10,14,17)
   )
 }
 aeolian_tonic_chords <- function() {
   list("i"=c(0,3,7),
-       "ii*"=c(2,5,8),
+       "ii\u00B0"=c(2,5,8),
        "III"=c(3,7,10),
        "iv"=c(5,8,12),
        "v"=c(7,10,14),
@@ -91,13 +91,13 @@ phrygian_tonic_chords <- function() {
        "II"=c(1,5,8),
        "III"=c(3,7,10),
        "iv"=c(5,8,12),
-       "v*"=c(7,10,13),
+       "v\u00B0"=c(7,10,13),
        "VI"=c(8,12,15),
        "vii"=c(10,13,17)
   )
 }
 locrian_tonic_chords <- function() {
-  list("i*"=c(0,3,6),
+  list("i\u00B0"=c(0,3,6),
        "II"=c(1,5,8),
        "iii"=c(3,6,10),
        "iv"=c(5,8,12),
@@ -115,14 +115,14 @@ dorian_octave_chords <- function() {
        "vi"=c(9,5,2),
        "v"=c(7,3,0),
        "IV"=c(5,2,-2),
-       "III*"=c(3,0,-3),
+       "III\u00B0"=c(3,0,-3),
        "i"=c(2,-2,-5)
   )
 }
 aeolian_octave_chords <- function() {
   list("viii"=c(12,8,5),
        "VII"=c(10,7,3),
-       "VI*"=c(8,5,2),
+       "VI\u00B0"=c(8,5,2),
        "v"=c(7,3,0),
        "IV"=c(5,2,-2),
        "III"=c(3,0,-4),
@@ -136,14 +136,14 @@ phrygian_octave_chords <- function() {
        "v"=c(0,3,7),
        "iv"=c(5,1,-2),
        "III"=c(3,0,-4),
-       "II*"=c(1,-2,-5)
+       "II\u00B0"=c(1,-2,-5)
   )
 }
 locrian_octave_chords <- function() {
   list("viii"=c(12,8,5),
        "vii"=c(10,6,3),
        "VI"=c(8,5,1),
-       "v*"=c(6,3,0),
+       "v\u00B0"=c(6,3,0),
        "iv"=c(5,1,-2),
        "III"=c(3,0,-4),
        "II"=c(1,-2,-6)
@@ -159,7 +159,7 @@ ionian_tonic_chords.in_one_level <- function() {
        "IV"=c(5,9,12),
        "V"=c(7,11,2),
        "vi"=c(9,12,4),
-       "vii*"=c(11,2,5)
+       "vii\u00B0"=c(11,2,5)
   )
 }
 #################
@@ -168,10 +168,10 @@ ionian_tonic_chords.in_one_level <- function() {
 mixolydian_tonic_sixth_chords <- function() {
   list("I"=c(0,5,9),
        "ii"=c(2,7,10),
-       "iii*"=c(4,9,12),
+       "iii\u00B0"=c(4,9,12),
        "IV"=c(5,9,14),
        "V"=c(7,12,16),
-       "vi*"=c(9,14,17),
+       "vi\u00B0"=c(9,14,17),
        "VII"=c(10,14,19)
   )
 }

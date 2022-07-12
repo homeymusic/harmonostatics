@@ -25,7 +25,6 @@ The goal of harmonostatics is to explore a static field theory of musical harmon
 
 
 ## Logical Overview 
-
 ![A Logical Overview of the Harmonostatics Package](images/logical_overview.png)
 
 ## Installation
@@ -45,34 +44,6 @@ The [tests](https://github.com/homeymusic/harmonostatics/tree/main/tests/testtha
 library(harmonostatics)
 ```
 
-```{r major_third}
-harmony(x=4,home=0,name="Major Third")
-```
-
-```{r c_major}
-harmony(c(0,4,7),0,"C Major")
-```
-
-```{r ionian}
-harmony(c(0,2,4,5,7,9,11,12),0,"Major Scale | Ionian Mode")
-```
-
-```{r chromatic}
-harmony(0:12,0,"Chromatic Scale")
-```
-
-```{r potential_energy_I}
-potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian - 1st Scale Degree")
-```
-
-```{r potential_energy_IV}
-potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian - 4th Scale Degree")
-```
-
-```{r potential_energy_V}
-potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian - 5th Scale Degree")
-```
-
 ```{r intervals_affinity_brightness}
 title="Affinity & Brightness: Intervals"
 intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
@@ -82,18 +53,94 @@ intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
 homey_plot_harmony(intervals,home=0,c("brightness","affinity"),
                    title=title,pascal_triangle=TRUE)
 ```
+
+```{r diatonic_scales_affinity_brightness}
+title="Affinity & Brightness: Diatonic Scales"
+diatonic_scales = list(
+  "locrian"=c(0,1,3,5,6,8,10,12),
+  "phrygian"=c(0,1,3,5,7,8,10,12),
+  "aeolian"=c(0,2,3,5,7,8,10,12),
+  "dorian"=c(0,2,3,5,7,9,10,12),
+  "mixolydian"=c(0,2,4,5,7,9,10,12),
+  "ionian"=c(0,2,4,5,7,9,11,12),
+  "lydian"=c(0,2,4,6,7,9,11,12)
+)
+homey_plot_harmony(diatonic_scales,home=0,c("brightness","affinity"),
+                   title=title)
+```
+
 ```{r potential_energy_ionian_tonic_chords}
-title="Potential Energy: Major | Ionian Tonic Chords"
+title="Potential Energy: Ionian (Major) Tonic Chords"
 ionian_tonic_chords = list("I"=c(0,4,7),
                            "ii"=c(2,5,9),
                            "iii"=c(4,7,11),
                            "IV"=c(5,9,12),
                            "V"=c(7,11,14),
                            "vi"=c(9,12,16),
-                           "vii*"=c(11,14,17))
+                           "vii\u00B0"=c(11,14,17))
 homey_plot_potential_energy(x=ionian_tonic_chords,
                             y=unlist(ionian_tonic_chords[1]),
                             home=0,
                             columns=c("brightness","potential_energy"), 
                             title=title)
+```
+
+```{r potential_energy_phrygian_tonic_chords}
+title="Potential Energy: Phrygian Tonic Chords"
+phrygian_tonic_chords = list("i"=c(0,3,7),
+                             "II"=c(1,5,8),
+                             "III"=c(3,7,10),
+                             "iv"=c(5,8,12),
+                             "v\u00B0"=c(7,10,13),
+                             "VI"=c(8,12,15),
+                             "vii"=c(10,13,17))
+homey_plot_potential_energy(x=phrygian_tonic_chords,
+                            y=unlist(phrygian_tonic_chords[1]),
+                            home=0,
+                            columns=c("brightness","potential_energy"), 
+                            title=title)
+```
+
+```{r potential_energy_phrygian_octave_chords}
+title="Potential Energy: Phrygian Octave Chords"
+phrygian_octave_chords = list("viii"=c(12,8,5),
+                              "VII"=c(3,7,10),
+                              "VI"=c(1,5,8),
+                              "v"=c(0,3,7),
+                              "iv"=c(5,1,-2),
+                              "III"=c(3,0,-4),
+                              "II\u00B0"=c(1,-2,-5))
+homey_plot_potential_energy(x=phrygian_octave_chords,
+                            y=unlist(phrygian_octave_chords[1]),
+                            home=12,
+                            columns=c("brightness","potential_energy"), 
+                            title=title)
+```
+
+```{r major_third}
+harmony(x=4,home=0,name="Major Third")
+```
+
+```{r c_major}
+harmony(c(0,4,7),0,"C Major")
+```
+
+```{r ionian}
+harmony(c(0,2,4,5,7,9,11,12),0,"Ionian Mode (Major Scale)")
+```
+
+```{r chromatic}
+harmony(0:12,0,"Chromatic Scale")
+```
+
+```{r potential_energy_I}
+potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian")
+```
+
+```{r potential_energy_IV}
+potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian")
+```
+
+```{r potential_energy_V}
+potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian")
 ```

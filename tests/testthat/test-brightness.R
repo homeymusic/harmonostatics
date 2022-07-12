@@ -1,8 +1,10 @@
 test_that("level 0 brightness matches our expectations",{
   expect_equal(harmony_brightness_polarity(), c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1))
-  expect_equal(harmony.0.brightness(), c( 0.12,-0.18,0.29,-2.00,2.00,-0.29,
-                                          0.00,
-                                          0.29,-2.00,2.00,-0.29,0.18,-0.12),tolerance=0.1)
+  expect_equal(brightness_from_affinity(harmony_brightness_polarity(),
+                                        harmony_affinity()),
+               c( 0.12,-0.18,0.29,-2.00,2.00,-0.29,
+                  0.00,
+                  0.29,-2.00,2.00,-0.29,0.18,-0.12),tolerance=0.1)
 })
 test_that("brightness for chords matches our expectations",{
 

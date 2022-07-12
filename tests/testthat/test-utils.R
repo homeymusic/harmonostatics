@@ -45,7 +45,3 @@ test_that("sum_of_prime_factors works", {
   expect_equal(sum_of_prime_factors(numbers::primeFactors(1)),0)
   expect_equal(sum_of_prime_factors(numbers::primeFactors(16)),8)
 })
-
-test_that("triangular_root works", {
-  expect_equal(triangular_root(15),5)
-})

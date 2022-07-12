@@ -53,9 +53,6 @@ brightness_boundary <- function() {
   # minor 3rd, major 3rd, minor 6th and major 6th
   c(3,4,8,9) %>% sapply(affinity) %>% mean
 }
-harmony.0.brightness <- function() {
-  brightness_from_affinity(harmony_brightness_polarity(), harmony_affinity())
-}
 brightness_from_affinity.uncached <- function(polarity,affinity) {
   # we use the stream function solution to the Laplace equation 2xy=const
   # with const = -2 and +2 for the relationship between brightness & affinity

@@ -42,8 +42,3 @@ rotate <- function(coordinates,angle) {
   )
   R %*% coordinates
 }
-
-triangular_root <- function(x) {
-  checkmate::assert_numeric(x)
-  (sqrt(8*x+1)-1)/2
-}

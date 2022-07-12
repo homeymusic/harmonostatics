@@ -40,6 +40,89 @@ library(harmonostatics)
 ```
 
 ``` r
+title="Affinity & Brightness: Intervals"
+intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
+                 "major 3rd"=4,"perfect 4th"=5,"tritone"=6,"perfect 5th"=7,
+                 "minor 6th"=8, "major 6th"=9,"minor 7th"=10,"major 7th"=11,
+                 "octave"=12)
+homey_plot_harmony(intervals,home=0,c("brightness","affinity"),
+                   title=title,pascal_triangle=TRUE)
+```
+
+<img src="man/figures/README-intervals_affinity_brightness-1.png" width="100%" />
+
+``` r
+title="Affinity & Brightness: Diatonic Scales"
+diatonic_scales = list(
+  "locrian"=c(0,1,3,5,6,8,10,12),
+  "phrygian"=c(0,1,3,5,7,8,10,12),
+  "aeolian"=c(0,2,3,5,7,8,10,12),
+  "dorian"=c(0,2,3,5,7,9,10,12),
+  "mixolydian"=c(0,2,4,5,7,9,10,12),
+  "ionian"=c(0,2,4,5,7,9,11,12),
+  "lydian"=c(0,2,4,6,7,9,11,12)
+)
+homey_plot_harmony(diatonic_scales,home=0,c("brightness","affinity"),
+                   title=title)
+```
+
+<img src="man/figures/README-diatonic_scales_affinity_brightness-1.png" width="100%" />
+
+``` r
+title="Potential Energy: Ionian (Major) Tonic Chords"
+ionian_tonic_chords = list("I"=c(0,4,7),
+                           "ii"=c(2,5,9),
+                           "iii"=c(4,7,11),
+                           "IV"=c(5,9,12),
+                           "V"=c(7,11,14),
+                           "vi"=c(9,12,16),
+                           "vii\u00B0"=c(11,14,17))
+homey_plot_potential_energy(x=ionian_tonic_chords,
+                            y=unlist(ionian_tonic_chords[1]),
+                            home=0,
+                            columns=c("brightness","potential_energy"), 
+                            title=title)
+```
+
+<img src="man/figures/README-potential_energy_ionian_tonic_chords-1.png" width="100%" />
+
+``` r
+title="Potential Energy: Phrygian Tonic Chords"
+phrygian_tonic_chords = list("i"=c(0,3,7),
+                             "II"=c(1,5,8),
+                             "III"=c(3,7,10),
+                             "iv"=c(5,8,12),
+                             "v\u00B0"=c(7,10,13),
+                             "VI"=c(8,12,15),
+                             "vii"=c(10,13,17))
+homey_plot_potential_energy(x=phrygian_tonic_chords,
+                            y=unlist(phrygian_tonic_chords[1]),
+                            home=0,
+                            columns=c("brightness","potential_energy"), 
+                            title=title)
+```
+
+<img src="man/figures/README-potential_energy_phrygian_tonic_chords-1.png" width="100%" />
+
+``` r
+title="Potential Energy: Phrygian Octave Chords"
+phrygian_octave_chords = list("viii"=c(12,8,5),
+                              "VII"=c(3,7,10),
+                              "VI"=c(1,5,8),
+                              "v"=c(0,3,7),
+                              "iv"=c(5,1,-2),
+                              "III"=c(3,0,-4),
+                              "II\u00B0"=c(1,-2,-5))
+homey_plot_potential_energy(x=phrygian_octave_chords,
+                            y=unlist(phrygian_octave_chords[1]),
+                            home=12,
+                            columns=c("brightness","potential_energy"), 
+                            title=title)
+```
+
+<img src="man/figures/README-potential_energy_phrygian_octave_chords-1.png" width="100%" />
+
+``` r
 harmony(x=4,home=0,name="Major Third")
 #> # A tibble: 1 × 6
 #>   semitone intervallic_name name        affinity brightness magnitude
@@ -56,11 +139,11 @@ harmony(c(0,4,7),0,"C Major")
 ```
 
 ``` r
-harmony(c(0,2,4,5,7,9,11,12),0,"Major Scale | Ionian Mode")
+harmony(c(0,2,4,5,7,9,11,12),0,"Ionian Mode (Major Scale)")
 #> # A tibble: 1 × 6
 #>   semitone intervallic_name  name                  affinity brightness magnitude
 #>      <dbl> <chr>             <chr>                    <dbl>      <dbl>     <dbl>
-#> 1     6.25 0:2:4:5:7:9:11:12 Major Scale | Ionian…     6.36      0.558      6.38
+#> 1     6.25 0:2:4:5:7:9:11:12 Ionian Mode (Major S…     6.36      0.558      6.38
 ```
 
 ``` r
@@ -72,7 +155,7 @@ harmony(0:12,0,"Chromatic Scale")
 ```
 
 ``` r
-potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian - 1st Scale Degree")
+potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian")
 #> # A tibble: 1 × 7
 #>   semitone intervallic_name name  affinity brightness magnitude potential_energy
 #>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
@@ -80,7 +163,7 @@ potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian - 1st Scale Degree")
 ```
 
 ``` r
-potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian - 4th Scale Degree")
+potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian")
 #> # A tibble: 1 × 7
 #>   semitone intervallic_name name  affinity brightness magnitude potential_energy
 #>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
@@ -88,39 +171,9 @@ potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian - 4th Scale Degree")
 ```
 
 ``` r
-potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian - 5th Scale Degree")
+potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian")
 #> # A tibble: 1 × 7
 #>   semitone intervallic_name name  affinity brightness magnitude potential_energy
 #>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
 #> 1     10.7 7:11:14          V Io…     7.67      0.801      7.71             61.5
 ```
-
-``` r
-title="Affinity & Brightness: Intervals"
-intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
-                 "major 3rd"=4,"perfect 4th"=5,"tritone"=6,"perfect 5th"=7,
-                 "minor 6th"=8, "major 6th"=9,"minor 7th"=10,"major 7th"=11,
-                 "octave"=12)
-homey_plot_harmony(intervals,home=0,c("brightness","affinity"),
-                   title=title,pascal_triangle=TRUE)
-```
-
-<img src="man/figures/README-intervals_affinity_brightness-1.png" width="100%" />
-
-``` r
-title="Potential Energy: Major | Ionian Tonic Chords"
-ionian_tonic_chords = list("I"=c(0,4,7),
-                           "ii"=c(2,5,9),
-                           "iii"=c(4,7,11),
-                           "IV"=c(5,9,12),
-                           "V"=c(7,11,14),
-                           "vi"=c(9,12,16),
-                           "vii*"=c(11,14,17))
-homey_plot_potential_energy(x=ionian_tonic_chords,
-                            y=unlist(ionian_tonic_chords[1]),
-                            home=0,
-                            columns=c("brightness","potential_energy"), 
-                            title=title)
-```
-
-<img src="man/figures/README-potential_energy_ionian_tonic_chords-1.png" width="100%" />
