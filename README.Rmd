@@ -16,15 +16,15 @@ knitr::opts_chunk$set(
 # harmonostatics
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony/branch/main/graph/badge.svg?token=RMOXE1JT89)](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony)
-[![test-coverage](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml)
+
+[![R-CMD-check](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/R-CMD-check.yaml) [![Codecov test coverage](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony/branch/main/graph/badge.svg?token=RMOXE1JT89)](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony) [![test-coverage](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml)
+
 <!-- badges: end -->
 
 The goal of harmonostatics is to explore a static field theory of musical harmony.
 
+## Logical Overview
 
-## Logical Overview 
 ![A Logical Overview of the Harmonostatics Package](images/logical_overview.png)
 
 ## Installation
@@ -52,6 +52,13 @@ intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
                  "octave"=12)
 homey_plot_harmony(intervals,home=0,c("brightness","affinity"),
                    title=title,pascal_triangle=TRUE)
+```
+
+```{r symmetrical_triads_affinity_brightness}
+title="Affinity & Brightness: All Symmetrical 'Triads'"
+chords = utils::combn(1:11,2,function(x){c(0,x,12)},simplify=FALSE)
+homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,
+                   include_names=FALSE,repel_labels=TRUE)
 ```
 
 ```{r diatonic_scales_affinity_brightness}

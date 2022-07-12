@@ -86,9 +86,9 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TR
   }
   if (repel_labels) {
     if (include_names) {
-      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=.data$name), max.overlaps = max_overlaps)
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=.data$name), max.overlaps = max_overlaps, segment.color = NA)
     } else {
-      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=.data$intervallic_name), max.overlaps = max_overlaps)
+      p = p + ggrepel::geom_text_repel(ggplot2::aes(label=.data$intervallic_name), max.overlaps = max_overlaps, segment.color = NA)
     }
   } else {
     if (include_names) {

@@ -9,6 +9,7 @@
 [![Codecov test
 coverage](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony/branch/main/graph/badge.svg?token=RMOXE1JT89)](https://codecov.io/gh/homeymusic/a_field_theory_of_musical_harmony)
 [![test-coverage](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/homeymusic/a_field_theory_of_musical_harmony/actions/workflows/test-coverage.yaml)
+
 <!-- badges: end -->
 
 The goal of harmonostatics is to explore a static field theory of
@@ -50,6 +51,15 @@ homey_plot_harmony(intervals,home=0,c("brightness","affinity"),
 ```
 
 <img src="man/figures/README-intervals_affinity_brightness-1.png" width="100%" />
+
+``` r
+title="Affinity & Brightness: All Symmetrical 'Triads'"
+chords = utils::combn(1:11,2,function(x){c(0,x,12)},simplify=FALSE)
+homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,
+                   include_names=FALSE,repel_labels=TRUE)
+```
+
+<img src="man/figures/README-symmetrical_triads_affinity_brightness-1.png" width="100%" />
 
 ``` r
 title="Affinity & Brightness: Diatonic Scales"
@@ -124,34 +134,34 @@ homey_plot_potential_energy(x=phrygian_octave_chords,
 
 ``` r
 harmony(x=4,home=0,name="Major Third")
-#> # A tibble: 1 × 6
-#>   semitone intervallic_name name        affinity brightness magnitude
-#>      <dbl> <chr>            <chr>          <dbl>      <dbl>     <dbl>
-#> 1        4 4                Major Third        6          2      6.32
+#> # A tibble: 1 × 7
+#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
+#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
+#> 1        4 4                Majo…        6          2                1      6.32
 ```
 
 ``` r
 harmony(c(0,4,7),0,"C Major")
-#> # A tibble: 1 × 6
-#>   semitone intervallic_name name    affinity brightness magnitude
-#>      <dbl> <chr>            <chr>      <dbl>      <dbl>     <dbl>
-#> 1     3.67 0:4:7            C Major     7.67      0.801      7.71
+#> # A tibble: 1 × 7
+#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
+#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
+#> 1     3.67 0:4:7            C Ma…     7.67      0.801                1      7.71
 ```
 
 ``` r
 harmony(c(0,2,4,5,7,9,11,12),0,"Ionian Mode (Major Scale)")
-#> # A tibble: 1 × 6
-#>   semitone intervallic_name  name                  affinity brightness magnitude
-#>      <dbl> <chr>             <chr>                    <dbl>      <dbl>     <dbl>
-#> 1     6.25 0:2:4:5:7:9:11:12 Ionian Mode (Major S…     6.36      0.558      6.38
+#> # A tibble: 1 × 7
+#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
+#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
+#> 1     6.25 0:2:4:5:7:9:11:… Ioni…     6.36      0.558                1      6.38
 ```
 
 ``` r
 harmony(0:12,0,"Chromatic Scale")
-#> # A tibble: 1 × 6
-#>   semitone intervallic_name             name       affinity brightness magnitude
-#>      <dbl> <chr>                        <chr>         <dbl>      <dbl>     <dbl>
-#> 1        6 0:1:2:3:4:5:6:7:8:9:10:11:12 Chromatic…     5.31          0      5.31
+#> # A tibble: 1 × 7
+#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
+#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
+#> 1        6 0:1:2:3:4:5:6:7… Chro…     5.31          0                0      5.31
 ```
 
 ``` r
