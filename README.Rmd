@@ -39,6 +39,8 @@ devtools::install_github("homeymusic/harmonostatics")
 
 ## Examples
 
+The [tests](https://github.com/homeymusic/harmonostatics/tree/main/tests/testthat) include additional examples.
+
 ```{r library}
 library(harmonostatics)
 ```
