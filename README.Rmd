@@ -39,7 +39,7 @@ library(harmonostatics)
 ```
 
 ```{r major_third}
-harmony(4,0,"Major Third")
+harmony(x=4,home=0,name="Major Third")
 ```
 
 ```{r c_major}
@@ -47,11 +47,11 @@ harmony(c(0,4,7),0,"C Major")
 ```
 
 ```{r ionian}
-harmony(c(0,2,4,5,7,9,11,12),0,"Major | Ionian")
+harmony(c(0,2,4,5,7,9,11,12),0,"Major Scale | Ionian Mode")
 ```
 
 ```{r chromatic}
-harmony(0:12,0,"Chromatic")
+harmony(0:12,0,"Chromatic Scale")
 ```
 
 ```{r potential_energy_I}
@@ -66,3 +66,26 @@ potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian - 4th Scale Degree")
 potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian - 5th Scale Degree")
 ```
 
+```{r intervals_affinity_brightness}
+title="Affinity & Brightness: Intervals"
+intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
+                 "major 3rd"=4,"perfect 4th"=5,"tritone"=6,"perfect 5th"=7,
+                 "minor 6th"=8, "major 6th"=9,"minor 7th"=10,"major 7th"=11,
+                 "octave"=12)
+homey_plot_harmony(intervals,home=0,c("brightness","affinity"),title = title)
+```
+```{r potential_energy_ionian_tonic_chords}
+title="Potential Energy: Major | Ionian Tonic Chords"
+ionian_tonic_chords = list("I"=c(0,4,7),
+                           "ii"=c(2,5,9),
+                           "iii"=c(4,7,11),
+                           "IV"=c(5,9,12),
+                           "V"=c(7,11,14),
+                           "vi"=c(9,12,16),
+                           "vii*"=c(11,14,17))
+homey_plot_potential_energy(x=ionian_tonic_chords,
+                            y=unlist(ionian_tonic_chords[1]),
+                            home=0,
+                            columns=c("brightness","potential_energy"), 
+                            title=title)
+```
