@@ -61,8 +61,8 @@ homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,
                    include_names=FALSE,repel_labels=TRUE)
 ```
 
-```{r diatonic_scales_affinity_brightness}
-title="Affinity & Brightness: Diatonic Scales"
+```{r diatonic_modes_affinity_brightness}
+title="Affinity & Brightness: Diatonic Modes"
 diatonic_scales = list(
   "locrian"=c(0,1,3,5,6,8,10,12),
   "phrygian"=c(0,1,3,5,7,8,10,12),

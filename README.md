@@ -62,7 +62,7 @@ homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,
 <img src="man/figures/README-symmetrical_triads_affinity_brightness-1.png" width="100%" />
 
 ``` r
-title="Affinity & Brightness: Diatonic Scales"
+title="Affinity & Brightness: Diatonic Modes"
 diatonic_scales = list(
   "locrian"=c(0,1,3,5,6,8,10,12),
   "phrygian"=c(0,1,3,5,7,8,10,12),
@@ -76,7 +76,7 @@ homey_plot_harmony(diatonic_scales,home=0,c("brightness","affinity"),
                    title=title)
 ```
 
-<img src="man/figures/README-diatonic_scales_affinity_brightness-1.png" width="100%" />
+<img src="man/figures/README-diatonic_modes_affinity_brightness-1.png" width="100%" />
 
 ``` r
 title="Potential Energy: Ionian (Major) Tonic Chords"
