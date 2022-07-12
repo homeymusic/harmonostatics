@@ -101,7 +101,7 @@ intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
                  "major 3rd"=4,"perfect 4th"=5,"tritone"=6,"perfect 5th"=7,
                  "minor 6th"=8, "major 6th"=9,"minor 7th"=10,"major 7th"=11,
                  "octave"=12)
-homey_plot_harmony(intervals,home=0,c("brightness","affinity"),title = title)
+homey_plot_harmony(intervals,home=0,c("brightness","affinity"),title=title,pascal_triangle=TRUE)
 ```
 
 <img src="man/figures/README-intervals_affinity_brightness-1.png" width="100%" />
