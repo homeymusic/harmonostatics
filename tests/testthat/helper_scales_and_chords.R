@@ -169,10 +169,10 @@ mixolydian_tonic_sixth_chords <- function() {
   list("I"=c(0,5,9),
        "ii"=c(2,7,10),
        "iii\u00B0"=c(4,9,12),
-       "IV"=c(5,9,14),
+       "IV"=c(5,10,14),
        "V"=c(7,12,16),
        "vi\u00B0"=c(9,14,17),
-       "VII"=c(10,14,19)
+       "VII"=c(10,15,19)
   )
 }
 intervals_list <- function() {

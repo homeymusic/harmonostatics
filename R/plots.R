@@ -49,11 +49,15 @@ plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,tit
 #' @param pascal_triangle Plot with triangular numbers as vertical gridlines
 #' @param repel_labels Space labels apart
 #' @param max_overlaps for repel labels
-#' @param expansion_mult add add padding horizontally, 0.6 is default
+#' @param x_expansion_mult add add padding horizontally, 0.6 is default
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
-homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,title=NULL,pascal_triangle=FALSE,repel_labels=FALSE,max_overlaps=Inf,expansion_mult = 0.6) {
+homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
+                               include_names=TRUE,title=NULL,
+                               pascal_triangle=FALSE,
+                               repel_labels=FALSE,max_overlaps=Inf,
+                               x_expansion_mult = 0.6) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12),null.ok=TRUE)
@@ -78,11 +82,13 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TR
   p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
     ggplot2::geom_point() +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
-    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
+    ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = x_expansion_mult),
+                                limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey()
   if (pascal_triangle) {
-    p = p + ggplot2::scale_y_continuous(breaks = numbers::pascal_triangle(6)[,3], minor_breaks=c(7))
+    p = p + ggplot2::scale_y_continuous(breaks = numbers::pascal_triangle(6)[,3],
+                                        minor_breaks=c(7))
   }
   if (repel_labels) {
     if (include_names) {
@@ -149,12 +155,16 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
 #' @param unlist A logical TRUE or FALSE to plot points individually or as one point
 #' @param include_names Include the names from the list x on the plot
 #' @param symmetrical Center the plot horizontally
-#' @param expansion_mult Leave space for the labels within the chart
+#' @param x_expansion_mult Leave space for the labels within the chart
 #' @param title An optional title for the plot
+#' @param y_lim Set the max vertical value for the plot, default is 80
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
-homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,symmetrical=TRUE,expansion_mult = 0.6,title=NULL) {
+homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
+                                        include_names=TRUE,symmetrical=TRUE,
+                                        x_expansion_mult=0.6,
+                                        title=NULL,y_lim=NA) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S2")
@@ -176,15 +186,17 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_na
   color_values = color_values_homey()
   p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
     ggplot2::geom_point(ggplot2::aes(size=affinity)) +
+    ggplot2::ylim(0,y_lim) +
     ggplot2::scale_size(guide="none") +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
     ggplot2::ggtitle(title) +
     theme_homey()
 
   if (symmetrical) {
-    p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult), limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]])))))
+    p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = x_expansion_mult),
+                                        limits=c((0-max(abs(h[columns[1]]))),(0+max(abs(h[columns[1]])))))
   } else {
-    p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = expansion_mult))
+    p = p + ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = x_expansion_mult))
   }
   if (include_names) {
     p = p + ggplot2::geom_label(ggplot2::aes(label=.data$name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))

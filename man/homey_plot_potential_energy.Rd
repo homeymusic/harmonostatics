@@ -12,8 +12,9 @@ homey_plot_potential_energy(
   unlist = FALSE,
   include_names = TRUE,
   symmetrical = TRUE,
-  expansion_mult = 0.6,
-  title = NULL
+  x_expansion_mult = 0.6,
+  title = NULL,
+  y_lim = NA
 )
 }
 \arguments{
@@ -31,9 +32,11 @@ homey_plot_potential_energy(
 
 \item{symmetrical}{Center the plot horizontally}
 
-\item{expansion_mult}{Leave space for the labels within the chart}
+\item{x_expansion_mult}{Leave space for the labels within the chart}
 
 \item{title}{An optional title for the plot}
+
+\item{y_lim}{Set the max vertical value for the plot, default is 80}
 }
 \value{
 Generates the requested scatter plot and returns TRUE

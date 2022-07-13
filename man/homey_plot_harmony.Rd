@@ -14,7 +14,7 @@ homey_plot_harmony(
   pascal_triangle = FALSE,
   repel_labels = FALSE,
   max_overlaps = Inf,
-  expansion_mult = 0.6
+  x_expansion_mult = 0.6
 )
 }
 \arguments{
@@ -36,7 +36,7 @@ homey_plot_harmony(
 
 \item{max_overlaps}{for repel labels}
 
-\item{expansion_mult}{add add padding horizontally, 0.6 is default}
+\item{x_expansion_mult}{add add padding horizontally, 0.6 is default}
 }
 \value{
 Generates the requested scatter plot and returns TRUE

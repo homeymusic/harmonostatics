@@ -51,7 +51,7 @@ test_that("affinity brightness plots look good", {
 
   title="Tonic Intervals over 5 Levels"
   intervals_5_levels = list(-24:36)
-  p = homey_plot_harmony(intervals_5_levels,home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE,expansion_mult=0.1)
+  p = homey_plot_harmony(intervals_5_levels,home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,pascal_triangle=TRUE,include_names=FALSE,repel_labels=TRUE,x_expansion_mult=0.1)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -200,19 +200,19 @@ test_that("PE of tonic intervals looks good", {
   title="Tonic PE of Intervals v Semitone"
   p = plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),title=title,include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,expansion_mult=0.2,title=title)
+  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,x_expansion_mult=0.2,title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "semitone")
   expect_identical(p$labels$y, "potential_energy")
 
-  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,expansion_mult=0.2,title=title,include_names=FALSE)
+  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,x_expansion_mult=0.2,title=title,include_names=FALSE)
   expect_identical(p$labels$x, "semitone")
   expect_identical(p$labels$y, "potential_energy")
 
 
   title="Tonic PE of Intervals v Brightness"
-  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("brightness","potential_energy"),expansion_mult=0.2,title=title)
+  p = homey_plot_potential_energy(intervals_list(),y=0,home=0,unlist=TRUE,columns=c("brightness","potential_energy"),x_expansion_mult=0.2,title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -222,13 +222,13 @@ test_that("PE of octave intervals looks good", {
   title="Octave PE of Intervals v Semitone"
   p = plot_potential_energy(intervals_list(),y=12,home=12,unlist=TRUE,columns=c("semitone","potential_energy"),title=title,include_names=FALSE)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(intervals_list(),y=12,home=12,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,expansion_mult=0.2,title=title)
+  p = homey_plot_potential_energy(intervals_list(),y=12,home=12,unlist=TRUE,columns=c("semitone","potential_energy"),symmetrical=FALSE,x_expansion_mult=0.2,title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "semitone")
   expect_identical(p$labels$y, "potential_energy")
   title="Octave PE of Intervals v Brightness"
-  p = homey_plot_potential_energy(intervals_list(),y=12,home=12,unlist=TRUE,columns=c("brightness","potential_energy"),expansion_mult=0.2,title=title)
+  p = homey_plot_potential_energy(intervals_list(),y=12,home=12,unlist=TRUE,columns=c("brightness","potential_energy"),x_expansion_mult=0.2,title=title)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -238,7 +238,7 @@ test_that("lydian PE look good", {
   title="Lydian Tonic Chords PE vs Brightness"
   p = plot_potential_energy(x=lydian_tonic_chords(),y=lydian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=lydian_tonic_chords(),y=lydian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=lydian_tonic_chords(),y=lydian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -248,7 +248,7 @@ test_that("ionian PE look good", {
   title="Ionian Tonic Chords PE vs Brightness"
   p = plot_potential_energy(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -257,7 +257,7 @@ test_that("ionian PE look good", {
   title="Ionian Tonic Chords PE vs Semitone"
   p = plot_potential_energy(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("semitone","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("semitone","potential_energy"), title=title, symmetrical=FALSE,expansion_mult=0.1)
+  p = homey_plot_potential_energy(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("semitone","potential_energy"), title=title, symmetrical=FALSE,x_expansion_mult=0.1,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "semitone")
@@ -274,7 +274,7 @@ test_that("mixolydian PE look good", {
   title="Mixolydian Tonic Chords PE vs Brightness"
   p = plot_potential_energy(x=mixolydian_tonic_chords(),y=mixolydian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=mixolydian_tonic_chords(),y=mixolydian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=mixolydian_tonic_chords(),y=mixolydian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -283,7 +283,7 @@ test_that("mixolydian PE look good", {
   title="Mixolydian Tonic Sixth Chords PE vs Brightness"
   p = plot_potential_energy(x=mixolydian_tonic_sixth_chords(),y=mixolydian_tonic_sixth_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=mixolydian_tonic_sixth_chords(),y=mixolydian_tonic_sixth_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=mixolydian_tonic_sixth_chords(),y=mixolydian_tonic_sixth_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -293,7 +293,7 @@ test_that("dorian PE look good", {
   title="Dorian Tonic Chords PE vs Brightness"
   p = plot_potential_energy(x=dorian_tonic_chords(),y=dorian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=dorian_tonic_chords(),y=dorian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=dorian_tonic_chords(),y=dorian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -302,7 +302,7 @@ test_that("dorian PE look good", {
   title="Dorian Octave Chords PE vs Brightness"
   p = plot_potential_energy(x=dorian_octave_chords(),y=dorian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=dorian_octave_chords(),y=dorian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=dorian_octave_chords(),y=dorian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -330,7 +330,7 @@ test_that("aeolian PE look good", {
   title="Aeolian Tonic Chords PE vs Brightness"
   p = plot_potential_energy(x=aeolian_tonic_chords(),y=c(0,3,7),home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=aeolian_tonic_chords(),y=c(0,3,7),home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=aeolian_tonic_chords(),y=c(0,3,7),home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -339,7 +339,7 @@ test_that("aeolian PE look good", {
   title="Aeolian Tonic Chords PE vs Semitone"
   p = plot_potential_energy(x=aeolian_tonic_chords(),y=c(0,3,7),home=0,columns=c("semitone","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=aeolian_tonic_chords(),y=c(0,3,7),home=0,columns=c("semitone","potential_energy"), title=title, symmetrical=FALSE,expansion_mult=0.1)
+  p = homey_plot_potential_energy(x=aeolian_tonic_chords(),y=c(0,3,7),home=0,columns=c("semitone","potential_energy"), title=title, symmetrical=FALSE,x_expansion_mult=0.1,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "semitone")
@@ -351,7 +351,7 @@ test_that("aeolian PE look good", {
   title="Aeolian Octave Chords PE vs Brightness"
   p = plot_potential_energy(x=aeolian_octave_chords(),y=aeolian_octave_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=aeolian_octave_chords(),y=aeolian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=aeolian_octave_chords(),y=aeolian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -362,7 +362,7 @@ test_that("phrygian chords look good", {
   title="Phrygian Tonic Chords PE"
   p = plot_potential_energy(x=phrygian_tonic_chords(),y=c(0,3,7),home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=phrygian_tonic_chords(),y=c(0,3,7),home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=phrygian_tonic_chords(),y=c(0,3,7),home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -371,7 +371,7 @@ test_that("phrygian chords look good", {
   title="Phrygian Octave Chords PE"
   p = plot_potential_energy(x=phrygian_octave_chords(),y=c(12,8,5),home=12,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=phrygian_octave_chords(),y=c(12,8,5),home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=phrygian_octave_chords(),y=c(12,8,5),home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -381,7 +381,7 @@ test_that("locrian PE look good", {
   title="Locrian Tonic Chords PE vs Brightness"
   p = plot_potential_energy(x=locrian_tonic_chords(),y=locrian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=locrian_tonic_chords(),y=locrian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=locrian_tonic_chords(),y=locrian_tonic_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -390,7 +390,7 @@ test_that("locrian PE look good", {
   title="Locrian Octave Chords PE vs Brightness"
   p = plot_potential_energy(x=locrian_octave_chords(),y=locrian_octave_chords()[1]%>%unlist,home=0,columns=c("brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_potential_energy(x=locrian_octave_chords(),y=locrian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE)
+  p = homey_plot_potential_energy(x=locrian_octave_chords(),y=locrian_octave_chords()[1]%>%unlist,home=12,columns=c("brightness","potential_energy"), title=title, symmetrical=TRUE,y_lim=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
