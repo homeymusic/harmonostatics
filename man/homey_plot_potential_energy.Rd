@@ -14,7 +14,8 @@ homey_plot_potential_energy(
   symmetrical = TRUE,
   x_expansion_mult = 0.6,
   title = NULL,
-  y_lim = NA
+  y_lim_max = NA_real_,
+  y_lim_min = NA_real_
 )
 }
 \arguments{
@@ -36,7 +37,9 @@ homey_plot_potential_energy(
 
 \item{title}{An optional title for the plot}
 
-\item{y_lim}{Set the max vertical value for the plot, default is 80}
+\item{y_lim_max}{Set the max vertical value for the plot, default is NA_real_}
+
+\item{y_lim_min}{Set the min vertical value for the plot, default is NA_real_}
 }
 \value{
 Generates the requested scatter plot and returns TRUE

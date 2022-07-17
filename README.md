@@ -88,7 +88,7 @@ homey_plot_potential_energy(x=intervals,
                             y=unlist(intervals[1]),
                             home=0,
                             columns=c("semitone","potential_energy"), 
-                            title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim=160)
+                            title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim_max=160)
 ```
 
 <img src="man/figures/README-potential_energy_tonic_intervals-1.png" width="100%" />
@@ -106,7 +106,7 @@ homey_plot_potential_energy(x=ionian_tonic_chords,
                             y=unlist(ionian_tonic_chords[1]),
                             home=0,
                             columns=c("brightness","potential_energy"), 
-                            title=title,y_lim=100)
+                            title=title,y_lim_max=100)
 ```
 
 <img src="man/figures/README-potential_energy_ionian_tonic_chords-1.png" width="100%" />
@@ -124,7 +124,7 @@ homey_plot_potential_energy(x=phrygian_tonic_chords,
                             y=unlist(phrygian_tonic_chords[1]),
                             home=0,
                             columns=c("brightness","potential_energy"), 
-                            title=title,y_lim=100)
+                            title=title,y_lim_max=100)
 ```
 
 <img src="man/figures/README-potential_energy_phrygian_tonic_chords-1.png" width="100%" />
@@ -142,7 +142,7 @@ homey_plot_potential_energy(x=aeolian_tonic_chords,
                             y=unlist(aeolian_tonic_chords[1]),
                             home=0,
                             columns=c("brightness","potential_energy"), 
-                            title=title,y_lim=100)
+                            title=title,y_lim_max=100)
 ```
 
 <img src="man/figures/README-potential_energy_aeolian_tonic_chords-1.png" width="100%" />
@@ -157,7 +157,7 @@ homey_plot_potential_energy(x=intervals,
                             y=unlist(intervals[13]),
                             home=12,
                             columns=c("semitone","potential_energy"), 
-                            title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim=160)
+                            title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim_max=160)
 ```
 
 <img src="man/figures/README-potential_energy_octave_intervals-1.png" width="100%" />
@@ -175,7 +175,7 @@ homey_plot_potential_energy(x=phrygian_octave_chords,
                             y=unlist(phrygian_octave_chords[1]),
                             home=12,
                             columns=c("brightness","potential_energy"), 
-                            title=title,y_lim=100)
+                            title=title,y_lim_max=100)
 ```
 
 <img src="man/figures/README-potential_energy_phrygian_octave_chords-1.png" width="100%" />

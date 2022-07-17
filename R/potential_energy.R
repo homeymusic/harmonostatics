@@ -5,8 +5,10 @@ potential_energy.uncached <- function(x,y,home,name=NULL) {
   checkmate::assert_character(name,null.ok=TRUE)
 
   tibble::tibble(
-    semitone = x %>% mean,
-    intervallic_name = x %>% paste(collapse = ":"),
+    semitone_x = x %>% mean,
+    semitone_y = y %>% mean,
+    intervallic_name_x = x %>% paste(collapse = ":"),
+    intervallic_name_y = y %>% paste(collapse = ":"),
     name = name,
     affinity=affinity(x),
     brightness=brightness(x,home),

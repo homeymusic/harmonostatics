@@ -91,7 +91,7 @@
 <text x='103.93' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>0</text>
 <text x='240.94' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>5</text>
 <text x='377.95' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='268.34' y='496.09' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='44.64px' lengthAdjust='spacingAndGlyphs'>semitone</text>
+<text x='268.34' y='496.09' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='56.26px' lengthAdjust='spacingAndGlyphs'>semitone_x</text>
 <text transform='translate(13.37,247.80) rotate(-90)' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='81.35px' lengthAdjust='spacingAndGlyphs'>potential_energy</text>
 <text x='38.16' y='14.94' style='font-size: 13.20px;fill: #F3DDAB; font-family: "Arial";' textLength='191.35px' lengthAdjust='spacingAndGlyphs'>Tonic PE of Intervals v Semitone</text>
 </g>

@@ -179,3 +179,12 @@ intervals_list <- function() {
   tbl = intervals()
   setNames(as.list(tbl$semitone), tbl$name)
 }
+#######################
+# utils
+#
+suppress_warnings <- function(){
+  options(warn=-1)
+}
+allow_warnings <- function(){
+  options(warn=0)
+}

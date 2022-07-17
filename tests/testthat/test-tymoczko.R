@@ -1,0 +1,26 @@
+# from Generalizing Musical Intervals by Dmitri Tymoczko
+test_that("the analysis of Beethoven’s Fifth Symphony maps to harmonostatics", {
+  # assume the home note is G = 12
+  pe_g4_to_ef4 = potential_energy(8,12,12)
+  expect_equal(pe_g4_to_ef4$potential_energy,34.70,tolerance=0.001)
+  expect_lt(pe_g4_to_ef4$brightness,0)
+  pe_f4_to_df4 = potential_energy(6,10,12)
+  expect_equal(pe_f4_to_df4$potential_energy,0.05429892,tolerance=0.001)
+  expect_equal(pe_f4_to_df4$brightness,0)
+  pe_b_to_g = potential_energy(16,12,12)
+  expect_equal(pe_b_to_g$potential_energy,-39.8,tolerance=0.001)
+  expect_gt(pe_b_to_g$brightness,0)
+  pe_g4_to_ef5 = potential_energy(8,0,0)
+  expect_equal(pe_g4_to_ef5$potential_energy,69.40,tolerance=0.001)
+  expect_lt(pe_g4_to_ef5$brightness,0)
+  pe_g4_to_ef4 = potential_energy(8,12,12)
+  expect_equal(pe_g4_to_ef4$potential_energy,34.70,tolerance=0.001)
+  expect_lt(pe_g4_to_ef4$brightness,0)
+  # assume the home note is B = 0
+  bf_to_ce = potential_energy(c(1,5),c(0,6),0)
+  expect_equal(bf_to_ce$potential_energy,5.51,tolerance=0.001)
+  expect_gt(bf_to_ce$brightness,0)
+  cfs_to_dff = potential_energy(c(4,6),c(1,7),0)
+  expect_equal(cfs_to_dff$potential_energy,1.9499,tolerance=0.001)
+  expect_gt(cfs_to_dff$brightness,0)
+})

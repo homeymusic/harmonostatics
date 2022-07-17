@@ -137,7 +137,7 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
     h = purrr::map(x,potential_energy,y=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   }
   plot(h[,columns],main=title)
-  text(h[,columns],labels=h$intervallic_name,pos=1)
+  text(h[,columns],labels=h$intervallic_name_x,pos=1)
   if (include_names) {
     text(h[,columns],labels=h$name,pos=3)
   }
@@ -157,14 +157,15 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
 #' @param symmetrical Center the plot horizontally
 #' @param x_expansion_mult Leave space for the labels within the chart
 #' @param title An optional title for the plot
-#' @param y_lim Set the max vertical value for the plot, default is 80
+#' @param y_lim_max Set the max vertical value for the plot, default is NA_real_
+#' @param y_lim_min Set the min vertical value for the plot, default is NA_real_
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
 homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
                                         include_names=TRUE,symmetrical=TRUE,
                                         x_expansion_mult=0.6,
-                                        title=NULL,y_lim=NA) {
+                                        title=NULL,y_lim_max=NA_real_,y_lim_min=NA_real_) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S2")
@@ -186,7 +187,7 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
   color_values = color_values_homey()
   p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
     ggplot2::geom_point(ggplot2::aes(size=affinity)) +
-    ggplot2::ylim(0,y_lim) +
+    ggplot2::ylim(y_lim_min,y_lim_max) +
     ggplot2::scale_size(guide="none") +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
     ggplot2::ggtitle(title) +
@@ -201,7 +202,7 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
   if (include_names) {
     p = p + ggplot2::geom_label(ggplot2::aes(label=.data$name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   } else {
-    p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+    p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name_x),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   }
   p
 }
