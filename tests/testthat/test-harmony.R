@@ -8,6 +8,7 @@ test_that("harmony for chords meets expectations", {
   expect_equal(c_major_triad$name,"C Major Triad")
   expect_equal(c_major_triad$affinity,7.666,tolerance=0.001)
   expect_equal(c_major_triad$brightness_polarity,1)
+  expect_equal(attr(c_major_triad,"pitches"),c(0,4,7))
   minor_3rd = harmony(3,0,"Minor 3rd")
   expect_equal(minor_3rd$brightness_polarity,-1)
   tritone = harmony(6,0,"tritone")
@@ -15,4 +16,5 @@ test_that("harmony for chords meets expectations", {
   major_6th = harmony(9,0,"Major 6th")
   expect_equal(major_6th$brightness_polarity,1)
   expect_equal(major_6th$home,0)
+  expect_equal(attr(major_6th,"pitches"),c(9))
 })

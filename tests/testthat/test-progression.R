@@ -1,0 +1,38 @@
+test_that("progression takes expected inputs", {
+  from = harmony(c(0,4,7),0)
+  to = harmony(c(12,8,5),12)
+  # must be a harmony tibble
+  expect_error(progression(from,c(12,8,5)))
+  expect_error(progression(c(0,4,7),to))
+  expect_error(progression(from,to))
+})
+test_that("home chord to home chord cadence makes sense", {
+  from = harmony(c(0,4,7),0)
+  to = harmony(c(0,4,7),0)
+  p = progression(from,to)
+  # must be a harmony tibble
+  expect(tibble::is_tibble(p),"expected progression to be a tibble")
+  expect_equal(p$intervallic_name,paste(from$intervallic_name," \U2192 ",to$intervallic_name))
+  expect_equal(p$name,p$intervallic_name)
+  expect_equal(p$home,0)
+  expect_equal(p$semitone_difference,0)
+  expect_equal(p$affinity_difference,0)
+  expect_equal(p$brightness_difference,0)
+  expect_equal(p$potential_energy_difference,0)
+})
+test_that("tonic major dominant cadence makes sense", {
+  from = harmony(c(7,11,14),0)
+  to = harmony(c(0,4,7),0)
+  p = progression(from,to)
+  # must be a harmony tibble
+  expect(tibble::is_tibble(p),"expected progression to be a tibble")
+  expect_equal(p$intervallic_name,paste(from$intervallic_name," \U2192 ",to$intervallic_name))
+  expect_equal(p$name,p$intervallic_name)
+  expect_equal(p$home,0)
+  expect_equal(p$semitone_difference,7)
+  expect_equal(p$from_affinity,from$affinity)
+  expect_equal(p$to_affinity,to$affinity)
+  expect_equal(p$affinity_difference,0)
+  expect_equal(p$brightness_difference,0)
+  expect_equal(p$potential_energy_difference,61.53832,tolerance=0.01)
+})

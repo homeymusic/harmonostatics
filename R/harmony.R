@@ -15,16 +15,22 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
       stop('home must be specified or x must contain 0 or 12 or both')
     }
   }
-  tibble::tibble(
+  intervallic_name = x %>% paste(collapse = ":")
+  if (is.null(name)) {
+    name = intervallic_name
+  }
+  t = tibble::tibble(
     semitone = x %>% mean,
     home = home,
-    intervallic_name = x %>% paste(collapse = ":"),
+    intervallic_name = intervallic_name,
     name = name,
     affinity=affinity(x),
     brightness=brightness(x,home),
     brightness_polarity=brightness_polarity(x,home),
     magnitude=harmony.magnitude(x,home),
   )
+  attr(t,"pitches") <- x
+  t
 }
 
 #' Harmony
