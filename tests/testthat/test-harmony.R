@@ -14,4 +14,5 @@ test_that("harmony for chords meets expectations", {
   expect_equal(tritone$brightness_polarity,0)
   major_6th = harmony(9,0,"Major 6th")
   expect_equal(major_6th$brightness_polarity,1)
+  expect_equal(major_6th$home,0)
 })

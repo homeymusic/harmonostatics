@@ -17,6 +17,7 @@ harmony.uncached <- function(x, home=NULL, name=NULL) {
   }
   tibble::tibble(
     semitone = x %>% mean,
+    home = home,
     intervallic_name = x %>% paste(collapse = ":"),
     name = name,
     affinity=affinity(x),
