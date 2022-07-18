@@ -82,7 +82,7 @@
 <text x='231.22' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>7.5</text>
 <text x='324.03' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>10.0</text>
 <text x='416.84' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>12.5</text>
-<text x='268.34' y='496.09' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='56.26px' lengthAdjust='spacingAndGlyphs'>semitone_x</text>
+<text x='268.34' y='496.09' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='72.76px' lengthAdjust='spacingAndGlyphs'>from_semitone</text>
 <text transform='translate(13.37,247.80) rotate(-90)' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='81.35px' lengthAdjust='spacingAndGlyphs'>potential_energy</text>
 <text x='38.16' y='14.94' style='font-size: 13.20px;fill: #F3DDAB; font-family: "Arial";' textLength='223.62px' lengthAdjust='spacingAndGlyphs'>Aeolian Tonic Chords PE vs Semitone</text>
 </g>

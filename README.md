@@ -84,14 +84,14 @@ intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
                  "major 3rd"=4,"perfect 4th"=5,"tritone"=6,"perfect 5th"=7,
                  "minor 6th"=8, "major 6th"=9,"minor 7th"=10,"major 7th"=11,
                  "octave"=12)
-homey_plot_potential_energy(x=intervals,
-                            y=unlist(intervals[1]),
-                            home=0,
-                            columns=c("semitone","potential_energy"), 
-                            title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim_max=160)
+homey_plot_progression(x=intervals,
+                       y=unlist(intervals[1]),
+                       home=0,
+                       columns=c(x="from_semitone",y="potential_energy",size="from_affinity",color="from_brightness"), 
+                       title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim_max=160)
 ```
 
-<img src="man/figures/README-potential_energy_tonic_intervals-1.png" width="100%" />
+<img src="man/figures/README-progression_tonic_intervals-1.png" width="100%" />
 
 ``` r
 title="Potential Energy: Ionian (Major) Tonic Chords"
@@ -102,14 +102,14 @@ ionian_tonic_chords = list("I"=c(0,4,7),
                            "V"=c(7,11,14),
                            "vi"=c(9,12,16),
                            "vii\u00B0"=c(11,14,17))
-homey_plot_potential_energy(x=ionian_tonic_chords,
+homey_plot_progression(x=ionian_tonic_chords,
                             y=unlist(ionian_tonic_chords[1]),
                             home=0,
-                            columns=c("brightness","potential_energy"), 
+                            columns=c(x="from_brightness",y="potential_energy",color="from_brightness",size="from_affinity"), 
                             title=title,y_lim_max=100)
 ```
 
-<img src="man/figures/README-potential_energy_ionian_tonic_chords-1.png" width="100%" />
+<img src="man/figures/README-progression_ionian_tonic_chords-1.png" width="100%" />
 
 ``` r
 title="Potential Energy: Phrygian Tonic Chords"
@@ -120,10 +120,10 @@ phrygian_tonic_chords = list("i"=c(0,3,7),
                              "v\u00B0"=c(7,10,13),
                              "VI"=c(8,12,15),
                              "vii"=c(10,13,17))
-homey_plot_potential_energy(x=phrygian_tonic_chords,
+homey_plot_progression(x=phrygian_tonic_chords,
                             y=unlist(phrygian_tonic_chords[1]),
                             home=0,
-                            columns=c("brightness","potential_energy"), 
+                            columns=c(x="from_brightness",y="potential_energy",color="from_brightness",size="from_affinity"), 
                             title=title,y_lim_max=100)
 ```
 
@@ -138,10 +138,10 @@ aeolian_tonic_chords = list("i"=c(0,3,7),
        "v"=c(7,10,14),
        "VI"=c(8,12,15),
        "VII"=c(10,14,17))
-homey_plot_potential_energy(x=aeolian_tonic_chords,
+homey_plot_progression(x=aeolian_tonic_chords,
                             y=unlist(aeolian_tonic_chords[1]),
                             home=0,
-                            columns=c("brightness","potential_energy"), 
+                            columns=c(x="from_brightness",y="potential_energy",color="from_brightness",size="from_affinity"), 
                             title=title,y_lim_max=100)
 ```
 
@@ -153,11 +153,11 @@ intervals = list("tonic"=0,"minor 2nd"=1,"major 2nd"=2,"minor 3rd"=3,
                  "major 3rd"=4,"perfect 4th"=5,"tritone"=6,"perfect 5th"=7,
                  "minor 6th"=8, "major 6th"=9,"minor 7th"=10,"major 7th"=11,
                  "octave"=12)
-homey_plot_potential_energy(x=intervals,
-                            y=unlist(intervals[13]),
-                            home=12,
-                            columns=c("semitone","potential_energy"), 
-                            title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim_max=160)
+homey_plot_progression(x=intervals,
+                       y=unlist(intervals[13]),
+                       home=12,
+                       columns=c(x="from_semitone",y="potential_energy",color="from_brightness",size="from_affinity"), 
+                       title=title,symmetrical=FALSE,x_expansion_mult=0.1,y_lim_max=160)
 ```
 
 <img src="man/figures/README-potential_energy_octave_intervals-1.png" width="100%" />
@@ -171,67 +171,62 @@ phrygian_octave_chords = list("viii"=c(12,8,5),
                               "iv"=c(5,1,-2),
                               "III"=c(3,0,-4),
                               "II\u00B0"=c(1,-2,-5))
-homey_plot_potential_energy(x=phrygian_octave_chords,
-                            y=unlist(phrygian_octave_chords[1]),
-                            home=12,
-                            columns=c("brightness","potential_energy"), 
-                            title=title,y_lim_max=100)
+homey_plot_progression(x=phrygian_octave_chords,
+                       y=unlist(phrygian_octave_chords[1]),
+                       home=12,
+                       columns=c(x="from_brightness",y="potential_energy",size="from_affinity",color="from_brightness"), 
+                       title=title,y_lim_max=100)
 ```
 
 <img src="man/figures/README-potential_energy_phrygian_octave_chords-1.png" width="100%" />
 
 ``` r
 harmony(x=4,home=0,name="Major Third")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
-#> 1        4 4                Majo…        6          2                1      6.32
+#> # A tibble: 1 × 8
+#>   semitone  home intervallic_name name      affinity brightness brightness_pola…
+#>      <dbl> <dbl> <chr>            <chr>        <dbl>      <dbl>            <dbl>
+#> 1        4     0 4                Major Th…        6          2                1
+#> # … with 1 more variable: magnitude <dbl>
 ```
 
 ``` r
 harmony(c(0,4,7),0,"C Major")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
-#> 1     3.67 0:4:7            C Ma…     7.67      0.801                1      7.71
+#> # A tibble: 1 × 8
+#>   semitone  home intervallic_name name    affinity brightness brightness_polari…
+#>      <dbl> <dbl> <chr>            <chr>      <dbl>      <dbl>              <dbl>
+#> 1     3.67     0 0:4:7            C Major     7.67      0.801                  1
+#> # … with 1 more variable: magnitude <dbl>
 ```
 
 ``` r
 harmony(c(0,2,4,5,7,9,11,12),0,"Ionian Mode (Major Scale)")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
-#> 1     6.25 0:2:4:5:7:9:11:… Ioni…     6.36      0.558                1      6.38
+#> # A tibble: 1 × 8
+#>   semitone  home intervallic_name  name     affinity brightness brightness_pola…
+#>      <dbl> <dbl> <chr>             <chr>       <dbl>      <dbl>            <dbl>
+#> 1     6.25     0 0:2:4:5:7:9:11:12 Ionian …     6.36      0.558                1
+#> # … with 1 more variable: magnitude <dbl>
 ```
 
 ``` r
 harmony(0:12,0,"Chromatic Scale")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness brightness_pola… magnitude
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>            <dbl>     <dbl>
-#> 1        6 0:1:2:3:4:5:6:7… Chro…     5.31          0                0      5.31
+#> # A tibble: 1 × 8
+#>   semitone  home intervallic_name     name  affinity brightness brightness_pola…
+#>      <dbl> <dbl> <chr>                <chr>    <dbl>      <dbl>            <dbl>
+#> 1        6     0 0:1:2:3:4:5:6:7:8:9… Chro…     5.31          0                0
+#> # … with 1 more variable: magnitude <dbl>
 ```
 
 ``` r
-potential_energy(c(0,4,7),c(0,4,7),0,"I Ionian")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness magnitude potential_energy
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
-#> 1     3.67 0:4:7            I Io…     7.67      0.801      7.71                0
+potential_energy(c(0,4,7),c(0,4,7),0)
+#> [1] 0
 ```
 
 ``` r
-potential_energy(c(5,9,12),c(0,4,7),0,"IV Ionian")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness magnitude potential_energy
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
-#> 1     8.67 5:9:12           IV I…     7.67      0.801      7.71             22.5
+potential_energy(c(5,9,12),c(0,4,7),0)
+#> [1] 22.52883
 ```
 
 ``` r
-potential_energy(c(7,11,14),c(0,4,7),0,"V Ionian")
-#> # A tibble: 1 × 7
-#>   semitone intervallic_name name  affinity brightness magnitude potential_energy
-#>      <dbl> <chr>            <chr>    <dbl>      <dbl>     <dbl>            <dbl>
-#> 1     10.7 7:11:14          V Io…     7.67      0.801      7.71             61.5
+potential_energy(c(7,11,14),c(0,4,7),0)
+#> [1] 61.53832
 ```

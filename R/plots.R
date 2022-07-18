@@ -76,7 +76,7 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
     h = purrr::map(x,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   }
 
-  colour_factor = colour_factor_homey(h)
+  colour_factor = colour_factor_homey(h,"brightness")
   color_values = color_values_homey()
 
   p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
@@ -105,7 +105,7 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
   }
   p
 }
-#' Plot Potential Energy
+#' Plot Progression
 #'
 #' Provides scatter plots of potential energy between two notes or chords
 #'
@@ -119,7 +119,7 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
-plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
+plot_progression <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,title=NULL) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_integerish(y)
   checkmate::assert_choice(home,c(0,12))
@@ -131,27 +131,27 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
   if (unlist) { x = x %>% unlist}
   if (include_names) {
     n = names(x)
-    l = list(x=x,name=n)
-    h = purrr::pmap(l,potential_energy,y=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    l = list(from=x,name=n)
+    h = purrr::pmap(l,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   } else {
-    h = purrr::map(x,potential_energy,y=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::map(x,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   }
   plot(h[,columns],main=title)
-  text(h[,columns],labels=h$intervallic_name_x,pos=1)
+  text(h[,columns],labels=h$intervallic_name,pos=1)
   if (include_names) {
     text(h[,columns],labels=h$name,pos=3)
   }
   TRUE
 }
 
-#' Homey Plot Potential Energy
+#' Homey Plot Progression
 #'
 #' Provides scatter plots of musical potential energy of a note or chord with the homey theme.
 #'
 #' @param x A list of notes or chords expressed as an interval integers or vector of interval integers
 #' @param y A list of notes or chords expressed as an interval integers or vector of interval integers
 #' @param home The home pitch expressed an as interval integer
-#' @param columns A vector of 2 column names to plot: semitone, affinity, brightness and magnitude
+#' @param columns A vector of 4 named columns to plot: x, y, size and color
 #' @param unlist A logical TRUE or FALSE to plot points individually or as one point
 #' @param include_names Include the names from the list x on the plot
 #' @param symmetrical Center the plot horizontally
@@ -162,13 +162,14 @@ plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,include_names=TR
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
-homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
+homey_plot_progression <- function(x,y,home,columns,unlist=FALSE,
                                         include_names=TRUE,symmetrical=TRUE,
                                         x_expansion_mult=0.6,
                                         title=NULL,y_lim_max=NA_real_,y_lim_min=NA_real_) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
-  checkmate::qassert(columns,"S2")
+  checkmate::qassert(columns,"S4")
+  checkmate::assert_names(names(columns), permutation.of = c("x","y","size","color"))
   checkmate::assert_logical(unlist)
   checkmate::assert_logical(include_names)
   checkmate::assert_character(title,null.ok=TRUE)
@@ -177,16 +178,16 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
   h = x
   if (include_names) {
     n = names(x)
-    l = list(x=x,name=n)
-    h = purrr::pmap(l,potential_energy,y=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    l = list(from=x,name=n)
+    h = purrr::pmap(l,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   } else {
-    h = purrr::map(x,potential_energy,y=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::map(x,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
   }
 
-  colour_factor = colour_factor_homey(h)
+  colour_factor = colour_factor_homey(h,columns["color"])
   color_values = color_values_homey()
-  p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
-    ggplot2::geom_point(ggplot2::aes(size=affinity)) +
+  p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns["x"], y = columns["y"], colour=colour_factor)) +
+    ggplot2::geom_point(ggplot2::aes_string(size=columns["size"])) +
     ggplot2::ylim(y_lim_min,y_lim_max) +
     ggplot2::scale_size(guide="none") +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
@@ -202,7 +203,7 @@ homey_plot_potential_energy <- function(x,y,home,columns,unlist=FALSE,
   if (include_names) {
     p = p + ggplot2::geom_label(ggplot2::aes(label=.data$name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   } else {
-    p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name_x),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
+    p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   }
   p
 }
@@ -215,8 +216,9 @@ colors_homey <- function() {
     'major' = '#F3A904'
   )
 }
-colour_factor_homey <- function(x) {
-  cut(x$brightness,c(-Inf,-1e-6,1e-6,Inf),labels=c("minor","neutral","major"))
+colour_factor_homey <- function(x,column_name) {
+  checkmate::qassert(column_name,"S1")
+  cut(x[[column_name]],c(-Inf,-1e-6,1e-6,Inf),labels=c("minor","neutral","major"))
 }
 color_values_homey <- function() {
   c("minor"=colors_homey()$minor,"neutral"=colors_homey()$neutral,"major"=colors_homey()$major)

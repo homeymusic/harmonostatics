@@ -2,10 +2,11 @@
 
 export(harmony)
 export(homey_plot_harmony)
-export(homey_plot_potential_energy)
+export(homey_plot_progression)
 export(plot_harmony)
-export(plot_potential_energy)
+export(plot_progression)
 export(potential_energy)
+export(progression)
 importFrom(checkmate,assert_choice)
 importFrom(checkmate,assert_integerish)
 importFrom(checkmate,assert_logical)

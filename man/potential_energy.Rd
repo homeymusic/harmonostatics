@@ -4,19 +4,17 @@
 \alias{potential_energy}
 \title{Potential Energy}
 \usage{
-potential_energy(x, y, home, name = NULL)
+potential_energy(from, to, home)
 }
 \arguments{
-\item{x}{A note or chord expressed as an interval integers or vector of interval integers}
+\item{from}{A starting note or chord expressed as a harmony tibble}
 
-\item{y}{A note or chord expressed as an interval integers or vector of interval integers}
+\item{to}{An ending note or chord expressed as a harmony tibble}
 
-\item{home}{The home pitch expressed an as interval integer}
-
-\item{name}{An optional custom name for the note or chord}
+\item{home}{The home note of the musical context}
 }
 \value{
-A tibble with semitone, intervallic_name, name, affinity, brightness, magnitude and potential energy
+The potential energy difference between the two chords or notes
 }
 \description{
 Provides the potential energy between two chords or notes
