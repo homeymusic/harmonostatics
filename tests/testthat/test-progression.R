@@ -4,7 +4,7 @@ test_that("home chord to home chord cadence makes sense", {
   p = progression(from,to,0)
   # must be a harmony tibble
   expect(tibble::is_tibble(p),"expected progression to be a tibble")
-  expect_equal(p$intervallic_name,paste("0:4:7"," ","0:4:7"))
+  expect_equal(p$intervallic_name,"0:4:7")
   expect_equal(p$name,p$intervallic_name)
   expect_equal(p$home,0)
   expect_equal(p$semitone,0)
@@ -18,7 +18,7 @@ test_that("tonic major dominant cadence makes sense", {
   p = progression(from,to,0)
   # must be a harmony tibble
   expect(tibble::is_tibble(p),"expected progression to be a tibble")
-  expect_equal(p$intervallic_name,paste("7:11:14"," ","0:4:7"))
+  expect_equal(p$intervallic_name,"7:11:14")
   expect_equal(p$name,p$intervallic_name)
   expect_equal(p$home,0)
   expect_equal(p$semitone,-7)

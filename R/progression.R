@@ -6,7 +6,7 @@ progression.uncached <- function(from,to,home=NULL,name=NULL) {
   if (from$home != to$home) {
     stop('from$home and to$home must have the same value.')
   }
-  intervallic_name = paste(from$intervallic_name," ", to$intervallic_name)
+  intervallic_name = paste(from$intervallic_name)
   if (is.null(name)) {
     name = intervallic_name
   }

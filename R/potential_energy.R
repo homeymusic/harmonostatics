@@ -7,7 +7,7 @@ potential_energy.uncached <-function(from,to,home) {
     dplyr::mutate(potential_energy=
       abs(harmony.magnitude(from,home)-harmony.magnitude(to,home))*(ifelse(home==0,from-to,to-from)))
 
-  crossing_of_pitches$potential_energy %>% mean
+  crossing_of_pitches$potential_energy %>% mean %>% abs
 }
 #' Potential Energy
 #'
