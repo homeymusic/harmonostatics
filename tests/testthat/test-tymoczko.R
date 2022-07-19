@@ -29,7 +29,7 @@ test_that("the dyad matrix from fig. 3a give reasonable results", {
   to = c(0,6)
   from = utils::combn(0:12,2,simplify=FALSE)
   title = "PE of All Dyads in One Octave"
-  p = homey_plot_progression(x=from,y=to,home=home,columns=c(x="from_affinity",y="potential_energy",size="from_affinity",color="from_brightness"), title=title, symmetrical=FALSE,include_names=FALSE)
+  p = homey_plot_progression(x=from,y=to,home=home,columns=c(x="from_affinity",y="potential_energy",size="from_brightness_mag",color="from_brightness"), title=title, symmetrical=FALSE,include_names=FALSE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "from_affinity")
@@ -44,7 +44,7 @@ test_that("Fig 1A 18th Century", {
              "4"=c(-1,2,7),
              "5"=c(0,4,7))
   title = "Fig 1A 18th Century"
-  p = homey_plot_progression(x=from,y=to,home=home,columns=c(x="from_affinity",y="potential_energy",size="from_affinity",color="from_brightness"), title=title, symmetrical=FALSE)
+  p = homey_plot_progression(x=from,y=to,home=home,columns=c(x="from_affinity",y="potential_energy",size="from_brightness_mag",color="from_brightness"), title=title, symmetrical=FALSE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "from_affinity")
@@ -58,7 +58,7 @@ test_that("common jazz-piano voice-leading pattern", {
              "3"=c(-2,3,5,8),
              "4"=c(-3,1,3,8))
   title = "Fig 1B Jazz"
-  p = homey_plot_progression(x=from,y=to,home=home,columns=c(x="from_affinity",y="potential_energy",size="from_affinity",color="from_brightness"), title=title, symmetrical=FALSE)
+  p = homey_plot_progression(x=from,y=to,home=home,columns=c(x="from_affinity",y="potential_energy",size="from_brightness_mag",color="from_brightness"), title=title, symmetrical=FALSE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "from_affinity")

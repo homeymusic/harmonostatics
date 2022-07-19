@@ -19,6 +19,7 @@ progression.uncached <- function(from,to,home=NULL,name=NULL) {
     from_affinity = from$affinity,
     to_affinity = to$affinity,
     from_brightness = from$brightness,
+    from_brightness_mag = abs(from$brightness),
     to_brightness = to$brightness,
     semitone = to$semitone - from$semitone,
     affinity = to$affinity - from$affinity,
