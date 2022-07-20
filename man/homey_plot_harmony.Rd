@@ -14,7 +14,8 @@ homey_plot_harmony(
   pascal_triangle = FALSE,
   repel_labels = FALSE,
   max_overlaps = Inf,
-  x_expansion_mult = 0.6
+  x_expansion_mult = 0.6,
+  include_path = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ homey_plot_harmony(
 \item{max_overlaps}{for repel labels}
 
 \item{x_expansion_mult}{add add padding horizontally, 0.6 is default}
+
+\item{include_path}{include line representing ordered path among chords or notes}
 }
 \value{
 Generates the requested scatter plot and returns TRUE

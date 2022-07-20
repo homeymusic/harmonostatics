@@ -63,6 +63,14 @@
 <text x='263.45' y='37.12' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='6.13px' lengthAdjust='spacingAndGlyphs'>4</text>
 <polygon points='255.34,451.86 271.55,451.86 271.47,451.86 271.81,451.84 272.15,451.77 272.48,451.65 272.78,451.48 273.05,451.26 273.28,451.00 273.47,450.70 273.60,450.38 273.69,450.05 273.71,449.70 273.71,449.70 273.71,431.71 273.71,431.71 273.69,431.36 273.60,431.02 273.47,430.70 273.28,430.41 273.05,430.15 272.78,429.93 272.48,429.76 272.15,429.63 271.81,429.56 271.55,429.55 255.34,429.55 255.60,429.56 255.25,429.55 254.91,429.59 254.57,429.69 254.26,429.84 253.97,430.03 253.72,430.28 253.51,430.55 253.35,430.86 253.24,431.19 253.19,431.53 253.18,431.71 253.18,449.70 253.19,449.53 253.19,449.87 253.24,450.22 253.35,450.55 253.51,450.85 253.72,451.13 253.97,451.37 254.26,451.57 254.57,451.72 254.91,451.82 255.25,451.86 ' style='stroke-width: nan; stroke: none;' />
 <text x='263.45' y='445.24' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='6.13px' lengthAdjust='spacingAndGlyphs'>5</text>
+<line x1='263.45' y1='451.86' x2='263.45' y2='287.52' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt;' />
+<polygon points='267.05,293.76 263.45,287.52 259.85,293.76 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
+<line x1='263.45' y1='287.52' x2='263.45' y2='451.86' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt;' />
+<polygon points='259.85,445.62 263.45,451.86 267.05,445.62 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
+<line x1='263.45' y1='451.86' x2='263.45' y2='43.74' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt;' />
+<polygon points='267.05,49.98 263.45,43.74 259.85,49.98 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
+<line x1='263.45' y1='43.74' x2='263.45' y2='451.86' style='stroke-width: 1.07; stroke: #ABDAF3; stroke-linecap: butt;' />
+<polygon points='259.85,445.62 263.45,451.86 267.05,445.62 ' style='stroke-width: 1.07; stroke: #ABDAF3; stroke-linecap: butt; fill: #ABDAF3;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='23.44' y='455.01' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>0</text>

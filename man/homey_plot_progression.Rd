@@ -14,6 +14,7 @@ homey_plot_progression(
   symmetrical = TRUE,
   x_expansion_mult = 0.6,
   title = NULL,
+  include_path = FALSE,
   y_lim_max = NA_real_,
   y_lim_min = NA_real_
 )
@@ -36,6 +37,8 @@ homey_plot_progression(
 \item{x_expansion_mult}{Leave space for the labels within the chart}
 
 \item{title}{An optional title for the plot}
+
+\item{include_path}{include line representing ordered path among chords or notes}
 
 \item{y_lim_max}{Set the max vertical value for the plot, default is NA_real_}
 

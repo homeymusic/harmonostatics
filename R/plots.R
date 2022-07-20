@@ -50,6 +50,7 @@ plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,include_names=TRUE,tit
 #' @param repel_labels Space labels apart
 #' @param max_overlaps for repel labels
 #' @param x_expansion_mult add add padding horizontally, 0.6 is default
+#' @param include_path include line representing ordered path among chords or notes
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
@@ -57,7 +58,8 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
                                include_names=TRUE,title=NULL,
                                pascal_triangle=FALSE,
                                repel_labels=FALSE,max_overlaps=Inf,
-                               x_expansion_mult = 0.6) {
+                               x_expansion_mult = 0.6,
+                               include_path=FALSE) {
   if (is.null(names(x))) {include_names=FALSE}
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12),null.ok=TRUE)
@@ -71,11 +73,10 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
   if (include_names) {
     n = names(x)
     l = list(x=x,name=n)
-    h = purrr::pmap(l,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::pmap(l,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows,.id="sequence")
   } else {
-    h = purrr::map(x,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::map(x,harmony,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows,.id="sequence")
   }
-
   colour_factor = colour_factor_homey(h,"brightness")
   color_values = color_values_homey()
 
@@ -102,6 +103,9 @@ homey_plot_harmony <- function(x,home=NULL,columns,unlist=FALSE,
     } else {
       p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.3, "lines"))
     }
+  }
+  if (include_path) {
+    p = p + path_homey()
   }
   p
 }
@@ -159,13 +163,16 @@ plot_progression <- function(x,y,home,columns,unlist=FALSE,include_names=TRUE,ti
 #' @param title An optional title for the plot
 #' @param y_lim_max Set the max vertical value for the plot, default is NA_real_
 #' @param y_lim_min Set the min vertical value for the plot, default is NA_real_
+#' @param include_path include line representing ordered path among chords or notes
+
 #' @return Generates the requested scatter plot and returns TRUE
 #'
 #' @export
 homey_plot_progression <- function(x,y,home,columns,unlist=FALSE,
-                                        include_names=TRUE,symmetrical=TRUE,
-                                        x_expansion_mult=0.6,
-                                        title=NULL,y_lim_max=NA_real_,y_lim_min=NA_real_) {
+                                   include_names=TRUE,symmetrical=TRUE,
+                                   x_expansion_mult=0.6,
+                                   title=NULL,include_path=FALSE,
+                                   y_lim_max=NA_real_,y_lim_min=NA_real_) {
   checkmate::assert(checkmate::check_list(x,types="integerish"))
   checkmate::assert_choice(home,c(0,12))
   checkmate::qassert(columns,"S4")
@@ -179,14 +186,14 @@ homey_plot_progression <- function(x,y,home,columns,unlist=FALSE,
   if (include_names) {
     n = names(x)
     l = list(from=x,name=n)
-    h = purrr::pmap(l,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::pmap(l,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows,.id="sequence")
   } else {
-    h = purrr::map(x,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows)
+    h = purrr::map(x,progression,to=y,home=home) %>% purrr::map_dfr(.f=dplyr::bind_rows,.id="sequence")
   }
-
   colour_factor = colour_factor_homey(h,columns["color"])
   color_values = color_values_homey()
-  p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns["x"], y = columns["y"], colour=colour_factor)) +
+  p = h %>% ggplot2::ggplot(ggplot2::aes_string(x = columns["x"], y = columns["y"],
+                                                colour=colour_factor)) +
     ggplot2::geom_point(ggplot2::aes_string(size=columns["size"])) +
     ggplot2::ylim(y_lim_min,y_lim_max) +
     ggplot2::scale_size(guide="none") +
@@ -205,6 +212,9 @@ homey_plot_progression <- function(x,y,home,columns,unlist=FALSE,
   } else {
     p = p + ggplot2::geom_label(ggplot2::aes(label=.data$intervallic_name),label.size = NA,fill=NA,vjust='bottom',hjust="outward",label.padding = ggplot2::unit(0.5, "lines"))
   }
+  if (include_path) {
+    p = p + path_homey()
+  }
   p
 }
 colors_homey <- function() {
@@ -222,6 +232,11 @@ colour_factor_homey <- function(x,column_name) {
 }
 color_values_homey <- function() {
   c("minor"=colors_homey()$minor,"neutral"=colors_homey()$neutral,"major"=colors_homey()$major)
+}
+path_homey <- function() {
+  ggplot2::geom_path(ggplot2::aes(group=1),
+                     arrow = grid::arrow(length = grid::unit(0.1, "inches"),
+                                         ends = "last", type = "closed"))
 }
 theme_homey <- function(){
   font <- "Helvetica"   #assign font family up front
