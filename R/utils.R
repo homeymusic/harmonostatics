@@ -33,6 +33,13 @@ sum_of_prime_factors <- function(x) {
   sum(x[x>1])
 }
 
+sum_of_sq_prime_factors <- function(x) {
+  checkmate::assert_integerish(x)
+  # because 1 in exponential form would have all exponents = zero
+  # we only sum prime numbers greater than 1
+  # this is a shortcut versus creating the exponential form of all intervals
+  sum(x[x>1]^2)
+}
 rotate <- function(coordinates,angle) {
   checkmate::assert_numeric(angle)
   R = tibble::frame_matrix(
@@ -41,4 +48,12 @@ rotate <- function(coordinates,angle) {
     sin(angle), cos(angle)
   )
   R %*% coordinates
+}
+l1norm <- function(numerators, denominators) {
+  numerators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
+  denominators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors)
+}
+l2norm <- function(numerators, denominators) {
+  (numerators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_sq_prime_factors) +
+    denominators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_sq_prime_factors)) %>% sqrt
 }

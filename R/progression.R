@@ -3,9 +3,6 @@ progression.uncached <- function(from,to,home=NULL,name=NULL) {
   to = harmony(to,home)
   checkmate::assert_tibble(from, ncols=8, nrows=1, any.missing = FALSE)
   checkmate::assert_tibble(to, ncols=8, nrows=1, any.missing = FALSE)
-  if (from$home != to$home) {
-    stop('from$home and to$home must have the same value.')
-  }
   intervallic_name = paste(from$intervallic_name)
   if (is.null(name)) {
     name = intervallic_name

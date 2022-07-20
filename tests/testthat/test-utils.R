@@ -40,8 +40,21 @@ test_that("rotation works", {
   expect_equal(rotate(rbind(1,0),angle),rbind(cos(angle),sin(angle)))
   expect_equal(rotate(rbind(0,1),angle),rbind(-sin(angle),cos(angle)))
 })
-
 test_that("sum_of_prime_factors works", {
   expect_equal(sum_of_prime_factors(numbers::primeFactors(1)),0)
   expect_equal(sum_of_prime_factors(numbers::primeFactors(16)),8)
+})
+test_that("l1norm works as expected", {
+  expect_equal(l1norm(1,1),0)
+  expect_equal(l1norm(2,1),l1norm(1,2))
+  expect_equal(l1norm(3,2),l1norm(2,3))
+  expect_equal(l1norm(c(1,2,1,3,2),c(1,1,2,2,3)),c(0,2,2,5,5))
+  expect_equal(l1norm(c(1,2,1,3,2),c(1,1,2,2,3)),l1norm(c(1,1,2,2,3),c(1,2,1,3,2)))
+})
+test_that("l2norm works as expected", {
+  expect_equal(l2norm(1,1),0)
+  expect_equal(l2norm(2,1),l2norm(1,2))
+  expect_equal(l2norm(3,2),l2norm(2,3))
+  expect_equal(l2norm(c(1,2,1,3,2),c(1,1,2,2,3)),l2norm(c(1,1,2,2,3),c(1,2,1,3,2)))
+  expect_equal(l2norm(c(1,2,1,3,2),c(1,1,2,2,3)),c(0,2,2,3.60551,3.60551),tolerance=0.001)
 })

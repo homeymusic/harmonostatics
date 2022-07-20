@@ -3,26 +3,33 @@
 # level 0
 #
 
-disaffinity_tonic.uncached <- function() {
+disaffinity_tonic.uncached <- function(norm="l1") {
+  checkmate::assert_choice(norm,c("l1","l2"))
+
   t = frequency_ratio_tonic()
-  tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator)
+  tonic_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(t$numerator,t$denominator,norm)
 }
 disaffinity_tonic <- memoise::memoise(disaffinity_tonic.uncached)
 
-disaffinity_octave.uncached <- function() {
+disaffinity_octave.uncached <- function(norm="l1") {
+  checkmate::assert_choice(norm,c("l1","l2"))
+
   o = frequency_ratio_octave()
-  octave_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(o$numerator,o$denominator)
+  octave_disaffinity = calculate_disaffinity_with_equal_temperament_tritone(o$numerator,o$denominator,norm)
 }
 disaffinity_octave <- memoise::memoise(disaffinity_octave.uncached)
 
-calculate_disaffinity <- function(numerators, denominators) {
+calculate_disaffinity <- function(numerators, denominators, norm="l1") {
   checkmate::assert_integerish(numerators)
   checkmate::assert_integerish(denominators)
+  checkmate::assert_choice(norm,c("l1","l2"))
 
-  numerators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors) +
-    denominators %>% sapply(numbers::primeFactors) %>% sapply(sum_of_prime_factors)
+  if (norm=="l1") {
+    l1norm(numerators,denominators)
+  } else if (norm=="l2") {
+    l2norm(numerators,denominators)
+  }
 }
-
 
 ################################################
 #
@@ -60,7 +67,9 @@ equal_temperament_tritone_disaffinity <- function() {
   mean(c(lesser_septimal_tritone_disaffinity,greater_septimal_tritone_disaffinity))
 }
 
-calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators) {
+calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, denominators, norm="l1") {
+  checkmate::assert_choice(norm,c("l1","l2"))
+
   # drop the irrational tritone in order to calculate the other prime intervals
   numerators = numerators[-7]
   denominators = denominators[-7]
@@ -69,7 +78,7 @@ calculate_disaffinity_with_equal_temperament_tritone <- function(numerators, den
   checkmate::qassert(denominators,"X12")
 
   # calculate disaffinity of remaining intervals
-  disaffinity = calculate_disaffinity(numerators,denominators)
+  disaffinity = calculate_disaffinity(numerators,denominators,norm)
 
   # insert the equal temperament tritone estimate back into the results
   c(disaffinity[1:6],equal_temperament_tritone_disaffinity(),disaffinity[7:12])
