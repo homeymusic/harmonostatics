@@ -180,6 +180,17 @@ intervals_list <- function() {
   setNames(as.list(tbl$semitone), tbl$name)
 }
 #######################
+# other combinations
+#
+tonnetz_hexagon <- function() {
+  list("E\u266d"=3,
+       "E"=4,
+       "F"=5,
+       "G"=7,
+       "A\u266d"=8,
+       "A"=9)
+}
+#######################
 # utils
 #
 suppress_warnings <- function(){

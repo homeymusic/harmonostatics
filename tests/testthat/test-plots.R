@@ -74,6 +74,16 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
+  title = 'Tonnetz Hexagon'
+  chords = c(utils::combn(tonnetz_hexagon()%>%unlist,2,function(x){c(0,x,12)},simplify=FALSE))
+  p = plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
   title = 'Locrian'
   p = plot_harmony(common_scales()['locrian'],home=0,unlist=TRUE,columns=c("brightness","affinity"),title=title,include_names=FALSE)
   expect(p, "plot is probably ok")
