@@ -47,12 +47,14 @@ brightness_polarity <- memoise::memoise(brightness_polarity.uncached)
 #
 # level 0
 #
-brightness_boundary <- function() {
+brightness_boundary.uncached <- function() {
   # we need more major-minor experimental data to determine the boundary
   # for brightness. our current approach is to take the mean of the
   # minor 3rd, major 3rd, minor 6th and major 6th
   c(3,4,8,9) %>% sapply(affinity) %>% mean
 }
+brightness_boundary <- memoise::memoise(brightness_boundary.uncached)
+
 brightness_from_affinity.uncached <- function(polarity,affinity) {
   # we use the stream function solution to the Laplace equation 2xy=const
   # with const = -2 and +2 for the relationship between brightness & affinity

@@ -107,6 +107,28 @@ locrian_tonic_chords <- function() {
   )
 }
 #################
+# tonic 7th chords
+#
+ionian_tonic_7th_chords <- function() {
+  list("I\u2077"=c(0,4,7,11),
+       "ii\u2077"=c(2,5,9,12),
+       "iii\u2077"=c(4,7,11,14),
+       "IV\u2077"=c(5,9,12,16),
+       "V\u2077"=c(7,11,14,17),
+       "vi\u2077"=c(9,12,16,19),
+       "vii\u00B0\u2077"=c(11,14,17,21)
+  )
+}
+#################
+# tristan
+#
+tristan_and_dominant_7th <- function() {
+  list("Dominant 7th"=c(0,4,7,10),
+       "Tristan"=c(2,5,8,12)
+  )
+}
+
+#################
 # octave chords
 #
 dorian_octave_chords <- function() {

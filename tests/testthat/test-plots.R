@@ -65,6 +65,16 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
+
+  title = "Tristan and Dominant 7th"
+  p = plot_harmony(tristan_and_dominant_7th(),columns=c("brightness","affinity"), title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(tristan_and_dominant_7th(),columns=c("brightness","affinity"),title=title)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
   title = "Common Scales"
   p = plot_harmony(common_scales(),home=0,columns=c("brightness","affinity"), title=title)
   expect(p, "plot is probably ok")
@@ -74,11 +84,22 @@ test_that("affinity brightness plots look good", {
   expect_identical(p$labels$x, "brightness")
   expect_identical(p$labels$y, "affinity")
 
-  title = 'Tonnetz Hexagon'
-  chords = c(utils::combn(tonnetz_hexagon()%>%unlist,2,function(x){c(0,x,12)},simplify=FALSE))
+  title = 'Tonnetz Dyads Triads Hexagon'
+  chords = c(utils::combn(tonnetz_hexagon()%>%unlist,2,function(x){c(0,x,12)},simplify=FALSE),
+             utils::combn(tonnetz_hexagon()%>%unlist,1,function(x){c(0,x,12)},simplify=FALSE))
   p = plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
-  p = homey_plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title)
+  p = homey_plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title,include_names=FALSE)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
+  expect_identical(p$labels$x, "brightness")
+  expect_identical(p$labels$y, "affinity")
+
+  title = 'Tonnetz Triads Hexagon'
+  chords = utils::combn(tonnetz_hexagon()%>%unlist,2,function(x){c(0,x,12)},simplify=FALSE)
+  p = plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_harmony(chords,home=0,columns=c("brightness","affinity"),title=title,include_names=FALSE)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "brightness")
@@ -125,7 +146,10 @@ test_that("all two note chords look good", {
 })
 test_that("all three note chords look good", {
   title="All 3 Note Chords"
-  chords = c(utils::combn(1:11,2,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,2,function(x){c(x,12)},simplify=FALSE))
+  chords = c(
+    utils::combn(1:11,2,function(x){c(0,x)},simplify=FALSE),
+    utils::combn(1:11,1,function(x){c(0,x,12)},simplify=FALSE),
+    utils::combn(1:11,2,function(x){c(x,12)},simplify=FALSE))
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
   p = homey_plot_harmony(chords,columns=c("brightness","affinity"),title=title,include_names=FALSE,repel_labels=TRUE)
@@ -147,7 +171,10 @@ test_that("all symmetrical three note chords look good", {
 })
 test_that("all four note chords look good", {
   title="All 4 Note Chords"
-  chords = c(utils::combn(1:11,3,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,3,function(x){c(x,12)},simplify=FALSE))
+  chords = c(
+    utils::combn(1:11,3,function(x){c(0,x)},simplify=FALSE),
+    utils::combn(1:11,2,function(x){c(0,x,12)},simplify=FALSE),
+    utils::combn(1:11,3,function(x){c(x,12)},simplify=FALSE))
 
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
@@ -188,7 +215,10 @@ test_that("all symmetrical eight note scales look good", {
 })
 test_that("all five note chords look good", {
   title="All 5 Note Chords"
-  chords = c(utils::combn(1:11,4,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,4,function(x){c(x,12)},simplify=FALSE))
+  chords = c(
+    utils::combn(1:11,4,function(x){c(0,x)},simplify=FALSE),
+    utils::combn(1:11,3,function(x){c(0,x,12)},simplify=FALSE),
+    utils::combn(1:11,4,function(x){c(x,12)},simplify=FALSE))
 
   p = plot_harmony(chords,columns=c("brightness","affinity"),title = title)
   expect(p, "plot is probably ok")
@@ -203,7 +233,10 @@ test_that("all five note chords look good", {
 })
 test_that("all six note chords look good", {
   title="All 6 Note Chords"
-  chords = c(utils::combn(1:11,5,function(x){c(0,x)},simplify=FALSE),utils::combn(1:11,5,function(x){c(x,12)},simplify=FALSE))
+  chords = c(
+    utils::combn(1:11,5,function(x){c(0,x)},simplify=FALSE),
+    utils::combn(1:11,4,function(x){c(0,x,12)},simplify=FALSE),
+    utils::combn(1:11,5,function(x){c(x,12)},simplify=FALSE))
 
   p = plot_harmony(chords,columns=c("brightness","affinity"),title=title)
   expect(p, "plot is probably ok")
@@ -269,6 +302,15 @@ test_that("ionian PE look good", {
   p = plot_progression(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c("from_brightness","potential_energy"),title=title)
   expect(p, "plot is probably ok")
   p = homey_plot_progression(x=ionian_tonic_chords(),y=c(0,4,7),home=0,columns=c(x="from_brightness",y="potential_energy",size="from_affinity",color="from_brightness"), title=title, symmetrical=TRUE,y_lim_max=100)
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
+  suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
+  expect_identical(p$labels$x, "from_brightness")
+  expect_identical(p$labels$y, "potential_energy")
+
+  title="Ionian Tonic 7th Chords PE vs Brightness"
+  p = plot_progression(x=ionian_tonic_7th_chords(),y=c(0,4,7,11),home=0,columns=c("from_brightness","potential_energy"),title=title)
+  expect(p, "plot is probably ok")
+  p = homey_plot_progression(x=ionian_tonic_7th_chords(),y=c(0,4,7,11),home=0,columns=c(x="from_brightness",y="potential_energy",size="from_affinity",color="from_brightness"), title=title, symmetrical=TRUE,y_lim_max=100)
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".svg",sep="")))
   suppressMessages(ggplot2::ggsave(paste("./homey_plots/",gsub(" ", "_", title),".png",sep="")))
   expect_identical(p$labels$x, "from_brightness")
