@@ -5,13 +5,10 @@
 
 frequency_ratio_tonic.uncached <- function() {
   # for the sake of symmetry between the tonic and octave
-  # we use the equal temperament tritone and use an estimate of its affinity
-  numerator = c(1,16,9,6,5,4,sqrt(2),3,8,5,16,15,2)
-  denominator = c(1,15,8,5,4,3,1,2,5,3,9,8,1)
+  # we use the lesser septimal tritone 7:5 for the tonic
+  numerator = c(1,16,9,6,5,4,7,3,8,5,16,15,2)
+  denominator = c(1,15,8,5,4,3,5,2,5,3,9,8,1)
   ratio = paste(numerator,":",denominator, sep="")
-
-  # equal temperament tritone ratio label
-  ratio[7] = "\u221A2:1"
 
   tibble::tibble(
     semitone = intervals()$semitone,
@@ -27,12 +24,13 @@ frequency_ratio_octave.uncached <- function() {
   # from the octave's perspective the numerator and denominator of the tonic
   # frequency ratio are swapped and the order of the intervals is reversed
   t = frequency_ratio_tonic()
+  # for the sake of symmetry between the tonic and octave
+  # we use the greater septimal tritone 10:7 for the octave
+  t$numerator[7] = 10
+  t$denominator[7] = 7
   numerator = rev(t$denominator)
   denominator = rev(t$numerator)
   ratio = paste(numerator,":",denominator, sep="")
-
-  # equal temperament inverted tritone ratio label
-  ratio[7] = "1:\u221A2"
 
   tibble::tibble(
     semitone = intervals()$semitone,

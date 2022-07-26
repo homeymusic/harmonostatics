@@ -72,9 +72,7 @@ harmony.magnitude <- memoise::memoise(harmony.magnitude.uncached)
 # from: octave-affinity versus tonic-affinity
 # to: octave-tonic-affinity versus brightness-polarity
 harmony.rotated_tonic_octave_affinity.uncached <-function() {
-  # use the tritone to determine the rotation angle
-  tritone = 6
-  rotation_angle = atan2(affinity_octave()[tritone+1],affinity_tonic()[tritone+1])
+  rotation_angle = pi / 4
 
   (affinity_tonic_octave() %>%
       rotate(rotation_angle) * cos(rotation_angle)) %>% zapsmall
